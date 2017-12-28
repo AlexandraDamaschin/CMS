@@ -11,9 +11,32 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
+    [Authorize(Roles = "Admin,EventManager")]
     public class EventsController : Controller
     {
         private CMSContext db = new CMSContext();
+
+
+        //  GET: Events by DeviceID for Raspberry Pi
+        //[HttpGet]
+        //[Route("device/{deviceId}/device-events")]
+        //public List<Event> DeviceEventsList(int deviceId)
+        //{
+        //    DateTime now = DateTime.UtcNow.Date;
+        //    var deviceEvents = db.Events
+        //                        .Join(db.Devices,
+        //                            evnt => evnt.LocationID,
+        //                            dev => dev.LocationID,
+        //                            (evnt, dev) => new { Event = evnt, Device = dev })
+        //                        .Where(evntAndDev => evntAndDev.Device.DeviceID == deviceId
+        //                            && evntAndDev.Event.StartTime >= now)
+        //                        .Select(evntAndDev => new { evntAndDev.Event });
+        //    return deviceEvents.ToList();
+        //}
+
+
+
+
 
         // GET: Events
         public ActionResult Index()
