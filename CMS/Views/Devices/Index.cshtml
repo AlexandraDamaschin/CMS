@@ -1,51 +1,76 @@
 ﻿@model IEnumerable<CMS.Models.CMSModel.Device>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Devices";
 }
 
-<h2>Index</h2>
+<h2>Devices</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table" id="devices">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.associatedLocation.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Build)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Build
+        </th>
+        <th>
+        </th>
+    </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.associatedLocation.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Build)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.DeviceID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DeviceID })
-                </td>
-            </tr>
-        }
-    </tbody>
+    <tbody></tbody>
+</table>
 
-    </table>
-    @section scripts
+
+@section scripts
 {
-        <script>
-            $(document).ready(function () {
-                $("#devices").DataTable();
-            })
-        </script>
-    }
+    <script>
+        $(document).ready(function () {
+            var table = $("#devices").DataTable({
+                ajax: {
+                    url: "/api/devices",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "deviceID"
+                    },
+                    {
+                        data: "associatedLocation.name"
+                    },
+                    {
+                        data: "build"
+                    },
+                    {
+                        data: "deviceID",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-device-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#devices").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this device?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/devices/" + button.attr("data-device-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+</script>
+   
+}

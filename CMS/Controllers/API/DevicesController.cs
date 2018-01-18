@@ -2,15 +2,14 @@
 using CMS.Dtos;
 using CMS.Models.CMSModel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
+
 
 namespace CMS.Controllers.API
 {
-    [Authorize(Roles = "Admin")]
+
     public class DevicesController : ApiController
     {
         private CMSContext _cms;
@@ -23,7 +22,18 @@ namespace CMS.Controllers.API
         // Get /api/devices
         public IHttpActionResult GetDevices()
         {
-            return Ok(_cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>));
+            var devicesQuery = _cms.Devices
+                .Include(d => d.associatedLocation);
+
+            var deviceDtos = devicesQuery
+                .ToList()
+                .Select(Mapper.Map<Device, DeviceDto>);
+
+            return Ok(deviceDtos);
+
+
+
+            //return Ok(_cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>));
         }
 
         // Get /api/device/1

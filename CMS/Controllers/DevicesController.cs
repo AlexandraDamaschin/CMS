@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
@@ -16,7 +11,15 @@ namespace CMS.Controllers
     {
         private CMSContext db = new CMSContext();
 
-        // List: Devices
+//        public ActionResult New()
+//        {
+//            var locations = db.Locations.ToList();
+//            var viewModel = new NewDeviceViewModel
+//            {
+//                Locations = locations
+//            };
+//            return View(viewModel);
+//        }
 
 
         // GET: Devices
