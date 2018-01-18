@@ -14,11 +14,19 @@ namespace CMS.Models.CMSModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DeviceID { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+
+        [Required]
         [ForeignKey("associatedLocation")]
         public int LocationID { get; set; }
 
-        public int Build { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Build { get; set; }
 
+        public bool HasError { get; set; }
 
         public virtual Location associatedLocation { get; set; }
 

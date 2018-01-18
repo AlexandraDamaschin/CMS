@@ -14,6 +14,9 @@ namespace CMS.Dtos
 
         public int Build { get; set; }
 
+        public string Name { get; set; }
+
+        public bool HasError { get; set; }
 
         public LocationDto associatedLocation { get; set; }
     }

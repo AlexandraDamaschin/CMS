@@ -248,6 +248,14 @@
     <Compile Include="Migrations\CMSContext\201712221524256_long lat changed to float.Designer.cs">
       <DependentUpon>201712221524256_long lat changed to float.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201801181955458_add device model name.cs" />
+    <Compile Include="Migrations\CMSContext\201801181955458_add device model name.Designer.cs">
+      <DependentUpon>201801181955458_add device model name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201801182000429_add device model validator.cs" />
+    <Compile Include="Migrations\CMSContext\201801182000429_add device model validator.Designer.cs">
+      <DependentUpon>201801182000429_add device model validator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -421,6 +429,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -434,6 +444,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -521,6 +533,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -602,6 +616,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201712221524256_long lat changed to float.resx">
       <DependentUpon>201712221524256_long lat changed to float.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801181955458_add device model name.resx">
+      <DependentUpon>201801181955458_add device model name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801182000429_add device model validator.resx">
+      <DependentUpon>201801182000429_add device model validator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
