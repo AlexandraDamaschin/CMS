@@ -11,10 +11,13 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class DevicesController : Controller
     {
         private CMSContext db = new CMSContext();
+
+        // List: Devices
+
 
         // GET: Devices
         public async Task<ActionResult> Index()
