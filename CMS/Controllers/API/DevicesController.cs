@@ -21,28 +21,28 @@ namespace CMS.Controllers.API
         }
 
         // Get /api/devices
-        public IEnumerable<DeviceDto> GetDevices()
+        public IHttpActionResult GetDevices()
         {
-            return _cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>);
+            return Ok(_cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>));
         }
 
         // Get /api/device/1
-        public DeviceDto GetDevice(int id)
+        public IHttpActionResult GetDevice(int id)
         {
             var device = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
 
             if (device == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Device, DeviceDto>(device);
+            return Ok(Mapper.Map<Device, DeviceDto>(device));
         }
 
         // Post /api/device
         [HttpPost]
-        public DeviceDto CreateDevice(DeviceDto deviceDto)
+        public IHttpActionResult CreateDevice(DeviceDto deviceDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var device = Mapper.Map<DeviceDto, Device>(deviceDto);
             _cms.Devices.Add(device);
@@ -50,37 +50,41 @@ namespace CMS.Controllers.API
 
             deviceDto.DeviceID = device.DeviceID;
 
-            return deviceDto;
+            return Created(new Uri(Request.RequestUri + "/" + device.DeviceID), deviceDto);
         }
 
         //  Put /api/devices/1
         [HttpPut]
-        public void UpdateDevice(int id, DeviceDto deviceDto)
+        public IHttpActionResult UpdateDevice(int id, DeviceDto deviceDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
 
             if (deviceInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             Mapper.Map(deviceDto, deviceInDb);
 
             _cms.SaveChanges();
+
+            return Ok();
         }
 
         //  Delete /api/devices/1
         [HttpDelete]
-        public void DeleteDevice(int id)
+        public IHttpActionResult DeleteDevice(int id)
         {
             var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
 
             if (deviceInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _cms.Devices.Remove(deviceInDb);
             _cms.SaveChanges();
+
+            return Ok();
         }
     }
 }
