@@ -10,7 +10,7 @@ namespace CMS.Dtos
 
         public int LocationId { get; set; }
         public float Lat { get; set; }
-        public float Long { get; set; }
+        public float Lng { get; set; }
         public string Name { get; set; }
     }
 }

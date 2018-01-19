@@ -264,6 +264,10 @@
     <Compile Include="Migrations\CMSContext\201801191301011_update Id for all classes to match convention.Designer.cs">
       <DependentUpon>201801191301011_update Id for all classes to match convention.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201801191313522_update Long to Lng to match convention.cs" />
+    <Compile Include="Migrations\CMSContext\201801191313522_update Long to Lng to match convention.Designer.cs">
+      <DependentUpon>201801191313522_update Long to Lng to match convention.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -633,6 +637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201801191301011_update Id for all classes to match convention.resx">
       <DependentUpon>201801191301011_update Id for all classes to match convention.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801191313522_update Long to Lng to match convention.resx">
+      <DependentUpon>201801191313522_update Long to Lng to match convention.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

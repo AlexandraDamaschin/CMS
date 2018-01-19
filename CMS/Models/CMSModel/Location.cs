@@ -15,7 +15,7 @@ namespace CMS.Models.CMSModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationId { get; set; }
         public float Lat { get; set; }
-        public float Long { get; set; }
+        public float Lng { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
