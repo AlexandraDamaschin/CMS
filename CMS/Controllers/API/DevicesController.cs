@@ -12,18 +12,18 @@ namespace CMS.Controllers.API
 
     public class DevicesController : ApiController
     {
-        private CMSContext _cms;
+        private CmsContext _cms;
 
         public DevicesController()
         {
-            _cms = new CMSContext();
+            _cms = new CmsContext();
         }
 
         // Get /api/devices
         public IHttpActionResult GetDevices()
         {
             var devicesQuery = _cms.Devices
-                .Include(d => d.associatedLocation);
+                .Include(d => d.AssociatedLocation);
 
             var deviceDtos = devicesQuery
                 .ToList()
@@ -39,7 +39,7 @@ namespace CMS.Controllers.API
         // Get /api/device/1
         public IHttpActionResult GetDevice(int id)
         {
-            var device = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
+            var device = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
 
             if (device == null)
                 return NotFound();
@@ -58,9 +58,9 @@ namespace CMS.Controllers.API
             _cms.Devices.Add(device);
             _cms.SaveChanges();
 
-            deviceDto.DeviceID = device.DeviceID;
+            deviceDto.DeviceId = device.DeviceId;
 
-            return Created(new Uri(Request.RequestUri + "/" + device.DeviceID), deviceDto);
+            return Created(new Uri(Request.RequestUri + "/" + device.DeviceId), deviceDto);
         }
 
         //  Put /api/devices/1
@@ -70,7 +70,7 @@ namespace CMS.Controllers.API
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
+            var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
 
             if (deviceInDb == null)
                 return NotFound();
@@ -86,7 +86,7 @@ namespace CMS.Controllers.API
         [HttpDelete]
         public IHttpActionResult DeleteDevice(int id)
         {
-            var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceID == id);
+            var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
 
             if (deviceInDb == null)
                 return NotFound();

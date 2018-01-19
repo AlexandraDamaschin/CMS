@@ -6,20 +6,20 @@ using System.Web;
 
 namespace CMS.Models.CMSModel
 {
-    public class CMSContext : DbContext
+    public class CmsContext : DbContext
     {
         public DbSet<Device> Devices { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public CMSContext()
+        public CmsContext()
             : base("DefaultConnection")
         {
         }
 
-        public static CMSContext Create()
+        public static CmsContext Create()
         {
-            return new CMSContext();
+            return new CmsContext();
         }
     }
 }

@@ -12,22 +12,22 @@ namespace CMS.Models.CMSModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EventID { get; set; }
+        public int EventId { get; set; }
 
-        [ForeignKey("associatedEvent")]
-        public int EventCatID { get; set; }
+        [ForeignKey("AssociatedEvent")]
+        public int EventCatId { get; set; }
 
-        [ForeignKey("associatedLocation")]
-        public int LocationID { get; set; }
+        [ForeignKey("AssociatedLocation")]
+        public int LocationId { get; set; }
 
         public string Name { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int OrganiserID { get; set; }
+        public int OrganiserId { get; set; }
 
     
-        public virtual EventCategory associatedEvent { get; set; }
+        public virtual EventCategory AssociatedEvent { get; set; }
 
-        public virtual Location associatedLocation { get; set; }
+        public virtual Location AssociatedLocation { get; set; }
     }
 }

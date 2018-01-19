@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.associatedEvent.EventCatID)
+            @Html.DisplayNameFor(model => model.AssociatedEvent.EventCatId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.associatedLocation.LocationID)
+            @Html.DisplayNameFor(model => model.AssociatedLocation.LocationId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.EndTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrganiserID)
+            @Html.DisplayNameFor(model => model.OrganiserId)
         </th>
         <th></th>
     </tr>
@@ -35,10 +35,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.associatedEvent.EventCatID)
+            @Html.DisplayFor(modelItem => item.AssociatedEvent.EventCatId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.associatedLocation.LocationID)
+            @Html.DisplayFor(modelItem => item.AssociatedLocation.LocationId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -50,12 +50,12 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OrganiserID)
+            @Html.DisplayFor(modelItem => item.OrganiserId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventId })
         </td>
     </tr>
 }

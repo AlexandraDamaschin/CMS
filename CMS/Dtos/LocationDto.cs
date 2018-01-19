@@ -8,9 +8,9 @@ namespace CMS.Dtos
     public class LocationDto
     {
 
-        public int LocationID { get; set; }
-        public float LAT { get; set; }
-        public float LONG { get; set; }
+        public int LocationId { get; set; }
+        public float Lat { get; set; }
+        public float Long { get; set; }
         public string Name { get; set; }
     }
 }

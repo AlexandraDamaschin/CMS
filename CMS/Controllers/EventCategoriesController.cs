@@ -13,12 +13,12 @@ namespace CMS.Controllers
     [Authorize(Roles = "Admin,EventManager")]
     public class EventCategoriesController : Controller
     {
-        private CMSContext db = new CMSContext();
+        private CmsContext _db = new CmsContext();
 
         // GET: EventCategories
         public ActionResult Index()
         {
-            return View(db.EventCategories.ToList());
+            return View(_db.EventCategories.ToList());
         }
 
         // GET: EventCategories/Details/5
@@ -28,7 +28,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = db.EventCategories.Find(id);
+            EventCategory eventCategory = _db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -47,12 +47,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventCatID,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Create([Bind(Include = "EventCatId,Name,Outdoor,Family")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {
-                db.EventCategories.Add(eventCategory);
-                db.SaveChanges();
+                _db.EventCategories.Add(eventCategory);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +66,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = db.EventCategories.Find(id);
+            EventCategory eventCategory = _db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -79,12 +79,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventCatID,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Edit([Bind(Include = "EventCatId,Name,Outdoor,Family")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eventCategory).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(eventCategory).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(eventCategory);
@@ -97,7 +97,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = db.EventCategories.Find(id);
+            EventCategory eventCategory = _db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -110,9 +110,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EventCategory eventCategory = db.EventCategories.Find(id);
-            db.EventCategories.Remove(eventCategory);
-            db.SaveChanges();
+            EventCategory eventCategory = _db.EventCategories.Find(id);
+            _db.EventCategories.Remove(eventCategory);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +120,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -5,7 +5,7 @@ namespace CMS.Migrations.CMSContext
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CMS.Models.CMSModel.CMSContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CMS.Models.CMSModel.CmsContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace CMS.Migrations.CMSContext
             MigrationsDirectory = @"Migrations\CMSContext";
         }
 
-        protected override void Seed(CMS.Models.CMSModel.CMSContext context)
+        protected override void Seed(CMS.Models.CMSModel.CmsContext context)
         {
             //  This method will be called after migrating to the latest version.
 

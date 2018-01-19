@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LAT)
+            @Html.DisplayNameFor(model => model.Lat)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LONG)
+            @Html.DisplayNameFor(model => model.Long)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -26,18 +26,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.LAT)
+            @Html.DisplayFor(modelItem => item.Lat)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LONG)
+            @Html.DisplayFor(modelItem => item.Long)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LocationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LocationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LocationID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.LocationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LocationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LocationId })
         </td>
     </tr>
 }

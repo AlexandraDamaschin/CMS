@@ -9,7 +9,7 @@ namespace CMS.Controllers
     [Authorize(Roles = "Admin")]
     public class DevicesController : Controller
     {
-        private CMSContext db = new CMSContext();
+        private CmsContext _db = new CmsContext();
 
 //        public ActionResult New()
 //        {
@@ -25,7 +25,7 @@ namespace CMS.Controllers
         // GET: Devices
         public async Task<ActionResult> Index()
         {
-            var devices = db.Devices.Include(d => d.associatedLocation);
+            var devices = _db.Devices.Include(d => d.AssociatedLocation);
             return View(await devices.ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Device device = await db.Devices.FindAsync(id);
+            Device device = await _db.Devices.FindAsync(id);
             if (device == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace CMS.Controllers
         // GET: Devices/Create
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name");
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
             return View();
         }
 
@@ -56,16 +56,16 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DeviceID,LocationID,Build")] Device device)
+        public async Task<ActionResult> Create([Bind(Include = "DeviceId,LocationId,Build")] Device device)
         {
             if (ModelState.IsValid)
             {
-                db.Devices.Add(device);
-                await db.SaveChangesAsync();
+                _db.Devices.Add(device);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", device.LocationID);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", device.LocationId);
             return View(device);
         }
 
@@ -76,12 +76,12 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Device device = await db.Devices.FindAsync(id);
+            Device device = await _db.Devices.FindAsync(id);
             if (device == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", device.LocationID);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", device.LocationId);
             return View(device);
         }
 
@@ -90,15 +90,15 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DeviceID,LocationID,Build")] Device device)
+        public async Task<ActionResult> Edit([Bind(Include = "DeviceId,LocationId,Build")] Device device)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(device).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(device).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", device.LocationID);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", device.LocationId);
             return View(device);
         }
 
@@ -109,7 +109,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Device device = await db.Devices.FindAsync(id);
+            Device device = await _db.Devices.FindAsync(id);
             if (device == null)
             {
                 return HttpNotFound();
@@ -122,9 +122,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Device device = await db.Devices.FindAsync(id);
-            db.Devices.Remove(device);
-            await db.SaveChangesAsync();
+            Device device = await _db.Devices.FindAsync(id);
+            _db.Devices.Remove(device);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -132,7 +132,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

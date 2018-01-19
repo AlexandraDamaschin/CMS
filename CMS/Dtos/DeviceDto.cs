@@ -8,9 +8,9 @@ namespace CMS.Dtos
     public class DeviceDto
     {
 
-        public int DeviceID { get; set; }
+        public int DeviceId { get; set; }
 
-        public int LocationID { get; set; }
+        public int LocationId { get; set; }
 
         public int Build { get; set; }
 
@@ -18,6 +18,6 @@ namespace CMS.Dtos
 
         public bool HasError { get; set; }
 
-        public LocationDto associatedLocation { get; set; }
+        public LocationDto AssociatedLocation { get; set; }
     }
 }

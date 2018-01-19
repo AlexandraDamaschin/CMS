@@ -12,15 +12,15 @@ namespace CMS.Models.CMSModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int DeviceID { get; set; }
+        public int DeviceId { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
 
         [Required]
-        [ForeignKey("associatedLocation")]
-        public int LocationID { get; set; }
+        [ForeignKey("AssociatedLocation")]
+        public int LocationId { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -28,7 +28,7 @@ namespace CMS.Models.CMSModel
 
         public bool HasError { get; set; }
 
-        public virtual Location associatedLocation { get; set; }
+        public virtual Location AssociatedLocation { get; set; }
 
 
     }

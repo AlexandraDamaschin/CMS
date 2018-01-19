@@ -10,7 +10,7 @@
     <thead>
     <tr>
         <th>
-            ID
+            Id
         </th>
         <th>
             Name
@@ -43,12 +43,12 @@
                 },
                 columns: [
                     {
-                        data: "deviceID"
+                        data: "deviceId"
                     },
                     {
                         data: "name",
                         render: function(data, type, device) {
-                            return "<a href='/devices/edit/" + device.deviceID + "'>" + device.name + "</a>";
+                            return "<a href='/devices/edit/" + device.deviceId + "'>" + device.name + "</a>";
                         }
                     },
                     {
@@ -64,7 +64,7 @@
                         }
                     },
                     {
-                        data: "deviceID",
+                        data: "deviceId",
                         render: function(data) {
                             return "<button class='btn-link text-danger js-delete' data-device-id=" + data + ">Delete</button>";
                         }
