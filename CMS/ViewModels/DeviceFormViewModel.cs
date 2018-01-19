@@ -6,7 +6,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.ViewModels
 {
-    public class NewDeviceViewModel
+    public class DeviceFormViewModel
     {
         public IEnumerable<Location> Locations { get; set; }
 

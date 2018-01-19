@@ -279,7 +279,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\NewDeviceViewModel.cs" />
+    <Compile Include="ViewModels\DeviceFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -601,6 +601,7 @@
     <Content Include="Views\EventCategories\Details.cshtml" />
     <Content Include="Views\EventCategories\Edit.cshtml" />
     <Content Include="Views\EventCategories\Index.cshtml" />
+    <Content Include="Views\Devices\DeviceForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
