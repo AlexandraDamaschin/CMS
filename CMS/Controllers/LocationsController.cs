@@ -47,7 +47,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "LocationId,LAT,LONG,Name")] Location location)
+        public async Task<ActionResult> Create([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "LocationId,LAT,LONG,Name")] Location location)
+        public async Task<ActionResult> Edit([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
         {
             if (ModelState.IsValid)
             {

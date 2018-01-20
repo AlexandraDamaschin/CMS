@@ -10,7 +10,7 @@ namespace CMS.Controllers
     [Authorize(Roles = "Admin")]
     public class DevicesController : Controller
     {
-        private CmsContext _cms = new CmsContext();
+        private readonly CmsContext _cms = new CmsContext();
 
 
         //  

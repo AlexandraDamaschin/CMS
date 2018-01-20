@@ -42,6 +42,9 @@
     <script>
         $(document).ready(function () {
             var table = $("#devices").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
                 ajax: {
                     url: "/api/devices",
                     dataSrc: ""
@@ -64,18 +67,28 @@
                     },
                     {
                         data: "hasError",
-                        render: function (data) {
-                            return (data === true) ? '<span class="text-success glyphicon glyphicon-ok"></span>' : '<span class="text-danger glyphicon glyphicon-remove"></span>';
+                        render: function(data) {
+                            return (data === true)
+                                ? '<span class="text-success glyphicon glyphicon-ok"></span>'
+                                : '<span class="text-danger glyphicon glyphicon-remove"></span>';
                         }
                     },
                     {
+                        "orderable": false,
                         data: "deviceId",
                         render: function(data) {
-                            return "<button class='btn-link text-danger js-delete' data-device-id=" + data + ">Delete</button>";
+                            return "<button class='btn-link js-delete' data-device-id=" + data + ">Delete</button>";
                         }
                     }
                 ]
             });
+
+
+            ////  Fix Column Name / Icon Whitespace
+            //table.columns().iterator('column', function (ctx, idx) {
+            //    $(table.column(idx).header()).append('<span class="sort-icon"/>');
+            //});
+
 
 
             $("#devices").on("click", ".js-delete", function () {
