@@ -13,12 +13,12 @@ namespace CMS.Controllers
 {
     public class LocationsController : Controller
     {
-        private CMSContext db = new CMSContext();
+        private CmsContext _db = new CmsContext();
 
         // GET: Locations
         public async Task<ActionResult> Index()
         {
-            return View(await db.Locations.ToListAsync());
+            return View(await _db.Locations.ToListAsync());
         }
 
         // GET: Locations/Details/5
@@ -28,7 +28,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await db.Locations.FindAsync(id);
+            Location location = await _db.Locations.FindAsync(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -47,12 +47,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "LocationID,LAT,LONG,Name")] Location location)
+        public async Task<ActionResult> Create([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
         {
             if (ModelState.IsValid)
             {
-                db.Locations.Add(location);
-                await db.SaveChangesAsync();
+                _db.Locations.Add(location);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +66,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await db.Locations.FindAsync(id);
+            Location location = await _db.Locations.FindAsync(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -79,12 +79,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "LocationID,LAT,LONG,Name")] Location location)
+        public async Task<ActionResult> Edit([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(location).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _db.Entry(location).State = EntityState.Modified;
+                await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(location);
@@ -97,7 +97,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await db.Locations.FindAsync(id);
+            Location location = await _db.Locations.FindAsync(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -110,9 +110,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Location location = await db.Locations.FindAsync(id);
-            db.Locations.Remove(location);
-            await db.SaveChangesAsync();
+            Location location = await _db.Locations.FindAsync(id);
+            _db.Locations.Remove(location);
+            await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +120,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

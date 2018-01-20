@@ -12,11 +12,11 @@ namespace CMS.Models.CMSModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EventCatID { get; set; }
+        public int EventCatId { get; set; }
         public string Name { get; set; }
         public Boolean Outdoor { get; set; }
         public Boolean Family { get; set; }
 
-        public virtual ICollection<Event> events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

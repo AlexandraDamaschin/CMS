@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace CMS.Models.CMSModel
 {
@@ -12,15 +8,23 @@ namespace CMS.Models.CMSModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int DeviceID { get; set; }
+        public int DeviceId { get; set; }
 
-        [ForeignKey("associatedLocation")]
-        public int LocationID { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
 
-        public int Build { get; set; }
+        [Required]
+        [ForeignKey("AssociatedLocation")]
+        public int LocationId { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        public string Build { get; set; }
 
-        public virtual Location associatedLocation { get; set; }
+        public bool HasError { get; set; }
+
+        public virtual Location AssociatedLocation { get; set; }
 
 
     }

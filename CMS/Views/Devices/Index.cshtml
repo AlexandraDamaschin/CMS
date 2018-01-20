@@ -1,39 +1,116 @@
 ﻿@model IEnumerable<CMS.Models.CMSModel.Device>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Devices";
 }
 
-<h2>Index</h2>
+<h2>Devices</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Device", "New", "Devices", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+
+
+<table class="table" id="devices">
+    <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.associatedLocation.Name)
+            Id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Build)
+            Name
         </th>
-        <th></th>
+        <th>
+            Location
+        </th>
+        <th>
+            Build
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.associatedLocation.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Build)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DeviceID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DeviceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DeviceID })
-        </td>
-    </tr>
-}
-
+    </thead>
+    <tbody></tbody>
 </table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#devices").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/devices",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "deviceId"
+                    },
+                    {
+                        data: "name",
+                        render: function(data, type, device) {
+                            return "<a href='/devices/edit/" + device.deviceId + "'>" + device.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "associatedLocation.name"
+                    },
+                    {
+                        data: "build"
+                    },
+                    {
+                        data: "hasError",
+                        render: function(data) {
+                            return (data === true)
+                                ? '<span class="text-success glyphicon glyphicon-ok"></span>'
+                                : '<span class="text-danger glyphicon glyphicon-remove"></span>';
+                        }
+                    },
+                    {
+                        "orderable": false,
+                        data: "deviceId",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-device-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            ////  Fix Column Name / Icon Whitespace
+            //table.columns().iterator('column', function (ctx, idx) {
+            //    $(table.column(idx).header()).append('<span class="sort-icon"/>');
+            //});
+
+
+
+            $("#devices").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this device?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/devices/" + button.attr("data-device-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Device deleted.");
+                            },
+                            error: function(xmlHttpRequest, textStatus) { 
+                                toastr.error("Error: " + textStatus);
+                            }    
+                        });
+                    }
+                });
+            });
+        });
+</script>
+   
+}

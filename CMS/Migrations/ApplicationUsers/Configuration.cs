@@ -27,6 +27,9 @@ namespace CMS.Migrations.ApplicationUsers
                     new RoleStore<IdentityRole>(context));
 
             roleManager.Create(new IdentityRole { Name = "Admin" });
+            roleManager.Create(new IdentityRole { Name = "EventManager" });
+
+
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
                 Email = "S12345678@mail.itsligo.ie",
@@ -36,6 +39,18 @@ namespace CMS.Migrations.ApplicationUsers
                 SecurityStamp = Guid.NewGuid().ToString(),
             });
             context.SaveChanges();
+
+            context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
+            {
+
+                Email = "S00000001@mail.itsligo.ie",
+                EmailConfirmed = true,
+                UserName = "S00000001@mail.itsligo.ie",
+                PasswordHash = new PasswordHasher().HashPassword("SS00000001$1"),
+                SecurityStamp = Guid.NewGuid().ToString(),
+            });
+            context.SaveChanges();
+
             ApplicationUser admin = manager.FindByEmail("S12345678@mail.itsligo.ie");
             if (admin != null)
             {
@@ -44,6 +59,12 @@ namespace CMS.Migrations.ApplicationUsers
             else
             {
                 throw new Exception { Source = "Did not find user" };
+            }
+
+            ApplicationUser EventManager = manager.FindByEmail("S00000001@mail.itsligo.ie");
+            if (manager.FindByEmail("S00000001@mail.itsligo.ie") != null)
+            {
+                manager.AddToRoles(EventManager.Id, new string[] { "EventManager" });
             }
         }
     }

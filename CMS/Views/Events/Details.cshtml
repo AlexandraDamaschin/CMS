@@ -11,19 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.associatedEvent.Name)
+            @Html.DisplayNameFor(model => model.AssociatedEvent.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.associatedEvent.Name)
+            @Html.DisplayFor(model => model.AssociatedEvent.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.associatedLocation.Name)
+            @Html.DisplayNameFor(model => model.AssociatedLocation.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.associatedLocation.Name)
+            @Html.DisplayFor(model => model.AssociatedLocation.Name)
         </dd>
 
         <dt>
@@ -51,16 +51,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OrganiserID)
+            @Html.DisplayNameFor(model => model.OrganiserId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OrganiserID)
+            @Html.DisplayFor(model => model.OrganiserId)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

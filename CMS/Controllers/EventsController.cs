@@ -11,14 +11,37 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
+    [Authorize(Roles = "Admin,EventManager")]
     public class EventsController : Controller
     {
-        private CMSContext db = new CMSContext();
+        private CmsContext _db = new CmsContext();
+
+
+        //  GET: Events by DeviceId for Raspberry Pi
+        //[HttpGet]
+        //[Route("device/{deviceId}/device-events")]
+        //public List<Event> DeviceEventsList(int deviceId)
+        //{
+        //    DateTime now = DateTime.UtcNow.Date;
+        //    var deviceEvents = db.Events
+        //                        .Join(db.Devices,
+        //                            evnt => evnt.LocationId,
+        //                            dev => dev.LocationId,
+        //                            (evnt, dev) => new { Event = evnt, Device = dev })
+        //                        .Where(evntAndDev => evntAndDev.Device.DeviceId == deviceId
+        //                            && evntAndDev.Event.StartTime >= now)
+        //                        .Select(evntAndDev => new { evntAndDev.Event });
+        //    return deviceEvents.ToList();
+        //}
+
+
+
+
 
         // GET: Events
         public ActionResult Index()
         {
-             var events = db.Events.Include(EC => EC.associatedEvent).Include(EC => EC.associatedLocation);
+             var events = _db.Events.Include(ec => ec.AssociatedEvent).Include(ec => ec.AssociatedLocation);
              return View(events.ToList());
            
         }
@@ -30,7 +53,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = _db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -41,8 +64,8 @@ namespace CMS.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.EventCatID = new SelectList(db.EventCategories, "EventCatID", "EventCatID");
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationID");
+            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "EventCatId");
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "LocationId");
             return View();
         }
 
@@ -51,17 +74,17 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,EventCatID,LocationID,Name,StartTime,EndTime,OrganiserID")] Event @event)
+        public ActionResult Create([Bind(Include = "EventId,EventCatId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
+                _db.Events.Add(@event);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventCatID = new SelectList(db.EventCategories, "EventCatID", "Name", @event.EventCatID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", @event.LocationID);
+            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }
 
@@ -72,13 +95,13 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = _db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EventCatID = new SelectList(db.EventCategories, "EventCatID", "Name", @event.EventCatID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", @event.LocationID);
+            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }
 
@@ -87,16 +110,16 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventID,EventCatID,LocationID,Name,StartTime,EndTime,OrganiserID")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventId,EventCatId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(@event).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventCatID = new SelectList(db.EventCategories, "EventCatID", "Name", @event.EventCatID);
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Name", @event.LocationID);
+            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }
 
@@ -107,7 +130,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = _db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -120,9 +143,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
+            Event @event = _db.Events.Find(id);
+            _db.Events.Remove(@event);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -130,7 +153,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
