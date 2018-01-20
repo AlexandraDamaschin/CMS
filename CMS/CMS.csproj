@@ -443,6 +443,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\Images\logosally.png" />
+    <Content Include="Content\Images\logosallyname.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -601,6 +603,7 @@
     <Content Include="Views\EventCategories\Edit.cshtml" />
     <Content Include="Views\EventCategories\Index.cshtml" />
     <Content Include="Views\Devices\DeviceForm.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
