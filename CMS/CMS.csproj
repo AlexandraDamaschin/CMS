@@ -583,10 +583,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Devices\Create.cshtml" />
-    <Content Include="Views\Devices\Delete.cshtml" />
     <Content Include="Views\Devices\Details.cshtml" />
-    <Content Include="Views\Devices\Edit.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Locations\Create.cshtml" />
     <Content Include="Views\Locations\Delete.cshtml" />
