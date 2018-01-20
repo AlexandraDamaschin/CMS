@@ -14,13 +14,8 @@
     <div class="container body-content">
         @RenderBody()
 
-        
-        <footer>
-            <div id="Footer" class="container-fluid text-center">
-                <hr />
-                <p>&copy; @DateTime.Now.Year - SALLI Software</p>
-            </div>
-        </footer>
+
+        @Html.Partial("_Footer")
     </div>
 
     @Scripts.Render("~/bundles/lib")
