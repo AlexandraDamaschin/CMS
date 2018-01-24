@@ -5,7 +5,8 @@ using System;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
-
+using System.Collections.Generic;
+using CMS.Controllers;
 
 namespace CMS.Controllers.API
 {
@@ -19,21 +20,15 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
 
-        // Get /api/devices
+        [HttpGet]
+        //using route I can specify what URL i want to use for the api end point
+        [Route("api/devices")]
         public IHttpActionResult GetDevices()
-        {
-            var devicesQuery = _cms.Devices
-                .Include(d => d.AssociatedLocation);
-
-            var deviceDtos = devicesQuery
-                .ToList()
-                .Select(Mapper.Map<Device, DeviceDto>);
-
-            return Ok(deviceDtos);
-
-
-
-            //return Ok(_cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>));
+        {   
+            //since there are two controllers of the same name, I need to prefix the controller with the namespace to target the correct one.
+            IEnumerable<Device> devicesQuery = new CMS.Controllers.DevicesController().GetDeviceList();
+            var data = AutoMapper.Mapper.Map<List<DeviceDto>>(devicesQuery);
+            return Ok(data);
         }
 
         // Get /api/device/1

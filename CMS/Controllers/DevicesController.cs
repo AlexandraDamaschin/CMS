@@ -1,104 +1,142 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
-using CMS.ViewModels;
-using System.Linq;
-using AutoMapper;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class DevicesController : Controller
     {
-        private readonly CmsContext _cms = new CmsContext();
+        private CmsContext db = new CmsContext();
 
-
-        //  
-        public ActionResult New()
+        // GET: Devices
+        public async Task<ActionResult> Index()
         {
-            var locations = _cms.Locations.ToList();
-            var viewModel = new DeviceFormViewModel
-            {
-                Device = new Device(),
-                Locations = locations
-            };
-
-            return View("DeviceForm", viewModel);
+            var devices = GetDeviceList(); ;
+            return View(await devices.ToListAsync());
         }
 
 
-        //  Post : /devices/save/1
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Save(Device device)
+        public IQueryable<Device> GetDeviceList()
         {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new DeviceFormViewModel
-                {
-                    Device = device,
-                    Locations = _cms.Locations.ToList()
-                };
+            IQueryable<Device> devices = db.Devices.Include(db => db.AssociatedLocation);
+            // some really complex logic about creating device lists here. All its concerned with is creating a list of devices
+            // and returning it to the caller. Everything else is handled by the caller
+            return devices;
 
-                return View("DeviceForm", viewModel);
+        }
+
+
+        // GET: Devices/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (device.DeviceId == 0)
-                _cms.Devices.Add(device);
-            else
-            {
-                var deviceInDb = _cms.Devices.Single(c => c.DeviceId == device.DeviceId);
-
-                Mapper.Map(deviceInDb, device);
-
-            }
-
-            _cms.SaveChanges();
-
-            return RedirectToAction("Index", "Devices");
-        }
-
-        //  Get: /devices
-        public ViewResult Index()
-        {
-            return View();
-        }
-
-        //   Get :  /devices/details/1
-        public ActionResult Details(int id)
-        {
-            var device = _cms.Devices.Include(c => c.AssociatedLocation).SingleOrDefault(c => c.DeviceId == id);
-
+            Device device = await db.Devices.FindAsync(id);
             if (device == null)
+            {
                 return HttpNotFound();
-
+            }
             return View(device);
         }
 
-
-        //   Get :  /devices/edit/1
-        public ActionResult Edit(int id)
+        // GET: Devices/Create
+        public ActionResult Create()
         {
-            var device = _cms.Devices.SingleOrDefault(c => c.DeviceId == id);
-
-            if (device == null)
-                return HttpNotFound();
-
-            var viewModel = new DeviceFormViewModel
-            {
-                Device = device,
-                Locations = _cms.Locations.ToList()
-            };
-
-            return View("DeviceForm", viewModel);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            return View();
         }
 
+        // POST: Devices/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "DeviceId,Name,LocationId,Build,HasError")] Device device)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Devices.Add(device);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", device.LocationId);
+            return View(device);
+        }
+
+        // GET: Devices/Edit/5
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Device device = await db.Devices.FindAsync(id);
+            if (device == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", device.LocationId);
+            return View(device);
+        }
+
+        // POST: Devices/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "DeviceId,Name,LocationId,Build,HasError")] Device device)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(device).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", device.LocationId);
+            return View(device);
+        }
+
+        // GET: Devices/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Device device = await db.Devices.FindAsync(id);
+            if (device == null)
+            {
+                return HttpNotFound();
+            }
+            return View(device);
+        }
+
+        // POST: Devices/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            Device device = await db.Devices.FindAsync(id);
+            db.Devices.Remove(device);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _cms.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
