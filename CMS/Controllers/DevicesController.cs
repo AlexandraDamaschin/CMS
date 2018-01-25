@@ -7,13 +7,11 @@ using AutoMapper;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SuperAdmin")]
     public class DevicesController : Controller
     {
         private readonly CmsContext _cms = new CmsContext();
-
-
-        //  
+      
         public ActionResult New()
         {
             var locations = _cms.Locations.ToList();

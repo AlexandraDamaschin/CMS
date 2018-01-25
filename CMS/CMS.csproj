@@ -231,17 +231,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationUsers\201712221313079_initial AppUser Migration.cs" />
-    <Compile Include="Migrations\ApplicationUsers\201712221313079_initial AppUser Migration.Designer.cs">
-      <DependentUpon>201712221313079_initial AppUser Migration.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.cs" />
+    <Compile Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.Designer.cs">
+      <DependentUpon>201801251407330_initial AppUser Migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationUsers\201712221333132_admin added.cs" />
-    <Compile Include="Migrations\ApplicationUsers\201712221333132_admin added.Designer.cs">
-      <DependentUpon>201712221333132_admin added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationUsers\201712272033340_EventManager added.cs" />
-    <Compile Include="Migrations\ApplicationUsers\201712272033340_EventManager added.Designer.cs">
-      <DependentUpon>201712272033340_EventManager added.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationUsers\201801251526380_Roles Added.cs" />
+    <Compile Include="Migrations\ApplicationUsers\201801251526380_Roles Added.Designer.cs">
+      <DependentUpon>201801251526380_Roles Added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationUsers\Configuration.cs" />
     <Compile Include="Migrations\CMSContext\201712221315563_initial CMS Migration.cs" />
@@ -618,14 +614,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ApplicationUsers\201712221313079_initial AppUser Migration.resx">
-      <DependentUpon>201712221313079_initial AppUser Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.resx">
+      <DependentUpon>201801251407330_initial AppUser Migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ApplicationUsers\201712221333132_admin added.resx">
-      <DependentUpon>201712221333132_admin added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ApplicationUsers\201712272033340_EventManager added.resx">
-      <DependentUpon>201712272033340_EventManager added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationUsers\201801251526380_Roles Added.resx">
+      <DependentUpon>201801251526380_Roles Added.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201712221315563_initial CMS Migration.resx">
       <DependentUpon>201712221315563_initial CMS Migration.cs</DependentUpon>

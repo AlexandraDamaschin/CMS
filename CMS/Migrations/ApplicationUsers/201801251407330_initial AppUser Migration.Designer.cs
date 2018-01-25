@@ -7,13 +7,13 @@ namespace CMS.Migrations.ApplicationUsers
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class EventManageradded : IMigrationMetadata
+    public sealed partial class initialAppUserMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EventManageradded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialAppUserMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712272033340_EventManager added"; }
+            get { return "201801251407330_initial AppUser Migration"; }
         }
         
         string IMigrationMetadata.Source

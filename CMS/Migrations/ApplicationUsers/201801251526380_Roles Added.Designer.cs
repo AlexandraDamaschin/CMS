@@ -7,13 +7,13 @@ namespace CMS.Migrations.ApplicationUsers
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initialAppUserMigration : IMigrationMetadata
+    public sealed partial class RolesAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialAppUserMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RolesAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712221313079_initial AppUser Migration"; }
+            get { return "201801251526380_Roles Added"; }
         }
         
         string IMigrationMetadata.Source

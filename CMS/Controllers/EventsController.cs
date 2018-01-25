@@ -11,7 +11,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "Admin,EventManager")]
+    [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
     {
         private CmsContext _db = new CmsContext();
