@@ -268,6 +268,14 @@
     <Compile Include="Migrations\CMSContext\201801251659507_Updated fields.Designer.cs">
       <DependentUpon>201801251659507_Updated fields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201801252049299_add organiser.cs" />
+    <Compile Include="Migrations\CMSContext\201801252049299_add organiser.Designer.cs">
+      <DependentUpon>201801252049299_add organiser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201801252052512_add organiser context.cs" />
+    <Compile Include="Migrations\CMSContext\201801252052512_add organiser context.Designer.cs">
+      <DependentUpon>201801252052512_add organiser context.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -275,6 +283,7 @@
     <Compile Include="Models\CMSModel\Event.cs" />
     <Compile Include="Models\CMSModel\EventCategory.cs" />
     <Compile Include="Models\CMSModel\Location.cs" />
+    <Compile Include="Models\CMSModel\Organiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -644,6 +653,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201801251659507_Updated fields.resx">
       <DependentUpon>201801251659507_Updated fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801252049299_add organiser.resx">
+      <DependentUpon>201801252049299_add organiser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801252052512_add organiser context.resx">
+      <DependentUpon>201801252052512_add organiser context.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
