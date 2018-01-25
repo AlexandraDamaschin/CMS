@@ -276,6 +276,14 @@
     <Compile Include="Migrations\CMSContext\201801252052512_add organiser context.Designer.cs">
       <DependentUpon>201801252052512_add organiser context.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201801252111429_update model restrictions, constraints.cs" />
+    <Compile Include="Migrations\CMSContext\201801252111429_update model restrictions, constraints.Designer.cs">
+      <DependentUpon>201801252111429_update model restrictions, constraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201801252121070_add organiser to event.cs" />
+    <Compile Include="Migrations\CMSContext\201801252121070_add organiser to event.Designer.cs">
+      <DependentUpon>201801252121070_add organiser to event.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -659,6 +667,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201801252052512_add organiser context.resx">
       <DependentUpon>201801252052512_add organiser context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801252111429_update model restrictions, constraints.resx">
+      <DependentUpon>201801252111429_update model restrictions, constraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801252121070_add organiser to event.resx">
+      <DependentUpon>201801252121070_add organiser to event.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

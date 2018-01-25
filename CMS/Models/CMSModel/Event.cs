@@ -14,23 +14,34 @@ namespace CMS.Models.CMSModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventId { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+
+        [StringLength(255)]
+        public string Details { get; set; }
+
+        public int Priority { get; set; }
+
+        [Required]
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
+        [ForeignKey("AssociatedOrganiser")]
+        public int OrganiserId { get; set; }
+
         [ForeignKey("AssociatedEvent")]
         public int EventCatId { get; set; }
 
         [ForeignKey("AssociatedLocation")]
         public int LocationId { get; set; }
 
-        public string Name { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public int OrganiserId { get; set; }
 
-        public int Priority { get; set; }
-        public string Details { get; set; }
-        public int Owner { get; set; }
+        public virtual Organiser AssociatedOrganiser { get; set; }
 
         public virtual EventCategory AssociatedEvent { get; set; }
 
         public virtual Location AssociatedLocation { get; set; }
+
     }
 }

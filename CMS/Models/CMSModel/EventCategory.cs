@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace CMS.Models.CMSModel
 {
@@ -13,11 +10,20 @@ namespace CMS.Models.CMSModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EventCatId { get; set; }
+
+        [Required]
+        [StringLength(255)]
         public string Name { get; set; }
-        public Boolean Outdoor { get; set; }
-        public Boolean Family { get; set; }
-        public string ImageUrl { get; set; }
+
+        public bool Outdoor { get; set; }
+
+        public bool Family { get; set; }
+
+        public bool Free { get; set; }
+
+        public string Icon { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
+
     }
 }

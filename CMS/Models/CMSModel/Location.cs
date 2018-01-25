@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-using CMS.Dtos;
 
 namespace CMS.Models.CMSModel
 {
@@ -14,11 +10,25 @@ namespace CMS.Models.CMSModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationId { get; set; }
-        public float Lat { get; set; }
-        public float Lng { get; set; }
+
+        [Required]
+        [StringLength(255)]
         public string Name { get; set; }
 
+        [StringLength(255)]
+        public string Town { get; set; }
+
+        [StringLength(255)]
+        public string County { get; set; }
+
+        public float Lat { get; set; }
+
+        public float Lng { get; set; }
+
+
         public virtual ICollection<Event> Events { get; set; }
+
         public virtual ICollection<Device> Devices { get; set; }
+
     }
 }
