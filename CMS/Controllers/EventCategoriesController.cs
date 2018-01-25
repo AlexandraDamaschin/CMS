@@ -10,7 +10,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "Admin,EventManager")]
+    [Authorize(Roles = "SuperAdmin,Administration")]
     public class EventCategoriesController : Controller
     {
         private CmsContext _db = new CmsContext();

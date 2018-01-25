@@ -19,15 +19,16 @@ namespace CMS.Migrations.ApplicationUsers
         protected override void Seed(CMS.Models.ApplicationDbContext context)
         {
             var manager =
-        new UserManager<ApplicationUser>(
-            new UserStore<ApplicationUser>(context));
+          new UserManager<ApplicationUser>(
+              new UserStore<ApplicationUser>(context));
 
             var roleManager =
                 new RoleManager<IdentityRole>(
                     new RoleStore<IdentityRole>(context));
 
-            roleManager.Create(new IdentityRole { Name = "Admin" });
-            roleManager.Create(new IdentityRole { Name = "EventManager" });
+            roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
+            roleManager.Create(new IdentityRole { Name = "Administration" });
+            roleManager.Create(new IdentityRole { Name = "User" });
 
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
@@ -42,7 +43,6 @@ namespace CMS.Migrations.ApplicationUsers
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
-
                 Email = "S00000001@mail.itsligo.ie",
                 EmailConfirmed = true,
                 UserName = "S00000001@mail.itsligo.ie",
@@ -51,20 +51,35 @@ namespace CMS.Migrations.ApplicationUsers
             });
             context.SaveChanges();
 
-            ApplicationUser admin = manager.FindByEmail("S12345678@mail.itsligo.ie");
-            if (admin != null)
+            context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
-                manager.AddToRoles(admin.Id, new string[] { "Admin" });
+                Email = "S00001111@mail.itsligo.ie",
+                EmailConfirmed = true,
+                UserName = "S00001111@mail.itsligo.ie",
+                PasswordHash = new PasswordHasher().HashPassword("SS00001111$1"),
+                SecurityStamp = Guid.NewGuid().ToString(),
+            });
+            context.SaveChanges();
+            ApplicationUser SuperAdmin = manager.FindByEmail("S12345678@mail.itsligo.ie");
+            if (SuperAdmin != null)
+            {
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "SuperAdmin" });
             }
             else
             {
                 throw new Exception { Source = "Did not find user" };
             }
 
-            ApplicationUser EventManager = manager.FindByEmail("S00000001@mail.itsligo.ie");
+            ApplicationUser Administration = manager.FindByEmail("S00000001@mail.itsligo.ie");
             if (manager.FindByEmail("S00000001@mail.itsligo.ie") != null)
             {
-                manager.AddToRoles(EventManager.Id, new string[] { "EventManager" });
+                manager.AddToRoles(Administration.Id, new string[] { "Administration" });
+            }
+
+            ApplicationUser User = manager.FindByEmail("S00001111@mail.itsligo.ie");
+            if (manager.FindByEmail("S00001111@mail.itsligo.ie") != null)
+            {
+                manager.AddToRoles(User.Id, new string[] { "User" });
             }
         }
     }

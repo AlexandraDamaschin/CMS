@@ -25,7 +25,10 @@ namespace CMS.Models.CMSModel
         public DateTime EndTime { get; set; }
         public int OrganiserId { get; set; }
 
-    
+        public int Priority { get; set; }
+        public string Details { get; set; }
+        public int Owner { get; set; }
+
         public virtual EventCategory AssociatedEvent { get; set; }
 
         public virtual Location AssociatedLocation { get; set; }
