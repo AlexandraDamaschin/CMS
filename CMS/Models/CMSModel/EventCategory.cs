@@ -16,6 +16,7 @@ namespace CMS.Models.CMSModel
         public string Name { get; set; }
         public Boolean Outdoor { get; set; }
         public Boolean Family { get; set; }
+        public string ImageUrl { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
     }

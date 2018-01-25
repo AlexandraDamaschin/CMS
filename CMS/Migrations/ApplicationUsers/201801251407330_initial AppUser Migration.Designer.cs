@@ -13,7 +13,7 @@ namespace CMS.Migrations.ApplicationUsers
         
         string IMigrationMetadata.Id
         {
-            get { return "201712221313079_initial AppUser Migration"; }
+            get { return "201801251407330_initial AppUser Migration"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ namespace CMS.Migrations.ApplicationUsers
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class EventManageradded : DbMigration
+    public partial class initialAppUserMigration : DbMigration
     {
         public override void Up()
         {
