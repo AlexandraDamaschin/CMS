@@ -19,8 +19,8 @@ namespace CMS.Migrations.ApplicationUsers
         protected override void Seed(CMS.Models.ApplicationDbContext context)
         {
             var manager =
-          new UserManager<ApplicationUser>(
-              new UserStore<ApplicationUser>(context));
+           new UserManager<ApplicationUser>(
+               new UserStore<ApplicationUser>(context));
 
             var roleManager =
                 new RoleManager<IdentityRole>(

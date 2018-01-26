@@ -3,7 +3,7 @@ namespace CMS.Migrations.ApplicationUsers
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initialAppUserMigration : DbMigration
+    public partial class allRolesadded : DbMigration
     {
         public override void Up()
         {

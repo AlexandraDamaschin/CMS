@@ -231,13 +231,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.cs" />
-    <Compile Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.Designer.cs">
-      <DependentUpon>201801251407330_initial AppUser Migration.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationUsers\201801261600572_initial AppUser.cs" />
+    <Compile Include="Migrations\ApplicationUsers\201801261600572_initial AppUser.Designer.cs">
+      <DependentUpon>201801261600572_initial AppUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationUsers\201801251526380_Roles Added.cs" />
-    <Compile Include="Migrations\ApplicationUsers\201801251526380_Roles Added.Designer.cs">
-      <DependentUpon>201801251526380_Roles Added.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationUsers\201801261604055_all Roles added.cs" />
+    <Compile Include="Migrations\ApplicationUsers\201801261604055_all Roles added.Designer.cs">
+      <DependentUpon>201801261604055_all Roles added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationUsers\Configuration.cs" />
     <Compile Include="Migrations\CMSContext\201712221315563_initial CMS Migration.cs" />
@@ -618,11 +618,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ApplicationUsers\201801251407330_initial AppUser Migration.resx">
-      <DependentUpon>201801251407330_initial AppUser Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationUsers\201801261600572_initial AppUser.resx">
+      <DependentUpon>201801261600572_initial AppUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ApplicationUsers\201801251526380_Roles Added.resx">
-      <DependentUpon>201801251526380_Roles Added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationUsers\201801261604055_all Roles added.resx">
+      <DependentUpon>201801261604055_all Roles added.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201712221315563_initial CMS Migration.resx">
       <DependentUpon>201712221315563_initial CMS Migration.cs</DependentUpon>
