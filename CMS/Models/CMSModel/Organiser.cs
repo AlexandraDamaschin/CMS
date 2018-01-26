@@ -4,26 +4,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Models.CMSModel
 {
-    [Table("EventCategory")]
-    public class EventCategory
+    public class Organiser
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EventCatId { get; set; }
+        public int OrganiserId { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
 
-        public bool Outdoor { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string ContactDetails { get; set; }
 
-        public bool Family { get; set; }
-
-        public bool Free { get; set; }
-
-        public string Icon { get; set; }
 
         public virtual ICollection<Event> Events { get; set; }
+
 
     }
 }
