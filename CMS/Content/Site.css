@@ -53,3 +53,12 @@ table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.
     position: absolute;
     bottom: 0;
 }
+
+/* for error msg */
+
+.field-validation-error	{
+color:	red;
+}
+.input-validation-error	{
+border:	2px	solid	red;
+}
