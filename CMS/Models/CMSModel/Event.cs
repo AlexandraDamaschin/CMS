@@ -30,8 +30,8 @@ namespace CMS.Models.CMSModel
         [ForeignKey("AssociatedOrganiser")]
         public int OrganiserId { get; set; }
 
-        [ForeignKey("AssociatedEvent")]
-        public int EventCatId { get; set; }
+        [ForeignKey("AssociatedEventCategory")]
+        public int EventCategoryId { get; set; }
 
         [ForeignKey("AssociatedLocation")]
         public int LocationId { get; set; }
@@ -39,7 +39,7 @@ namespace CMS.Models.CMSModel
 
         public virtual Organiser AssociatedOrganiser { get; set; }
 
-        public virtual EventCategory AssociatedEvent { get; set; }
+        public virtual EventCategory AssociatedEventCategory { get; set; }
 
         public virtual Location AssociatedLocation { get; set; }
 

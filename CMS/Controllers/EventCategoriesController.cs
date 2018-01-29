@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
@@ -47,7 +43,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventCatId,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Create([Bind(Include = "EventCategoryId,Name,Outdoor,Family")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +75,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventCatId,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Edit([Bind(Include = "EventCategoryId,Name,Outdoor,Family")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {

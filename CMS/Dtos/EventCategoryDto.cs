@@ -7,7 +7,7 @@ namespace CMS.Dtos
 {
     public class EventCategoryDto
     {
-        public int EventCatId { get; set; }
+        public int EventCategoryId { get; set; }
 
         public string Name { get; set; }
 

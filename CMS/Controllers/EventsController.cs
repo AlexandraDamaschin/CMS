@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
@@ -24,7 +20,7 @@ namespace CMS.Controllers
         }
         public IQueryable<Event> GetEventList()
         {
-            IQueryable<Event> events = _db.Events.Include(db => db.AssociatedEvent);
+            IQueryable<Event> events = _db.Events.Include(db => db.AssociatedEventCategory);
             // some really complex logic about creating device lists here. All its concerned with is creating a list of devices
             // and returning it to the caller. Everything else is handled by the caller
             return events;
@@ -75,7 +71,7 @@ namespace CMS.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "EventCatId");
+            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "EventCategoryId");
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "LocationId");
             return View();
         }
@@ -85,7 +81,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,EventCatId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
+        public ActionResult Create([Bind(Include = "EventId,EventCategoryId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +90,7 @@ namespace CMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }
@@ -111,7 +107,7 @@ namespace CMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }
@@ -121,7 +117,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,EventCatId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventId,EventCategoryId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +125,7 @@ namespace CMS.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventCatId = new SelectList(_db.EventCategories, "EventCatId", "Name", @event.EventCatId);
+            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
             return View(@event);
         }

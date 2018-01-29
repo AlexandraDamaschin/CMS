@@ -9,7 +9,7 @@ namespace CMS.Models.CMSModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EventCatId { get; set; }
+        public int EventCategoryId { get; set; }
 
         [Required]
         [StringLength(255)]

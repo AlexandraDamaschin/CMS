@@ -297,6 +297,10 @@
     <Compile Include="Migrations\CMSContext\201801291459508_update associated event.Designer.cs">
       <DependentUpon>201801291459508_update associated event.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201801292245144_update event category.cs" />
+    <Compile Include="Migrations\CMSContext\201801292245144_update event category.Designer.cs">
+      <DependentUpon>201801292245144_update event category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -495,6 +499,9 @@
     <Content Include="Content\toastr.less" />
     <EmbeddedResource Include="Migrations\CMSContext\201801291459508_update associated event.resx">
       <DependentUpon>201801291459508_update associated event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201801292245144_update event category.resx">
+      <DependentUpon>201801292245144_update event category.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\IrishTowns.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
