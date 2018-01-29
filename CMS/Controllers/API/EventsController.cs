@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CMS.Dtos;
 using CMS.Models.CMSModel;
 using System;
 using System.Collections.Generic;
@@ -20,53 +21,53 @@ namespace CMS.Controllers.API
         [HttpGet]
         //using route I can specify what URL i want to use for the api end point
         [Route("api/events")]
-        public IHttpActionResult GetDevices()
+        public IHttpActionResult GetEvents()
         {
             //since there are two controllers of the same name, I need to prefix the controller with the namespace to target the correct one.
             IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetEventList();
-            var data = AutoMapper.Mapper.Map<List<DeviceDto>>(eventsQuery);
+            var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
             return Ok(data);
         }
         // Get /api/event/1
         public IHttpActionResult GetEvent(int id)
         {
-            var device = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
+            var Event = _cms.Events.SingleOrDefault(e => e.EventId == id);
 
-            if (device == null)
+            if (Event == null)
                 return NotFound();
 
-            return Ok(Mapper.Map<Device, DeviceDto>(device));
+            return Ok(Mapper.Map<Event, EventDto>(Event));
         }
 
         // Post /api/device
         [HttpPost]
-        public IHttpActionResult CreateEvent(DeviceDto deviceDto)
+        public IHttpActionResult CreateEvent(EventDto eventDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var Event = Mapper.Map<DeviceDto, Device>(deviceDto);
-            _cms.Devices.Add(device);
+            var Event = Mapper.Map<EventDto, Event>(eventDto);
+            _cms.Events.Add(Event);
             _cms.SaveChanges();
 
-            deviceDto.DeviceId = device.DeviceId;
+            eventDto.EventId = Event.EventId;
 
-            return Created(new Uri(Request.RequestUri + "/" + device.DeviceId), deviceDto);
+            return Created(new Uri(Request.RequestUri + "/" + Event.EventId), eventDto);
         }
 
         //  Put /api/events/1
         [HttpPut]
-        public IHttpActionResult UpdateEvent(int id, DeviceDto deviceDto)
+        public IHttpActionResult UpdateEvent(int id, EventDto eventDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var eventInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
+            var eventInDb = _cms.Events.SingleOrDefault(e => e.EventId == id);
 
             if (eventInDb == null)
                 return NotFound();
 
-            Mapper.Map(deviceDto, eventInDb);
+            Mapper.Map(eventDto, eventInDb);
 
             _cms.SaveChanges();
 
@@ -77,7 +78,7 @@ namespace CMS.Controllers.API
         [HttpDelete]
         public IHttpActionResult DeleteEvent(int id)
         {
-            var eventInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);
+            var eventInDb = _cms.Events.SingleOrDefault(e => e.EventId == id);
 
             if (eventInDb == null)
                 return NotFound();
