@@ -224,6 +224,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\DevicesController.cs" />
+    <Compile Include="Controllers\API\EventsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -231,7 +232,10 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
+    <Compile Include="Dtos\EventCategoryDto.cs" />
+    <Compile Include="Dtos\EventDto.cs" />
     <Compile Include="Dtos\LocationDto.cs" />
+    <Compile Include="Dtos\OrganiserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
