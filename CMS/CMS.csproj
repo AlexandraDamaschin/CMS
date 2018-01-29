@@ -48,6 +48,10 @@
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsvHelper, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.6.1.1\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
@@ -219,10 +223,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\Devices1Controller.cs" />
     <Compile Include="Controllers\API\DevicesController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
-    <Compile Include="Controllers\Devices1Controller.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -230,7 +232,10 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
+    <Compile Include="Dtos\EventCategoryDto.cs" />
+    <Compile Include="Dtos\EventDto.cs" />
     <Compile Include="Dtos\LocationDto.cs" />
+    <Compile Include="Dtos\OrganiserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +299,7 @@
     <Compile Include="Models\CMSModel\Event.cs" />
     <Compile Include="Models\CMSModel\EventCategory.cs" />
     <Compile Include="Models\CMSModel\Location.cs" />
+    <Compile Include="Models\CMSModel\LocationDataImport.cs" />
     <Compile Include="Models\CMSModel\Organiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -482,6 +488,9 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <EmbeddedResource Include="Migrations\CMSContext\IrishTowns.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -625,11 +634,6 @@
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Devices1\Create.cshtml" />
-    <Content Include="Views\Devices1\Delete.cshtml" />
-    <Content Include="Views\Devices1\Details.cshtml" />
-    <Content Include="Views\Devices1\Edit.cshtml" />
-    <Content Include="Views\Devices1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
