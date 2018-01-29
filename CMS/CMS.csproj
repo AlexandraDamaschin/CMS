@@ -231,6 +231,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrganisersController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
     <Compile Include="Dtos\EventCategoryDto.cs" />
     <Compile Include="Dtos\EventDto.cs" />
@@ -291,6 +292,10 @@
     <Compile Include="Migrations\CMSContext\201801252121070_add organiser to event.cs" />
     <Compile Include="Migrations\CMSContext\201801252121070_add organiser to event.Designer.cs">
       <DependentUpon>201801252121070_add organiser to event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201801291459508_update associated event.cs" />
+    <Compile Include="Migrations\CMSContext\201801291459508_update associated event.Designer.cs">
+      <DependentUpon>201801291459508_update associated event.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -488,6 +493,9 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <EmbeddedResource Include="Migrations\CMSContext\201801291459508_update associated event.resx">
+      <DependentUpon>201801291459508_update associated event.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\IrishTowns.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -634,6 +642,11 @@
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Organisers\Create.cshtml" />
+    <Content Include="Views\Organisers\Delete.cshtml" />
+    <Content Include="Views\Organisers\Details.cshtml" />
+    <Content Include="Views\Organisers\Edit.cshtml" />
+    <Content Include="Views\Organisers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

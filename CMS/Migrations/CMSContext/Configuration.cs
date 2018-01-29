@@ -20,7 +20,7 @@ namespace CMS.Migrations.CMSContext
 
         protected override void Seed(CMS.Models.CMSModel.CmsContext context)
         {
-            SeedLocations(context);
+//            SeedLocations(context);
         }
 
         //  Seed locations from embedded IrishTowns.csv

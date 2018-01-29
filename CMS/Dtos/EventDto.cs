@@ -25,7 +25,7 @@ namespace CMS.Dtos
 
         public int OrganiserId { get; set; }
 
-        public EventCategoryDto AssociatedEventCategory { get; set; }
+        public EventCategoryDto AssociatedEventCat { get; set; }
 
         public LocationDto AssociatedLocation { get; set; }
 
