@@ -219,7 +219,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\Devices1Controller.cs" />
     <Compile Include="Controllers\API\DevicesController.cs" />
+    <Compile Include="Controllers\API\EventsController.cs" />
+    <Compile Include="Controllers\Devices1Controller.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -622,6 +625,11 @@
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Devices1\Create.cshtml" />
+    <Content Include="Views\Devices1\Delete.cshtml" />
+    <Content Include="Views\Devices1\Details.cshtml" />
+    <Content Include="Views\Devices1\Edit.cshtml" />
+    <Content Include="Views\Devices1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

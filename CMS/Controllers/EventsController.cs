@@ -17,6 +17,20 @@ namespace CMS.Controllers
         private CmsContext _db = new CmsContext();
 
 
+        public async System.Threading.Tasks.Task<ActionResult> Index()
+        {
+            var devices = GetEventList(); ;
+            return View(await devices.ToListAsync());
+        }
+        public IQueryable<Event> GetEventList()
+        {
+            IQueryable<Event> events = _db.Events.Include(db => db.AssociatedEvent);
+            // some really complex logic about creating device lists here. All its concerned with is creating a list of devices
+            // and returning it to the caller. Everything else is handled by the caller
+            return events;
+
+        }
+
         //  GET: Events by DeviceId for Raspberry Pi
         //[HttpGet]
         //[Route("device/{deviceId}/device-events")]
@@ -35,16 +49,13 @@ namespace CMS.Controllers
         //}
 
 
-
-
-
         // GET: Events
-        public ActionResult Index()
-        {
-             var events = _db.Events.Include(ec => ec.AssociatedEvent).Include(ec => ec.AssociatedLocation);
-             return View(events.ToList());
+        //public ActionResult Index()
+        //{
+        //     var events = _db.Events.Include(ec => ec.AssociatedEvent).Include(ec => ec.AssociatedLocation);
+        //     return View(events.ToList());
            
-        }
+        //}
 
         // GET: Events/Details/5
         public ActionResult Details(int? id)
