@@ -478,6 +478,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\home.css" />
     <Content Include="Content\Images\logosally.png" />
     <Content Include="Content\Images\logosallyname.png" />
     <Content Include="Content\toastr.css" />

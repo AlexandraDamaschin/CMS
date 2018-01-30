@@ -10,11 +10,27 @@
         </div>
     </div>
     <div class="col-md-8">
-        <div class="jumbotron">
-            <div class="container-fluid">
-                <p class="lead">Welcome to the SALLI Content Site.</p>
-                <p><a href="https://projectawesome1718.wordpress.com/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+        @if (!Request.IsAuthenticated)
+        {
+            <hr/>
+                <a href="@Url.Action("Login", "Account")" class="btn btn-default btn-lg">
+                    Login
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("Register", "Account")" class="btn btn-default btn-lg">
+                    Register
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            <hr/>
+
+        }
+        else
+        {
+            <div>
+                Welcome back @System.Web.HttpContext.Current.User.Identity.Name
             </div>
-        </div>
+        }
+
     </div>
 </div>
