@@ -22,7 +22,10 @@ namespace CMS.Controllers
         }
         public IQueryable<Event> GetEventList()
         {
-            IQueryable<Event> events = _db.Events.Include(db => db.AssociatedEventCategory);
+            IQueryable<Event> events = _db.Events
+                .Include(db => db.AssociatedEventCategory)
+                .Include(db => db.AssociatedLocation)
+                .Include(db => db.AssociatedOrganiser);
             return events;
 
         }
