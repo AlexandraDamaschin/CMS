@@ -15,6 +15,8 @@ namespace CMS
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/datatables.bootstrap.js",
+                        "~/Scripts/jquery-ui-{version}.js",
+                        "~/Scripts/jquery-ui-timepicker-addon.js",
                         "~/Scripts/toastr.js"        
                 ));
 
@@ -29,6 +31,8 @@ namespace CMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/datatables/css/dataTables.bootstrap.css",
+                      "~/Content/themes/base/jquery-ui.css",
+                      "~/Content/themes/base/datepicker.css",
                       "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
