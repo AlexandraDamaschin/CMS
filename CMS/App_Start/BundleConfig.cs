@@ -33,6 +33,7 @@ namespace CMS
                       "~/Content/datatables/css/dataTables.bootstrap.css",
                       "~/Content/themes/base/jquery-ui.css",
                       "~/Content/themes/base/datepicker.css",
+                      "~/Content/jquery-ui-timepicker-addon.css",
                       "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
