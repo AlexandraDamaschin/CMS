@@ -33,34 +33,34 @@ namespace CMS.Migrations.ApplicationUsers
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
-                Email = "S12345678@mail.itsligo.ie",
+                Email = "super-admin@sallinet.ie",
                 EmailConfirmed = true,
-                UserName = "S12345678@mail.itsligo.ie",
-                PasswordHash = new PasswordHasher().HashPassword("Ss1234567$1"),
+                UserName = "super-admin@sallinet.ie",
+                PasswordHash = new PasswordHasher().HashPassword("LetMeIn"),
                 SecurityStamp = Guid.NewGuid().ToString(),
             });
             context.SaveChanges();
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
-                Email = "S00000001@mail.itsligo.ie",
+                Email = "tourist-office@sligotourism.ie",
                 EmailConfirmed = true,
-                UserName = "S00000001@mail.itsligo.ie",
-                PasswordHash = new PasswordHasher().HashPassword("SS00000001$1"),
+                UserName = "tourist-office@sligotourism.ie",
+                PasswordHash = new PasswordHasher().HashPassword("LetMeIn"),
                 SecurityStamp = Guid.NewGuid().ToString(),
             });
             context.SaveChanges();
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
-                Email = "S00001111@mail.itsligo.ie",
+                Email = "coordinator@roscommon-taxidermists.ie",
                 EmailConfirmed = true,
-                UserName = "S00001111@mail.itsligo.ie",
-                PasswordHash = new PasswordHasher().HashPassword("SS00001111$1"),
+                UserName = "coordinator@roscommon-taxidermists.ie",
+                PasswordHash = new PasswordHasher().HashPassword("LetMeIn"),
                 SecurityStamp = Guid.NewGuid().ToString(),
             });
             context.SaveChanges();
-            ApplicationUser SuperAdmin = manager.FindByEmail("S12345678@mail.itsligo.ie");
+            ApplicationUser SuperAdmin = manager.FindByEmail("super-admin@sallinet.ie");
             if (SuperAdmin != null)
             {
                 manager.AddToRoles(SuperAdmin.Id, new string[] { "SuperAdmin" });
@@ -70,14 +70,14 @@ namespace CMS.Migrations.ApplicationUsers
                 throw new Exception { Source = "Did not find user" };
             }
 
-            ApplicationUser Administration = manager.FindByEmail("S00000001@mail.itsligo.ie");
-            if (manager.FindByEmail("S00000001@mail.itsligo.ie") != null)
+            ApplicationUser Administration = manager.FindByEmail("tourist-office@sligotourism.ie");
+            if (manager.FindByEmail("tourist-office@sligotourism.ie") != null)
             {
                 manager.AddToRoles(Administration.Id, new string[] { "Administration" });
             }
 
-            ApplicationUser User = manager.FindByEmail("S00001111@mail.itsligo.ie");
-            if (manager.FindByEmail("S00001111@mail.itsligo.ie") != null)
+            ApplicationUser User = manager.FindByEmail("coordinator@roscommon-taxidermists.ie");
+            if (manager.FindByEmail("coordinator@roscommon-taxidermists.ie") != null)
             {
                 manager.AddToRoles(User.Id, new string[] { "User" });
             }
