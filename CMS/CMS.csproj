@@ -547,7 +547,10 @@
     <EmbeddedResource Include="Migrations\CMSContext\201801292245144_update event category.resx">
       <DependentUpon>201801292245144_update event category.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\CMSContext\IrishTowns.csv">
+    <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\TownCountyLatitudeLongitude.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

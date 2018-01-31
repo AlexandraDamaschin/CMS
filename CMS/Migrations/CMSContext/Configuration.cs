@@ -1,16 +1,13 @@
 namespace CMS.Migrations.CMSContext
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
     using Models.CMSModel;
     using System.Reflection;
     using System.IO;
     using System.Text;
-    using CsvHelper;
+    using System.Collections.Generic;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CMS.Models.CMSModel.CmsContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CmsContext>
     {
         public Configuration()
         {
@@ -18,39 +15,39 @@ namespace CMS.Migrations.CMSContext
             MigrationsDirectory = @"Migrations\CMSContext";
         }
 
-        protected override void Seed(CMS.Models.CMSModel.CmsContext context)
+        protected override void Seed(CmsContext context)
         {
-//            SeedLocations(context);
+            SeedLocations(context);
         }
 
-        //  Seed locations from embedded IrishTowns.csv
-        private void SeedLocations(CMS.Models.CMSModel.CmsContext context)
+        private static void SeedLocations(CmsContext context)
         {
+            //using stream reader to read from file
             Assembly assembly = Assembly.GetExecutingAssembly();
-            string resourceName = "CMS.Migrations.CMSContext.IrishTowns.csv";
+            string resourceName = "CMS.Migrations.CMSContext.TestLocations.csv";
+
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
+                if (stream == null)
+                    throw new FileNotFoundException();
+
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    CsvReader csvReader = new CsvReader(reader);
-                    csvReader.Configuration.HasHeaderRecord = true;
-                    var locationData = csvReader.GetRecords<LocationDataImport>().ToArray();
-
-                    foreach (var locationItem in locationData)
+                    List<Location> locations = new List<Location>();
+                    //iterate over each line creating an object for each row, add them to the list
+                    string currentLine;
+                    while ((currentLine = reader.ReadLine()) != null)
                     {
-                        context.Locations.AddOrUpdate(m =>
-                                new { m.Name, m.Town, m.County, m.Lat, m.Lng },
-                            new Location
-                            {
-                                Name = locationItem.Town,
-                                Town = locationItem.Town,
-                                County = locationItem.County,
-                                Lat = locationItem.Latitude,
-                                Lng = locationItem.Longitude,
-                            });
+                        var elems = currentLine.Split(',');
+                        locations.Add(new Location() { Name = elems[0], Town = elems[0], County = elems[1], Lat = float.Parse(elems[2]), Lng = float.Parse(elems[3]) });
                     }
+                    //persist list to the database
+                    context.Locations.AddOrUpdate(c => c.LocationId, locations.ToArray());
                 }
             }
+            context.SaveChanges();
         }
+
+
     }
 }
