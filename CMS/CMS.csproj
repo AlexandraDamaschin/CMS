@@ -632,11 +632,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Devices\Details.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
-    <Content Include="Views\Locations\Create.cshtml" />
-    <Content Include="Views\Locations\Delete.cshtml" />
-    <Content Include="Views\Locations\Details.cshtml" />
-    <Content Include="Views\Locations\Edit.cshtml" />
-    <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -650,10 +645,19 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\EventCategories\Create.cshtml" />
+    <Content Include="Views\EventCategories\Delete.cshtml" />
+    <Content Include="Views\EventCategories\Details.cshtml" />
+    <Content Include="Views\EventCategories\Edit.cshtml" />
+    <Content Include="Views\EventCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EventCategories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

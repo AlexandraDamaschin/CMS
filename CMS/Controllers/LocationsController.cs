@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -13,22 +12,22 @@ namespace CMS.Controllers
 {
     public class LocationsController : Controller
     {
-        private CmsContext _db = new CmsContext();
+        private CmsContext db = new CmsContext();
 
         // GET: Locations
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _db.Locations.ToListAsync());
+            return View(db.Locations.ToList());
         }
 
         // GET: Locations/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await _db.Locations.FindAsync(id);
+            Location location = db.Locations.Find(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -47,12 +46,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
+        public ActionResult Create([Bind(Include = "LocationId,Name,Town,County,Lat,Lng")] Location location)
         {
             if (ModelState.IsValid)
             {
-                _db.Locations.Add(location);
-                await _db.SaveChangesAsync();
+                db.Locations.Add(location);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -60,13 +59,13 @@ namespace CMS.Controllers
         }
 
         // GET: Locations/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await _db.Locations.FindAsync(id);
+            Location location = db.Locations.Find(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -79,25 +78,25 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "LocationId,Lat,Lng,Name")] Location location)
+        public ActionResult Edit([Bind(Include = "LocationId,Name,Town,County,Lat,Lng")] Location location)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(location).State = EntityState.Modified;
-                await _db.SaveChangesAsync();
+                db.Entry(location).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(location);
         }
 
         // GET: Locations/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Location location = await _db.Locations.FindAsync(id);
+            Location location = db.Locations.Find(id);
             if (location == null)
             {
                 return HttpNotFound();
@@ -108,11 +107,11 @@ namespace CMS.Controllers
         // POST: Locations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Location location = await _db.Locations.FindAsync(id);
-            _db.Locations.Remove(location);
-            await _db.SaveChangesAsync();
+            Location location = db.Locations.Find(id);
+            db.Locations.Remove(location);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +119,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

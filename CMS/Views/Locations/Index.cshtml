@@ -15,12 +15,17 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Town)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.County)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Lat)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Lng)
         </th>
-
         <th></th>
     </tr>
 
@@ -30,16 +35,21 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.County)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Lat)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Lng)
         </td>
-
         <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.LocationId}) |
-            @Html.ActionLink("Details", "Details", new {id = item.LocationId}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.LocationId})
+            @Html.ActionLink("Edit", "Edit", new { id=item.LocationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LocationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LocationId })
         </td>
     </tr>
 }
