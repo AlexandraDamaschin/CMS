@@ -1,20 +1,24 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin,Administration")]
+    [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventCategoriesController : Controller
     {
-        private CmsContext _db = new CmsContext();
+        private CmsContext db = new CmsContext();
 
         // GET: EventCategories
         public ActionResult Index()
         {
-            return View(_db.EventCategories.ToList());
+            return View(db.EventCategories.ToList());
         }
 
         // GET: EventCategories/Details/5
@@ -24,7 +28,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = _db.EventCategories.Find(id);
+            EventCategory eventCategory = db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -43,12 +47,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventCategoryId,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Create([Bind(Include = "EventCategoryId,Name,Outdoor,Family,Free,Icon")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {
-                _db.EventCategories.Add(eventCategory);
-                _db.SaveChanges();
+                db.EventCategories.Add(eventCategory);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +66,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = _db.EventCategories.Find(id);
+            EventCategory eventCategory = db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -75,12 +79,12 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventCategoryId,Name,Outdoor,Family")] EventCategory eventCategory)
+        public ActionResult Edit([Bind(Include = "EventCategoryId,Name,Outdoor,Family,Free,Icon")] EventCategory eventCategory)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(eventCategory).State = EntityState.Modified;
-                _db.SaveChanges();
+                db.Entry(eventCategory).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(eventCategory);
@@ -93,7 +97,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventCategory eventCategory = _db.EventCategories.Find(id);
+            EventCategory eventCategory = db.EventCategories.Find(id);
             if (eventCategory == null)
             {
                 return HttpNotFound();
@@ -106,9 +110,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EventCategory eventCategory = _db.EventCategories.Find(id);
-            _db.EventCategories.Remove(eventCategory);
-            _db.SaveChanges();
+            EventCategory eventCategory = db.EventCategories.Find(id);
+            db.EventCategories.Remove(eventCategory);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -116,7 +120,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
