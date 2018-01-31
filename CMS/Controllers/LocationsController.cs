@@ -10,6 +10,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class LocationsController : Controller
     {
         private CmsContext db = new CmsContext();
