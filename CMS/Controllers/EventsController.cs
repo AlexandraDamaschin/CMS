@@ -1,28 +1,28 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
-
 
 namespace CMS.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
-    {
+    {    
         private CmsContext _db = new CmsContext();
-
 
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            var devices = GetEventList(); ;
-            return View(await devices.ToListAsync());
+            var events = GetEventList(); ;
+            return View(await events.ToListAsync());
         }
         public IQueryable<Event> GetEventList()
         {
             IQueryable<Event> events = _db.Events.Include(db => db.AssociatedEventCategory);
-            // some really complex logic about creating device lists here. All its concerned with is creating a list of devices
-            // and returning it to the caller. Everything else is handled by the caller
             return events;
 
         }
@@ -50,8 +50,11 @@ namespace CMS.Controllers
         //{
         //     var events = _db.Events.Include(ec => ec.AssociatedEvent).Include(ec => ec.AssociatedLocation);
         //     return View(events.ToList());
-           
+
         //}
+
+
+
 
         // GET: Events/Details/5
         public ActionResult Details(int? id)
@@ -71,8 +74,9 @@ namespace CMS.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "EventCategoryId");
-            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "LocationId");
+            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name");
+            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
+            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName");
             return View();
         }
 
@@ -81,7 +85,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventId,EventCategoryId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
+        public ActionResult Create([Bind(Include = "EventId,Name,Details,Priority,StartTime,EndTime,OrganiserId,EventCategoryId,LocationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -92,6 +96,7 @@ namespace CMS.Controllers
 
             ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 
@@ -109,6 +114,7 @@ namespace CMS.Controllers
             }
             ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 
@@ -117,7 +123,7 @@ namespace CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventId,EventCategoryId,LocationId,Name,StartTime,EndTime,OrganiserId")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventId,Name,Details,Priority,StartTime,EndTime,OrganiserId,EventCategoryId,LocationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +133,7 @@ namespace CMS.Controllers
             }
             ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
             ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 

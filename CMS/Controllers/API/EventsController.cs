@@ -19,11 +19,9 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
         [HttpGet]
-        //using route I can specify what URL i want to use for the api end point
         [Route("api/events")]
         public IHttpActionResult GetEvents()
         {
-            //since there are two controllers of the same name, I need to prefix the controller with the namespace to target the correct one.
             IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetEventList();
             var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
             return Ok(data);
@@ -39,7 +37,7 @@ namespace CMS.Controllers.API
             return Ok(Mapper.Map<Event, EventDto>(Event));
         }
 
-        // Post /api/device
+        // Post /api/event
         [HttpPost]
         public IHttpActionResult CreateEvent(EventDto eventDto)
         {
@@ -74,7 +72,7 @@ namespace CMS.Controllers.API
             return Ok();
         }
 
-        //  Delete /api/devices/1
+        //  Delete /api/events/1
         [HttpDelete]
         public IHttpActionResult DeleteEvent(int id)
         {

@@ -27,11 +27,35 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.AssociatedOrganiser.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedOrganiser.DisplayName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
         </dd>
 
         <dt>
@@ -48,14 +72,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.EndTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrganiserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrganiserId)
         </dd>
 
     </dl>
