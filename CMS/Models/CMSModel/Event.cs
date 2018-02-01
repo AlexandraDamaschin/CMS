@@ -43,5 +43,7 @@ namespace CMS.Models.CMSModel
 
         public virtual Location AssociatedLocation { get; set; }
 
+        public virtual ICollection<Tag> tags { get; set; }
+
     }
 }

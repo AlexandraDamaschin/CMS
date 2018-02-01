@@ -301,6 +301,14 @@
     <Compile Include="Migrations\CMSContext\201801292245144_update event category.Designer.cs">
       <DependentUpon>201801292245144_update event category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802011218339_tag tbl added.cs" />
+    <Compile Include="Migrations\CMSContext\201802011218339_tag tbl added.Designer.cs">
+      <DependentUpon>201802011218339_tag tbl added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201802011221208_tag TBL column updated.cs" />
+    <Compile Include="Migrations\CMSContext\201802011221208_tag TBL column updated.Designer.cs">
+      <DependentUpon>201802011221208_tag TBL column updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -310,6 +318,7 @@
     <Compile Include="Models\CMSModel\Location.cs" />
     <Compile Include="Models\CMSModel\LocationDataImport.cs" />
     <Compile Include="Models\CMSModel\Organiser.cs" />
+    <Compile Include="Models\CMSModel\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -546,6 +555,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201801292245144_update event category.resx">
       <DependentUpon>201801292245144_update event category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802011218339_tag tbl added.resx">
+      <DependentUpon>201802011218339_tag tbl added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802011221208_tag TBL column updated.resx">
+      <DependentUpon>201802011221208_tag TBL column updated.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
