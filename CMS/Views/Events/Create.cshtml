@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Event</h4>
         <hr />
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
+                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -92,29 +92,5 @@
 </div>
 
 @section Scripts {
-
-    <script type="text/javascript">
-        //        $(function () { // will trigger when the document is ready
-        //            $('.datepicker').datepicker(); //Initialise any date pickers
-        //        });
-
-//        $('.datepicker').datetimepicker({
-//            controlType: 'select',
-//            oneLine: true,
-//            timeFormat: 'hh:mm tt'
-        //        });
-
-        jQuery('.datetimepicker').datetimepicker({
-            format:'DD.MM.YYYY h:mm',
-            formatTime:'h:mm a',
-            formatDate: 'DD.MM.YYYY',
-            minDate: '-1970/01/2',
-            maxDate: '+1970/01/2',
-            inline: true
-//            lang: 'en'
-        });
-    </script>
-
-
     @Scripts.Render("~/bundles/jqueryval")
 }

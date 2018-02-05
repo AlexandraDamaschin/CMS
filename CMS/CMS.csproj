@@ -232,6 +232,7 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisersController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
     <Compile Include="Dtos\EventCategoryDto.cs" />
     <Compile Include="Dtos\EventDto.cs" />
@@ -761,11 +762,6 @@
     <Content Include="Views\Organisers\Details.cshtml" />
     <Content Include="Views\Organisers\Edit.cshtml" />
     <Content Include="Views\Organisers\Index.cshtml" />
-    <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Events\Edit.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Locations\Create.cshtml" />
     <Content Include="Views\Locations\Delete.cshtml" />
     <Content Include="Views\Locations\Details.cshtml" />
@@ -776,6 +772,16 @@
     <Content Include="Views\EventCategories\Details.cshtml" />
     <Content Include="Views\EventCategories\Edit.cshtml" />
     <Content Include="Views\EventCategories\Index.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

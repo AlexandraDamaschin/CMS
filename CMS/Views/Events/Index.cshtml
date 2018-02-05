@@ -4,13 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Events</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociatedEventCategory.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociatedLocation.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssociatedOrganiser.DisplayName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -31,6 +40,15 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociatedEventCategory.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociatedLocation.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssociatedOrganiser.DisplayName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>

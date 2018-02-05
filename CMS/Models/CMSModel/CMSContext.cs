@@ -22,5 +22,7 @@ namespace CMS.Models.CMSModel
         {
             return new CmsContext();
         }
+
+        public System.Data.Entity.DbSet<CMS.Models.CMSModel.Tag> Tags { get; set; }
     }
 }

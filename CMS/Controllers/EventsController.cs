@@ -1,6 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
@@ -8,19 +12,19 @@ namespace CMS.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
-    {    
-        private readonly CmsContext _db = new CmsContext();
+    {
+        private readonly CmsContext db = new CmsContext();
 
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            var events = GetEventList(); 
+            var events = GetEventList();
             return View(await events.ToListAsync());
         }
 
         // GET: Events
         public IQueryable<Event> GetEventList()
         {
-            IQueryable<Event> events = _db.Events
+            IQueryable<Event> events = db.Events
                 .Include(db => db.AssociatedEventCategory)
                 .Include(db => db.AssociatedLocation)
                 .Include(db => db.AssociatedOrganiser);
@@ -35,7 +39,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = _db.Events.Find(id);
+            Event @event = db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -46,27 +50,29 @@ namespace CMS.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name");
-            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
-            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName");
+            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name");
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName");
             return View();
         }
 
         // POST: Events/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EventId,Name,Details,Priority,StartTime,EndTime,OrganiserId,EventCategoryId,LocationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                _db.Events.Add(@event);
-                _db.SaveChanges();
+                db.Events.Add(@event);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
-            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
-            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
+            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 
@@ -77,31 +83,33 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = _db.Events.Find(id);
+            Event @event = db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
-            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
-            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
+            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 
         // POST: Events/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EventId,Name,Details,Priority,StartTime,EndTime,OrganiserId,EventCategoryId,LocationId")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(@event).State = EntityState.Modified;
-                _db.SaveChanges();
+                db.Entry(@event).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventCategoryId = new SelectList(_db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
-            ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name", @event.LocationId);
-            ViewBag.OrganiserId = new SelectList(_db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
+            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
+            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
 
@@ -112,7 +120,7 @@ namespace CMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = _db.Events.Find(id);
+            Event @event = db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -125,9 +133,9 @@ namespace CMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = _db.Events.Find(id);
-            if (@event != null) _db.Events.Remove(@event);
-            _db.SaveChanges();
+            Event @event = db.Events.Find(id);
+            db.Events.Remove(@event);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -135,7 +143,7 @@ namespace CMS.Controllers
         {
             if (disposing)
             {
-                _db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
