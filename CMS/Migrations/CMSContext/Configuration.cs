@@ -17,7 +17,7 @@ namespace CMS.Migrations.CMSContext
 
         protected override void Seed(CmsContext context)
         {
-            SeedLocations(context);
+            // SeedLocations(context);
         }
 
         private static void SeedLocations(CmsContext context)
