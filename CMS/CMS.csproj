@@ -238,6 +238,7 @@
     <Compile Include="Dtos\EventDto.cs" />
     <Compile Include="Dtos\LocationDto.cs" />
     <Compile Include="Dtos\OrganiserDto.cs" />
+    <Compile Include="Dtos\TagDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

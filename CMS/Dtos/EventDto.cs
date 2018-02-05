@@ -27,5 +27,7 @@ namespace CMS.Dtos
         public LocationDto AssociatedLocation { get; set; }
 
         public OrganiserDto AssociatedOrganiser { get; set; }
+
+        public TagDto AssociatedTags { get; set; }
     }
 }
