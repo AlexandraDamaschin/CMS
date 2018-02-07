@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<CMS.Models.CMSModel.Location>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Locations";
 }
 
-<h2>Index</h2>
+<h2>Locations</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Location", "Create", "Locations", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-hover table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)

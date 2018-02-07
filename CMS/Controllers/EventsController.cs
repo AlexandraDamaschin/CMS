@@ -27,8 +27,8 @@ namespace CMS.Controllers
             IQueryable<Event> events = db.Events
                 .Include(db => db.AssociatedEventCategory)
                 .Include(db => db.AssociatedLocation)
-                .Include(db => db.AssociatedOrganiser)
-              .Include(db => db.tags);
+                .Include(db => db.AssociatedOrganiser);
+            //  .Include(db => db.tags);
             return events;
 
         }

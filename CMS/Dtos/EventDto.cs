@@ -28,6 +28,6 @@ namespace CMS.Dtos
 
         public OrganiserDto AssociatedOrganiser { get; set; }
 
-        public TagDto AssociatedTags { get; set; }
+    //    public TagDto AssociatedTags { get; set; }
     }
 }

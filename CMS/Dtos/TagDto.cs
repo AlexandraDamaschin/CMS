@@ -10,6 +10,6 @@ namespace CMS.Dtos
   
         public int TagId { get; set; }
         public string Name { get; set; }
-        public EventDto AssociatedEvents { get; set; }
+       // public EventDto AssociatedEvents { get; set; }
     }
 }
