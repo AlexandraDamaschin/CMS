@@ -17,7 +17,6 @@ namespace CMS.Models.CMSModel
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<Event> events { get; set; }
-
+        public virtual ICollection<Event> AssociatedEvents { get; set; }
     }
 }

@@ -228,6 +228,7 @@
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\OLDEventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

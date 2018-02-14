@@ -14,7 +14,7 @@ namespace CMS.ViewModels
         private List<int> _associatedTags;
         public List<int> AssociatedTags
         {
-            get { return _associatedTags ?? (_associatedTags = Event.tags.Select(t => t.TagId).ToList()); }
+            get { return _associatedTags ?? (_associatedTags = Event.AssociatedTags.Select(t => t.TagId).ToList()); }
             set { _associatedTags = value; }
         }
     }
