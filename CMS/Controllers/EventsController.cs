@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using AutoMapper;
 using CMS.Models.CMSModel;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
@@ -43,6 +45,58 @@ namespace CMS.Controllers
             }
             return View(@event);
         }
+
+
+
+
+
+        public ActionResult New()
+        {
+            var tags = db.Tags.ToList();
+            var viewModel = new EventFormViewModel()
+            {
+                Event = new Event(),
+                AssociatedTags = tags
+            };
+
+            return View("EventForm", viewModel);
+        }
+
+        
+        //  Post : /events/save/1
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Event event)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new EventFormViewModel()
+                {
+                    Event = event,
+                    AssociatedTags = db.Locations.ToList()
+                };
+
+                return View("EventForm", viewModel);
+            }
+
+            if (Event.EventId == 0)
+                db.Events.Add(event);
+            else
+            {
+                var eventInDb = db.Events.Single(c => c.EventId == event.EventId);
+
+                Mapper.Map(eventInDb, event);
+
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Events");
+        }
+
+
+
+
 
         // GET: Events/Create
         public ActionResult Create()
@@ -85,10 +139,20 @@ namespace CMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
-            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
-            return View(@event);
+
+            var allEventTagsList = db.Tags.ToList();
+            var viewModel = new EventFormViewModel
+            {
+                Event = @event,
+                AssociatedTags = db.Tags.ToList()
+            };
+
+            return View("EventForm", viewModel);
+
+            //            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
+            //            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
+            //            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
+            //            return View(@event);
         }
 
         // POST: Events/Edit/5
