@@ -1,0 +1,88 @@
+﻿@model CMS.Models.CMSModel.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedEventCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedEventCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedLocation.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedLocation.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedOrganiser.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedOrganiser.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,82 @@
+﻿@model CMS.Models.CMSModel.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedEventCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedEventCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedLocation.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedLocation.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedOrganiser.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedOrganiser.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
