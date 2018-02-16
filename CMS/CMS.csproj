@@ -316,6 +316,10 @@
     <Compile Include="Migrations\CMSContext\201802051436013_update event category model.Designer.cs">
       <DependentUpon>201802051436013_update event category model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802161355199_update context.cs" />
+    <Compile Include="Migrations\CMSContext\201802161355199_update context.Designer.cs">
+      <DependentUpon>201802161355199_update context.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -681,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201802051436013_update event category model.resx">
       <DependentUpon>201802051436013_update event category model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802161355199_update context.resx">
+      <DependentUpon>201802161355199_update context.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace CMS.Models.CMSModel
 {
@@ -13,6 +9,7 @@ namespace CMS.Models.CMSModel
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Organiser> Organisers { get; set; }
+        public DbSet<Tag> Tags { get; set; }
         public CmsContext()
             : base("DefaultConnection")
         {
@@ -22,7 +19,5 @@ namespace CMS.Models.CMSModel
         {
             return new CmsContext();
         }
-
-        public System.Data.Entity.DbSet<CMS.Models.CMSModel.Tag> Tags { get; set; }
     }
 }

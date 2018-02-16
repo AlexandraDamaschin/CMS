@@ -1,24 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 
 namespace CMS.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
     {
-        private CmsContext db = new CmsContext();
+        private readonly CmsContext db = new CmsContext();
+
+        public async System.Threading.Tasks.Task<ActionResult> Index()
+        {
+            var events = GetEventList();
+            return View(await events.ToListAsync());
+        }
 
         // GET: Events
-        public ActionResult Index()
+        public IQueryable<Event> GetEventList()
         {
-            var events = db.Events.Include(@ => @.AssociatedEventCategory).Include(@ => @.AssociatedLocation).Include(@ => @.AssociatedOrganiser);
-            return View(events.ToList());
+            IQueryable<Event> events = db.Events
+                .Include(db => db.AssociatedEventCategory)
+                .Include(db => db.AssociatedLocation)
+                .Include(db => db.AssociatedOrganiser)
+                .Include(db => db.AssociatedTags);
+            return events;
+
         }
 
         // GET: Events/Details/5
@@ -82,6 +90,41 @@ namespace CMS.Controllers
             ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
             return View(@event);
         }
+
+
+//        public ActionResult Edit(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//            }
+//
+//            var eventFormViewModel = new EventFormViewModel
+//            {
+//                Event = db.Events.Include(i => i.tags).First(i => i.EventId == id),
+//            };
+//
+//            if (eventFormViewModel.Event == null)
+//                return HttpNotFound();
+//
+//            var allEventTagsList = db.Tags.ToList();
+//            eventFormViewModel.AllEventTags = allEventTagsList.Select(o => new SelectListItem
+//            {
+//                Text = o.Name,
+//                Value = o.TagId.ToString()
+//            });
+//
+//            ViewBag.EventCategoryId = new SelectList(db.EventCategories, "EventCategoryId", "Name", @event.EventCategoryId);
+//            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name", @event.LocationId);
+//            ViewBag.OrganiserId = new SelectList(db.Organisers, "OrganiserId", "DisplayName", @event.OrganiserId);
+//
+//            return View(jobpostViewModel);
+//        }
+
+
+
+
+
 
         // POST: Events/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

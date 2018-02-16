@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace CMS.Models.CMSModel
 {
@@ -44,5 +42,6 @@ namespace CMS.Models.CMSModel
         public virtual Location AssociatedLocation { get; set; }
 
         public virtual ICollection<Tag> AssociatedTags { get; set; }
+
     }
 }
