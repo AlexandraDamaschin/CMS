@@ -21,8 +21,9 @@ namespace CMS.Models.CMSModel
         [StringLength(255)]
         public string County { get; set; }
 
+        [Display(Name = "Latitude")]
         public float Lat { get; set; }
-
+        [Display(Name = "Longitude")]
         public float Lng { get; set; }
 
 

@@ -14,6 +14,7 @@ namespace CMS.Models.CMSModel
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Event Name")]
         public string Name { get; set; }
 
         [StringLength(255)]
@@ -22,7 +23,9 @@ namespace CMS.Models.CMSModel
         public int Priority { get; set; }
 
         [Required]
+        [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
+        [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
 
         [ForeignKey("AssociatedOrganiser")]
@@ -33,7 +36,6 @@ namespace CMS.Models.CMSModel
 
         [ForeignKey("AssociatedLocation")]
         public int LocationId { get; set; }
-
 
         public virtual Organiser AssociatedOrganiser { get; set; }
 
