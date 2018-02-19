@@ -9,5 +9,10 @@ namespace CMS.ViewModels
     {
         public Event Event { get; set; }
 
+        public IEnumerable<Organiser> Organisers { get; set; }
+        public IEnumerable<Location> Locations { get; set; }
+        public IEnumerable<EventCategory> EventCategories { get; set; }
+
+
     }
 }

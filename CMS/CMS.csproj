@@ -957,6 +957,7 @@
     <Content Include="Views\Locations\Details.cshtml" />
     <Content Include="Views\EventCategories\EventCategoryForm.cshtml" />
     <Content Include="Views\EventCategories\Details.cshtml" />
+    <Content Include="Views\Events\EventForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
