@@ -235,7 +235,6 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisersController.cs" />
-    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
     <Compile Include="Dtos\EventCategoryDto.cs" />
     <Compile Include="Dtos\EventDto.cs" />
@@ -322,6 +321,10 @@
     <Compile Include="Migrations\CMSContext\201802161355199_update context.Designer.cs">
       <DependentUpon>201802161355199_update context.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802191235540_update tags.cs" />
+    <Compile Include="Migrations\CMSContext\201802191235540_update tags.Designer.cs">
+      <DependentUpon>201802191235540_update tags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -331,7 +334,6 @@
     <Compile Include="Models\CMSModel\Location.cs" />
     <Compile Include="Models\CMSModel\LocationDataImport.cs" />
     <Compile Include="Models\CMSModel\Organiser.cs" />
-    <Compile Include="Models\CMSModel\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -693,6 +695,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201802161355199_update context.resx">
       <DependentUpon>201802161355199_update context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802191235540_update tags.resx">
+      <DependentUpon>201802191235540_update tags.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

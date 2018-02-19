@@ -9,7 +9,6 @@ namespace CMS.Models.CMSModel
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Organiser> Organisers { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public CmsContext()
             : base("DefaultConnection")
         {

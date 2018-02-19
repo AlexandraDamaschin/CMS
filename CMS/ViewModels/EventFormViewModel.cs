@@ -9,21 +9,5 @@ namespace CMS.ViewModels
     {
         public Event Event { get; set; }
 
-        public IEnumerable<SelectListItem> AllEventTags { get; set; }
-
-        private List<int> _associatedTags;
-        public List<int> AssociatedTags
-        {
-            get
-            {
-                if (_associatedTags == null)
-                {
-                    _associatedTags = Event.AssociatedTags.Select(t => t.TagId).ToList();
-                }
-
-                return _associatedTags;
-            }
-            set { _associatedTags = value; }
-        }
     }
 }
