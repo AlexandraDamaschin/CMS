@@ -4,43 +4,43 @@
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="createOne">
+    <h2>New Device</h2>
 
-<h2>New Device</h2>
-
-@using (Html.BeginForm("Save", "Locations"))
+    @using (Html.BeginForm("Save", "Locations"))
+    {
+        @Html.ValidationSummary(true, "Please fix the following errors.")
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location.Name)
+            @Html.TextBoxFor(m => m.Location.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Location.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location.Town)
+            @Html.TextBoxFor(m => m.Location.Town, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Location.Town)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location.County)
+            @Html.TextBoxFor(m => m.Location.County, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Location.County)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location.Lat)
+            @Html.TextBoxFor(m => m.Location.Lat, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Location.Lat)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Location.Lng)
+            @Html.TextBoxFor(m => m.Location.Lng, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Location.Lng)
+        </div>
+        @Html.HiddenFor(m => m.Location.LocationId)
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+    </div>
+        @section scripts
 {
-    @Html.ValidationSummary(true, "Please fix the following errors.")
-    <div class="form-group">
-        @Html.LabelFor(m => m.Location.Name)
-        @Html.TextBoxFor(m => m.Location.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Location.Name)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Location.Town)
-        @Html.TextBoxFor(m => m.Location.Town, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Location.Town)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Location.County)
-        @Html.TextBoxFor(m => m.Location.County, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Location.County)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Location.Lat)
-        @Html.TextBoxFor(m => m.Location.Lat, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Location.Lat)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Location.Lng)
-        @Html.TextBoxFor(m => m.Location.Lng, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Location.Lng)
-    </div>
-    @Html.HiddenFor(m => m.Location.LocationId)
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Save</button>
-}
-
-@section scripts
-{
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            @Scripts.Render("~/bundles/jqueryval")
+        }

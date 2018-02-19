@@ -3,56 +3,57 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="createOne">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Location</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-<div>
-    <h4>Location</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Town)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Town)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Town)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Town)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.County)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.County)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.County)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.County)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Lat)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lat)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Lat)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lat)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Lng)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lng)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Lng)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lng)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>
