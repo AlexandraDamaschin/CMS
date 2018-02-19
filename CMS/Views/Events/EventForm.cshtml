@@ -1,17 +1,74 @@
-﻿@{
-    Layout = null;
+﻿@model CMS.ViewModels.EventFormViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="createOne">
+    <h2>New Event</h2>
 
-<!DOCTYPE html>
+    @using (Html.BeginForm("Save", "Events"))
+    {
+        @Html.ValidationSummary(true, "Please fix the following errors.")
+        <div class="form-group">
+            @Html.LabelFor(m => m.Event.Name)
+            @Html.TextBoxFor(m => m.Event.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Event.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Event.Details)
+            @Html.TextBoxFor(m => m.Event.Details, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Event.Details)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Event.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Event.Priority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Event.Priority, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Event.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Event.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Event.StartTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+        <div class="form-group">
+            @Html.LabelFor(model => model.Event.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Event.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Event.EndTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Event.LocationId)
+            @Html.DropDownListFor(m => m.Event.LocationId, new SelectList(Model.Locations, "LocationId", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Event.LocationId)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Event.OrganiserId)
+            @Html.DropDownListFor(m => m.Event.OrganiserId, new SelectList(Model.Organisers, "OrganiserId", "DisplayName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Event.OrganiserId)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Event.EventCategoryId)
+            @Html.DropDownListFor(m => m.Event.EventCategoryId, new SelectList(Model.EventCategories, "EventCategoryId", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Event.EventCategoryId)
+        </div>
+
+
+        @Html.HiddenFor(m => m.Event.EventId)
+
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
     </div>
-</body>
-</html>
+    @section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
