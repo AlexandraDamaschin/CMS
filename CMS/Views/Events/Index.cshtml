@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="contDataStyling">
+<h2>Events</h2>
+    <p>
+        @Html.ActionLink("New Event",  "Create", null, new { @class = "btn btn-primary" })
+    </p>
 <table class="table">
     <tr>
         <th>
@@ -77,3 +76,6 @@
 }
 
 </table>
+
+
+   </div>

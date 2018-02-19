@@ -10,7 +10,7 @@ namespace CMS
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
+                        //"~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
@@ -23,8 +23,8 @@ namespace CMS
                        "~/Content/sbTheme/vendor/bootstrap/js/bootstrap.min.js",
                        "~/Content/sbTheme/vendor/metisMenu/metisMenu.min.js",
                        "~/Content/sbTheme/vendor/raphael/raphael.min.js",
-                       "~/Content/sbTheme/vendor/morrisjs/morris.min.js",
-                       "~/Content/sbTheme/data/morris-data.js",
+                      // "~/Content/sbTheme/vendor/morrisjs/morris.min.js",
+                      // "~/Content/sbTheme/data/morris-data.js",
                        "~/Content/sbTheme/dist/js/sb-admin-2.min.js"
                 ));
 
@@ -46,8 +46,8 @@ namespace CMS
                       "~/Content/themes/base/jquery-ui.css",
                       "~/Content/themes/base/datepicker.css",
                       "~/Content/jquery-ui-timepicker-addon.css",
-                      "~/Content/toastr.css"
-                  //  "~/Content/site.css"
+                      "~/Content/toastr.css",
+                    "~/Content/site.css"
                        ));
 
         }
