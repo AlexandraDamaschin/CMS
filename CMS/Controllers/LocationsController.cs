@@ -9,7 +9,7 @@ namespace CMS.Controllers
     [Authorize(Roles = "SuperAdmin")]
     public class LocationsController : Controller
     {
-        private readonly CmsContext _cms = new CmsContext();
+        private CmsContext _cms = new CmsContext();
 
         public ActionResult New()
         {
