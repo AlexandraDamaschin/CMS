@@ -71,6 +71,9 @@ border:	2px	solid	red;
 .createOne{
     margin: 0 0 0 260px;
 }
+.formStyle{
+    margin: 0 0 0 255px;
+}
 
 /*overRiding bootStrap */
 
