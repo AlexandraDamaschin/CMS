@@ -10,22 +10,22 @@ namespace CMS
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                        //"~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
                         "~/Scripts/DataTables/datatables.bootstrap.js",
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery-ui-timepicker-addon.js",
-                        "~/Scripts/toastr.js",
+                        "~/Scripts/toastr.js"
 
-                       "~/Content/sbTheme/vendor/jquery/jquery.min.js",
-                       "~/Content/sbTheme/vendor/bootstrap/js/bootstrap.min.js",
-                       "~/Content/sbTheme/vendor/metisMenu/metisMenu.min.js",
-                       "~/Content/sbTheme/vendor/raphael/raphael.min.js",
-                      // "~/Content/sbTheme/vendor/morrisjs/morris.min.js",
-                      // "~/Content/sbTheme/data/morris-data.js",
-                       "~/Content/sbTheme/dist/js/sb-admin-2.min.js"
+//                       "~/Content/sbTheme/vendor/jquery/jquery.min.js",
+//                       "~/Content/sbTheme/vendor/bootstrap/js/bootstrap.min.js",
+//                       "~/Content/sbTheme/vendor/metisMenu/metisMenu.min.js",
+//                       "~/Content/sbTheme/vendor/raphael/raphael.min.js",
+//                      // "~/Content/sbTheme/vendor/morrisjs/morris.min.js",
+//                      // "~/Content/sbTheme/data/morris-data.js",
+//                       "~/Content/sbTheme/dist/js/sb-admin-2.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
