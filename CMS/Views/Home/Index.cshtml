@@ -1,25 +1,18 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
-<br />
-<br />
-<div class="row">
-    @*<div class="col-12">
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="text-center">
-                    <img src="@Url.Content("~/Content/Images/logosally.png")" alt="Sallinet" class="img-responsive" />
-
-                </div>
-
-            </div>*@
-            <div class="col-12">
-
-
+<div class="row">        
+            <div class="col-12" style="margin: 0 0 0 280px">
                 @if (!Request.IsAuthenticated)
                 {
-                    <hr />
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <img src="@Url.Content("~/Content/Images/logosally.png")" alt="Sallinet" class="img-responsive" />
+                        </div>
+                    </div>
+                        <br /> <br /> <br /> <br />
+                        <hr />  
                     <a href="@Url.Action("Login", "Account")" class="btn btn-default btn-lg">
                         Login
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
@@ -28,6 +21,7 @@
                         Register
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                     </a>
+                        
                     <hr />
 
                 }
@@ -36,8 +30,8 @@
                     @*<div>
                         Welcome back @System.Web.HttpContext.Current.User.Identity.Name
                     </div>*@
-
                     @Html.Partial("_Dashboard")
+
 
                 }
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
+using System.Data.SqlClient;
 
 namespace CMS.Controllers
 {
@@ -147,6 +148,22 @@ namespace CMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public int CountingEvents(int count)
+        {
+            string stmt = "SELECT COUNT(*) FROM dbo.Event";
+            //int count = 0;
+
+            using (SqlConnection thisConnection = new SqlConnection("Data Source=DATASOURCE"))
+            {
+                using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
+                {
+                    thisConnection.Open();
+                    count = (int)cmdCount.ExecuteScalar();
+                }
+            }
+            return count;
         }
     }
 }
