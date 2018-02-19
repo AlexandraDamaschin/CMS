@@ -1,39 +1,84 @@
 ﻿@model IEnumerable<CMS.Models.CMSModel.Organiser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Organisers";
 }
 
-<h2>Index</h2>
+<h2>Organisers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "New", "Organisers", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DisplayName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactDetails)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DisplayName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactDetails)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrganiserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrganiserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrganiserId })
-        </td>
-    </tr>
-}
-
+<table class="table" id="organisers">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Contact
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
 </table>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#organisers").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/organisers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "displayName",
+                        render: function (data, type, organiser) {
+                            return "<a href='/organisers/edit/" + organiser.organiserId + "'>" + organiser.displayName + "</a>";
+                        }
+                    },
+                    {
+                        data: "contactDetails"
+                    },
+                    {
+                        "orderable": false,
+                        data: "organiserId",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-organiser-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#organisers").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this organiser?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/locations/" + button.attr("data-organiser-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Organiser deleted.");
+                            },
+                            error: function(xmlHttpRequest, textStatus) {
+                                toastr.error("Error: " + textStatus);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+}

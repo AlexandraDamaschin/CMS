@@ -1,39 +1,91 @@
 ﻿@model IEnumerable<CMS.Models.CMSModel.EventCategory>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "EvntCats";
 }
 
-<h2>Index</h2>
+<h2>Event Categories</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Event Category", "New", "EventCategories", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Icon)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Icon)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EventCategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventCategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventCategoryId })
-        </td>
-    </tr>
-}
-
+<table class="table" id="evntCats">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Icon
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
 </table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#evntCats").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/evntCats",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "evntCatId"
+                    },
+                    {
+                        data: "name",
+                        render: function(data, type, evntCat) {
+                            return "<a href='/evntCats/edit/" + evntCat.evntCatId + "'>" + evntCat.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "icon"
+                    },
+
+                    {
+                        "orderable": false,
+                        data: "evntCatId",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-evntCat-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#evntCats").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this event category?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/evntCats/" + button.attr("data-evntCat-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Event Category deleted.");
+                            },
+                            error: function(xmlHttpRequest, textStatus) {
+                                toastr.error("Error: " + textStatus);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+}

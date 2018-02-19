@@ -1,128 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
 using CMS.Models.CMSModel;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
     [Authorize(Roles = "SuperAdmin")]
     public class OrganisersController : Controller
     {
-        private CmsContext db = new CmsContext();
+        private CmsContext _cms = new CmsContext();
 
-        // GET: Organisers
-        public ActionResult Index()
-        {
-            return View(db.Organisers.ToList());
-        }
-
-        // GET: Organisers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Organiser organiser = db.Organisers.Find(id);
-            if (organiser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(organiser);
-        }
-
-        // GET: Organisers/Create
-        public ActionResult Create()
+        //  Get: /organisers
+        public ViewResult Index()
         {
             return View();
         }
 
-        // POST: Organisers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //   Get :  /organisers/details/1
+        public ActionResult Details(int id)
+        {
+            var organiser = _cms.Organisers.SingleOrDefault(m => m.OrganiserId == id);
+            if (organiser == null)
+                return HttpNotFound();
+
+            return View(organiser);
+        }
+
+        //   Get :  /organisers/edit/1
+        public ActionResult Edit(int id)
+        {
+            var organiser = _cms.Organisers.SingleOrDefault(m => m.OrganiserId == id);
+            if (organiser == null)
+                return HttpNotFound();
+
+            var viewModel = new OrganiserFormViewModel
+            {
+                Organiser = organiser
+            };
+            return View("OrganiserForm", viewModel);
+        }
+
+        // Get : /organisers/new
+        public ActionResult New()
+        {
+            var viewModel = new OrganiserFormViewModel
+            {
+                Organiser = new Organiser(),
+            };
+            return View("OrganiserForm", viewModel);
+        }
+
+        //  Post : /organisers/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrganiserId,DisplayName,ContactDetails")] Organiser organiser)
+        public ActionResult Save(Organiser organiser)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Organisers.Add(organiser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var viewModel = new OrganiserFormViewModel()
+                {
+                    Organiser = new Organiser()
+                };
+                return View("OrganiserForm", viewModel);
             }
-
-            return View(organiser);
-        }
-
-        // GET: Organisers/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            if (organiser.OrganiserId == 0)
+                _cms.Organisers.Add(organiser);
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var organiserInDb = _cms.Organisers.Single(m => m.OrganiserId == organiser.OrganiserId);
+                Mapper.Map(organiserInDb, organiser);
             }
-            Organiser organiser = db.Organisers.Find(id);
-            if (organiser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(organiser);
-        }
-
-        // POST: Organisers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrganiserId,DisplayName,ContactDetails")] Organiser organiser)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(organiser).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(organiser);
-        }
-
-        // GET: Organisers/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Organiser organiser = db.Organisers.Find(id);
-            if (organiser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(organiser);
-        }
-
-        // POST: Organisers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Organiser organiser = db.Organisers.Find(id);
-            db.Organisers.Remove(organiser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            _cms.SaveChanges();
+            return RedirectToAction("Index", "Organisers");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _cms.Dispose();
             }
             base.Dispose(disposing);
         }
     }
 }
+
+
+
+
