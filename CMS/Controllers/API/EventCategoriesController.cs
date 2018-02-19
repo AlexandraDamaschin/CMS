@@ -16,12 +16,12 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
 
-        // Get /api/eventCategorys
+        // Get /api/eventCategories
         public IHttpActionResult GetEventCategories()
         {
-            var eventCategorysQuery = _cms.EventCategories;
+            var eventCategoriesQuery = _cms.EventCategories;
 
-            var eventCategoryDtos = eventCategorysQuery
+            var eventCategoryDtos = eventCategoriesQuery
                 .ToList()
                 .Select(Mapper.Map<EventCategory, EventCategoryDto>);
 
@@ -55,7 +55,7 @@ namespace CMS.Controllers.API
             return Created(new Uri(Request.RequestUri + "/" + eventCategory.EventCategoryId), eventCategoryDto);
         }
 
-        //  Put /api/eventCategorys/1
+        //  Put /api/eventCategories/1
         [HttpPut]
         public IHttpActionResult UpdateEventCategory(int id, EventCategoryDto eventCategoryDto)
         {
@@ -74,7 +74,7 @@ namespace CMS.Controllers.API
             return Ok();
         }
 
-        //  Delete /api/eventCategorys/1
+        //  Delete /api/eventCategories/1
         [HttpDelete]
         public IHttpActionResult DeleteEventCategory(int id)
         {

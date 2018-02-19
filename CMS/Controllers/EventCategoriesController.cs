@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using CMS.Models.CMSModel;
@@ -10,7 +8,7 @@ namespace CMS.Controllers
 {
     public class EventCategoriesController : Controller
     {
-        private readonly CmsContext _cms = new CmsContext();
+        private CmsContext _cms = new CmsContext();
 
         public ActionResult New()
         {
@@ -23,28 +21,28 @@ namespace CMS.Controllers
         }
 
 
-        //  Post : /evntCats/save/1
+        //  Post : /eventCategories/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(EventCategory evntCat)
+        public ActionResult Save(EventCategory eventCategory)
         {
             if (!ModelState.IsValid)
             {
                 var viewModel = new EventCategoryFormViewModel
                 {
-                    EventCategory = evntCat
+                    EventCategory = eventCategory
                 };
 
                 return View("EventCategoryForm", viewModel);
             }
 
-            if (evntCat.EventCategoryId == 0)
-                _cms.EventCategories.Add(evntCat);
+            if (eventCategory.EventCategoryId == 0)
+                _cms.EventCategories.Add(eventCategory);
             else
             {
-                var evntCatInDb = _cms.EventCategories.Single(c => c.EventCategoryId == evntCat.EventCategoryId);
+                var eventCategoryInDb = _cms.EventCategories.Single(c => c.EventCategoryId == eventCategory.EventCategoryId);
 
-                Mapper.Map(evntCatInDb, evntCat);
+                Mapper.Map(eventCategoryInDb, eventCategory);
 
             }
 
@@ -53,36 +51,36 @@ namespace CMS.Controllers
             return RedirectToAction("Index", "EventCategories");
         }
 
-        //  Get: /evntCats
+        //  Get: /eventCategories
         public ViewResult Index()
         {
             return View();
         }
 
-        //   Get :  /evntCats/details/1
+        //   Get :  /eventCategories/details/1
         public ActionResult Details(int id)
         {
-            var evntCat = _cms.EventCategories
+            var eventCategory = _cms.EventCategories
                 .SingleOrDefault(c => c.EventCategoryId == id);
 
-            if (evntCat == null)
+            if (eventCategory == null)
                 return HttpNotFound();
 
-            return View(evntCat);
+            return View(eventCategory);
         }
 
 
-        //   Get :  /evntCats/edit/1
+        //   Get :  /eventCategories/edit/1
         public ActionResult Edit(int id)
         {
-            var evntCat = _cms.EventCategories.SingleOrDefault(c => c.EventCategoryId == id);
+            var eventCategory = _cms.EventCategories.SingleOrDefault(c => c.EventCategoryId == id);
 
-            if (evntCat == null)
+            if (eventCategory == null)
                 return HttpNotFound();
 
             var viewModel = new EventCategoryFormViewModel
             {
-                EventCategory = evntCat
+                EventCategory = eventCategory
             };
 
             return View("EventCategoryForm", viewModel);
