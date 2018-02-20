@@ -938,14 +938,8 @@
     <Content Include="Views\Organisers\Index.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\EventCategories\Index.cshtml" />
-    <Content Include="Views\Tags\Create.cshtml" />
-    <Content Include="Views\Tags\Delete.cshtml" />
-    <Content Include="Views\Tags\Details.cshtml" />
-    <Content Include="Views\Tags\Edit.cshtml" />
-    <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
-    <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_TopDashboard.cshtml" />
     <Content Include="Views\Organisers\OrganiserForm.cshtml" />
     <Content Include="Views\Organisers\Details.cshtml" />
