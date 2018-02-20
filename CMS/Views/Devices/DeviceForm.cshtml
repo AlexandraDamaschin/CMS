@@ -10,27 +10,30 @@
     @using (Html.BeginForm("Save", "Devices"))
     {
         @Html.ValidationSummary(true, "Please fix the following errors.")
-        <div class="form-group">
-            @Html.LabelFor(m => m.Device.Name)
-            @Html.TextBoxFor(m => m.Device.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Device.Name)
+        <div class="formStyle">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Device.Name)
+                @Html.TextBoxFor(m => m.Device.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Device.Name)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Device.LocationId)
+                @Html.DropDownListFor(m => m.Device.LocationId, new SelectList(Model.Locations, "LocationId", "Name"), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Device.LocationId)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Device.Build)
+                @Html.TextBoxFor(m => m.Device.Build, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Device.Build)
+            </div>
+            @Html.HiddenFor(m => m.Device.DeviceId)
+            @Html.HiddenFor(m => m.Device.HasError)
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })    
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Device.LocationId)
-            @Html.DropDownListFor(m => m.Device.LocationId, new SelectList(Model.Locations, "LocationId", "Name"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Device.LocationId)
+            }
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Device.Build)
-            @Html.TextBoxFor(m => m.Device.Build, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Device.Build)
-        </div>
-        @Html.HiddenFor(m => m.Device.DeviceId)
-        @Html.HiddenFor(m => m.Device.HasError)
-        @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-primary">Save</button>
-    }
-    </div>
     @section scripts
 {
         @Scripts.Render("~/bundles/jqueryval")
