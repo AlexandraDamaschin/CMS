@@ -1,101 +1,111 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-@section Styles {
-    <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
-}
+<div class="contDataStyling">
+    <div id="intro" class="header-container fs">
+        <header class="wrapper">
+            <h1 class="title">A Basic ScrollMagic Template</h1>
+            <p>Free to download and use for personal or commercial use.</p>
+            <p>Contains CSS Animations triggered at a specific time.</p>
+        </header>
+        <span class="scroll-hint">Scroll Down</span>
+    </div>
+    </div>
+    @*@section Styles {
+            <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
+        }
 
-<div id="intro" class="header-container fs">
-    <header class="wrapper">
-        <h1 class="title">A Basic ScrollMagic Template</h1>
-        <p>Free to download and use for personal or commercial use.</p>
-        <p>Contains CSS Animations triggered at a specific time.</p>
-    </header>
-    <span class="scroll-hint">Scroll Down</span>
-</div>
-<nav>
-    <ul>
-        <li><a href="#intro"><span class="nav-dot"></span><span class="nav-label">Intro</span></a></li>
-        <li><a href="#slide01"><span class="nav-dot"></span><span class="nav-label">Slide One</span></a></li>
-        <li><a href="#slide02"><span class="nav-dot"></span><span class="nav-label">Slide Two</span></a></li>
-        <li><a href="#slide03"><span class="nav-dot"></span><span class="nav-label">Slide Three</span></a></li>
-    </ul>
-</nav>
-<div class="main-container">
-
-    <article id="slide01" class="slide fs">
-        <div class="wrapper">
-            <header>
-                <h1 class="slideInUp">ScrollMagic Controller</h1>
+        <div id="intro" class="header-container fs">
+            <header class="wrapper">
+                <h1 class="title">A Basic ScrollMagic Template</h1>
+                <p>Free to download and use for personal or commercial use.</p>
+                <p>Contains CSS Animations triggered at a specific time.</p>
             </header>
-            <section>
-                <h2 class="slideInUp">What is ScrollMagic Controller?</h2>
-                <p class="slideInUp">The Controller is a scrolling container (body by default) that can have one or more Scenes attached to it.</p>
-                <p class="slideInUp">
-                    <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
-                </p>
-            </section>
-        </div> <!-- .wrapper -->
-    </article>
-    <article id="slide02" class="slide fs">
-        <div class="wrapper">
-            <header>
-                <h1 class="slideInUp">ScrollMagic Scene</h1>
-            </header>
-            <section>
-                <h2 class="slideInUp">What is ScrollMagic Scene?</h2>
-                <p class="slideInUp">Scene is a tween or collection of tweens (timeline), that is triggered at a specific time as the user scrolls down the page.</p>
-                <p class="slideInUp">
-                    <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
-                </p>
-            </section>
-        </div> <!-- .wrapper -->
-    </article>
-    <article id="slide03" class="slide is-light fs">
-        <div class="wrapper">
-            <header>
-                <h1 class="slideInUp">ScrollMagic triggerElement</h1>
-            </header>
-            <section>
-                <h2 class="slideInUp">What is a triggerElement?</h2>
-                <p class="slideInUp">triggerElement is a DOM element that will trigger Scene when the top of the trigger element reaches the center of the viewport.</p>
-                <p class="slideInUp">
-                    <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
-                </p>
-            </section>
-        </div> <!-- .wrapper -->
-    </article>
-</div> <!-- #main-container -->
+            <span class="scroll-hint">Scroll Down</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#intro"><span class="nav-dot"></span><span class="nav-label">Intro</span></a></li>
+                <li><a href="#slide01"><span class="nav-dot"></span><span class="nav-label">Slide One</span></a></li>
+                <li><a href="#slide02"><span class="nav-dot"></span><span class="nav-label">Slide Two</span></a></li>
+                <li><a href="#slide03"><span class="nav-dot"></span><span class="nav-label">Slide Three</span></a></li>
+            </ul>
+        </nav>
+        <div class="main-container">
+
+            <article id="slide01" class="slide fs">
+                <div class="wrapper">
+                    <header>
+                        <h1 class="slideInUp">ScrollMagic Controller</h1>
+                    </header>
+                    <section>
+                        <h2 class="slideInUp">What is ScrollMagic Controller?</h2>
+                        <p class="slideInUp">The Controller is a scrolling container (body by default) that can have one or more Scenes attached to it.</p>
+                        <p class="slideInUp">
+                            <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
+                        </p>
+                    </section>
+                </div> <!-- .wrapper -->
+            </article>
+            <article id="slide02" class="slide fs">
+                <div class="wrapper">
+                    <header>
+                        <h1 class="slideInUp">ScrollMagic Scene</h1>
+                    </header>
+                    <section>
+                        <h2 class="slideInUp">What is ScrollMagic Scene?</h2>
+                        <p class="slideInUp">Scene is a tween or collection of tweens (timeline), that is triggered at a specific time as the user scrolls down the page.</p>
+                        <p class="slideInUp">
+                            <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
+                        </p>
+                    </section>
+                </div> <!-- .wrapper -->
+            </article>
+            <article id="slide03" class="slide is-light fs">
+                <div class="wrapper">
+                    <header>
+                        <h1 class="slideInUp">ScrollMagic triggerElement</h1>
+                    </header>
+                    <section>
+                        <h2 class="slideInUp">What is a triggerElement?</h2>
+                        <p class="slideInUp">triggerElement is a DOM element that will trigger Scene when the top of the trigger element reaches the center of the viewport.</p>
+                        <p class="slideInUp">
+                            <a href="https://ihatetomatoes.net/5-days-with-scrollmagic/" class="button">Read more</a>
+                        </p>
+                    </section>
+                </div> <!-- .wrapper -->
+            </article>
+        </div> <!-- #main-container -->
 
 
 
 
-@section scripts
-{
+        @section scripts
+        {
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
-    <script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+            <script>
 
-        ! function (e) {
-            var l = new ScrollMagic.Controller,
-                i = ["#slide01 header", "#slide02 header", "#slide03 header"];
-            if (!Modernizr.touch) {
-                i.forEach(function (e, i) {
-                    {
-                        var r = i + 1;
-                        new ScrollMagic.Scene({
-                            triggerElement: e,
-                            offset: -95
-                        }).setClassToggle("#slide0" + r, "is-active").addTo(l)
+                ! function (e) {
+                    var l = new ScrollMagic.Controller,
+                        i = ["#slide01 header", "#slide02 header", "#slide03 header"];
+                    if (!Modernizr.touch) {
+                        i.forEach(function (e, i) {
+                            {
+                                var r = i + 1;
+                                new ScrollMagic.Scene({
+                                    triggerElement: e,
+                                    offset: -95
+                                }).setClassToggle("#slide0" + r, "is-active").addTo(l)
+                            }
+                        }); {
+                            new ScrollMagic.Scene({
+                                triggerElement: ".slide.is-light"
+                            }).setClassToggle("nav", "is-dark").addTo(l)
+                        }
                     }
-                }); {
-                    new ScrollMagic.Scene({
-                        triggerElement: ".slide.is-light"
-                    }).setClassToggle("nav", "is-dark").addTo(l)
-                }
-            }
-        }(jQuery);
-    </script>
+                }(jQuery);
+            </script>
 
-}
+        }*@
