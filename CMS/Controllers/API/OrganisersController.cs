@@ -7,6 +7,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers.API
 {
+    [Authorize]
     public class OrganisersController : ApiController
     {
         private CmsContext _cms;

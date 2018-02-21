@@ -29,6 +29,7 @@ namespace CMS.Migrations.ApplicationUsers
             roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
             roleManager.Create(new IdentityRole { Name = "Administration" });
             roleManager.Create(new IdentityRole { Name = "User" });
+            roleManager.Create(new IdentityRole { Name = "CanManageOrganisers" });
 
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
@@ -60,10 +61,24 @@ namespace CMS.Migrations.ApplicationUsers
                 SecurityStamp = Guid.NewGuid().ToString(),
             });
             context.SaveChanges();
+
+            context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
+            {
+                Email = "device01@sallinet.ie",
+                EmailConfirmed = true,
+                UserName = "device01@sallinet.ie",
+                PasswordHash = new PasswordHasher().HashPassword("LetMeIn"),
+                SecurityStamp = Guid.NewGuid().ToString(),
+            });
+            context.SaveChanges();
+
+
+
             ApplicationUser SuperAdmin = manager.FindByEmail("super-admin@sallinet.ie");
             if (SuperAdmin != null)
             {
                 manager.AddToRoles(SuperAdmin.Id, new string[] { "SuperAdmin" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageOrganisers" });
             }
             else
             {
@@ -74,6 +89,7 @@ namespace CMS.Migrations.ApplicationUsers
             if (manager.FindByEmail("tourist-office@sligotourism.ie") != null)
             {
                 manager.AddToRoles(Administration.Id, new string[] { "Administration" });
+                manager.AddToRoles(Administration.Id, new string[] { "CanManageOrganisers" });
             }
 
             ApplicationUser User = manager.FindByEmail("coordinator@roscommon-taxidermists.ie");
@@ -81,6 +97,15 @@ namespace CMS.Migrations.ApplicationUsers
             {
                 manager.AddToRoles(User.Id, new string[] { "User" });
             }
+
+
+            ApplicationUser Device01 = manager.FindByEmail("device01@sallinet.ie");
+            if (manager.FindByEmail("device01@sallinet.ie") != null)
+            {
+                manager.AddToRoles(Device01.Id, new string[] { "CanManageOrganisers" });
+            }
+
+
         }
     }
 }
