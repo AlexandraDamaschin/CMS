@@ -69,7 +69,10 @@ namespace CMS.Controllers
             else
             {
                 var organiserInDb = _cms.Organisers.Single(m => m.OrganiserId == organiser.OrganiserId);
-                Mapper.Map(organiserInDb, organiser);
+//                Mapper.Map(organiserInDb, organiser);
+                organiserInDb.DisplayName = organiser.DisplayName;
+                organiserInDb.ContactDetails = organiser.ContactDetails;
+                organiserInDb.OrganiserId = organiser.OrganiserId;
             }
             _cms.SaveChanges();
             return RedirectToAction("Index", "Organisers");

@@ -26,8 +26,6 @@
     </div>
 
 
-
-
 @section scripts
 {
     <script>
@@ -76,7 +74,7 @@
                 bootbox.confirm("Are you sure you want to delete this organiser?", function (result) {
                     if (result) {
                         $.ajax({
-                            url: "/api/locations/" + button.attr("data-organiser-id"),
+                            url: "/api/organisers/" + button.attr("data-organiser-id"),
                             data: loginData,
                             method: "DELETE",
                             success: function () {
@@ -92,5 +90,4 @@
             });
         });
     </script>
-
     }
