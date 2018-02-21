@@ -64,7 +64,6 @@ border:	2px	solid	red;
 
 /* controllers styling*/
 .contDataStyling{
-    /*width:600px;*/
     margin: 0 0 0 255px;
 }
 /*Create view*/
@@ -73,7 +72,7 @@ border:	2px	solid	red;
 }
 /*Forms*/
 .formStyle{
-    margin: 0 0 0 255px;
+    margin: 0 0 0 105px;
 }
 
 /*overRiding bootStrap */

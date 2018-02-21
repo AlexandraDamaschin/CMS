@@ -6,35 +6,51 @@
 }
 <div class="createOne">
     <h2>New Device</h2>
-
-    @using (Html.BeginForm("Save", "Devices"))
-    {
-        @Html.ValidationSummary(true, "Please fix the following errors.")
-        <div class="formStyle">
-            <div class="form-group">
-                @Html.LabelFor(m => m.Device.Name)
-                @Html.TextBoxFor(m => m.Device.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Device.Name)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Device.LocationId)
-                @Html.DropDownListFor(m => m.Device.LocationId, new SelectList(Model.Locations, "LocationId", "Name"), "", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Device.LocationId)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Device.Build)
-                @Html.TextBoxFor(m => m.Device.Build, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Device.Build)
-            </div>
-            @Html.HiddenFor(m => m.Device.DeviceId)
-            @Html.HiddenFor(m => m.Device.HasError)
+    <div class="formStyle">
+        @using (Html.BeginForm("Save", "Devices"))
+        {
+            @Html.ValidationSummary(true, "Please fix the following errors.")
             @Html.AntiForgeryToken()
-            <button type="submit" class="btn btn-primary">Save</button>
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })    
-        </div>
-            }
-        </div>
-    @section scripts
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Device.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.Device.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Device.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Device.LocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.Device.LocationId, new SelectList(Model.Locations, "LocationId", "Name"), "", new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(m => m.Device.LocationId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Device.Build, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.Device.Build, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Device.Build, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.Device.DeviceId)
+                @Html.HiddenFor(m => m.Device.HasError)
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section scripts
 {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+}
