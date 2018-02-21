@@ -54,8 +54,7 @@ table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.
     bottom: 0;
 }
 
-/* for error msg */
-
+/* for validation error msg */
 .field-validation-error	{
 color:	red;
 }
@@ -68,9 +67,11 @@ border:	2px	solid	red;
     /*width:600px;*/
     margin: 0 0 0 255px;
 }
+/*Create view*/
 .createOne{
     margin: 0 0 0 260px;
 }
+/*Forms*/
 .formStyle{
     margin: 0 0 0 255px;
 }
