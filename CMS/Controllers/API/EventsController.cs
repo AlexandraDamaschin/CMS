@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using CMS.Dtos;
 using CMS.Models.CMSModel;
@@ -10,21 +11,24 @@ namespace CMS.Controllers.API
 {
     public class EventsController : ApiController
     {
+        private readonly CmsContext _cms;
+
+        public EventsController()
+        {
+            _cms = new CmsContext();
+        }
+
+        //        //  Get /api/myEvents
+        //        //  Endpoint for device to get events for it's location
         //        [HttpGet]
-        //        [Route("api/events")]
-        //        public IHttpActionResult GetEvents()
+        //        [Route("api/myEvents")]
+        //        public IHttpActionResult GetEventsByLocation()
         //        {
         //            IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetEventList();
         //            var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
         //            return Ok(data);
         //        }
 
-        private CmsContext _cms;
-
-        public EventsController()
-        {
-            _cms = new CmsContext();
-        }
 
         // Get /api/evnts
         public IHttpActionResult GetEvents()
@@ -54,23 +58,23 @@ namespace CMS.Controllers.API
 
         // Post /api/evnt
         [HttpPost]
-        public IHttpActionResult CreateEvnt(EventDto evntDto)
+        public IHttpActionResult CreateEvent(EventDto eventDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var evnt = Mapper.Map<EventDto, Event>(evntDto);
+            var evnt = Mapper.Map<EventDto, Event>(eventDto);
             _cms.Events.Add(evnt);
             _cms.SaveChanges();
 
-            evntDto.EventId = evnt.EventId;
+            eventDto.EventId = evnt.EventId;
 
-            return Created(new Uri(Request.RequestUri + "/" + evnt.EventId), evntDto);
+            return Created(new Uri(Request.RequestUri + "/" + evnt.EventId), eventDto);
         }
 
         //  Put /api/evnts/1
         [HttpPut]
-        public IHttpActionResult UpdateEvent(int id, EventDto evntDto)
+        public IHttpActionResult UpdateEvent(int id, EventDto eventDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -80,7 +84,7 @@ namespace CMS.Controllers.API
             if (evntInDb == null)
                 return NotFound();
 
-            Mapper.Map(evntDto, evntInDb);
+            Mapper.Map(eventDto, evntInDb);
 
             _cms.SaveChanges();
 

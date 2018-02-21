@@ -10,49 +10,7 @@ namespace CMS.Controllers
     [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
     {
-        private readonly CmsContext _cms = new CmsContext();
-
-        public ActionResult New()
-        {
-            var viewModel = new EventFormViewModel
-            {
-                Event = new Event(),
-                EventCategories = _cms.EventCategories.ToList(),
-                Locations = _cms.Locations.ToList(),
-                Organisers = _cms.Organisers.ToList(),
-            };
-
-            return View("EventForm", viewModel);
-        }
-
-
-        //  Post : /evnts/save/1
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Save(Event evnt)
-        {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new EventFormViewModel
-                {
-                    Event = evnt,
-                    EventCategories = _cms.EventCategories.ToList(),
-                    Locations = _cms.Locations.ToList(),
-                    Organisers = _cms.Organisers.ToList(),
-                };
-                return View("EventForm", viewModel);
-            }
-
-            if (evnt.EventId == 0)
-                _cms.Events.Add(evnt);
-            else
-            {
-                var evntInDb = _cms.Events.Single(c => c.EventId == evnt.EventId);
-                Mapper.Map(evntInDb, evnt);
-            }
-            _cms.SaveChanges();
-            return RedirectToAction("Index", "Events");
-        }
+        private CmsContext _cms = new CmsContext();
 
         //  Get: /evnts
         public ViewResult Index()
@@ -75,7 +33,6 @@ namespace CMS.Controllers
             return View(evnt);
         }
 
-
         //   Get :  /evnts/edit/1
         public ActionResult Edit(int id)
         {
@@ -91,8 +48,55 @@ namespace CMS.Controllers
                 Locations = _cms.Locations.ToList(),
                 Organisers = _cms.Organisers.ToList(),
             };
-
             return View("EventForm", viewModel);
+        }
+
+        public ActionResult New()
+        {
+            var viewModel = new EventFormViewModel
+            {
+                Event = new Event(),
+                EventCategories = _cms.EventCategories.ToList(),
+                Locations = _cms.Locations.ToList(),
+                Organisers = _cms.Organisers.ToList(),
+            };
+            return View("EventForm", viewModel);
+        }
+
+        //  Post : /evnts/save/1
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Event evnt)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new EventFormViewModel
+                {
+                    Event = evnt,
+                    EventCategories = _cms.EventCategories.ToList(),
+                    Locations = _cms.Locations.ToList(),
+                    Organisers = _cms.Organisers.ToList()
+                };
+                return View("EventForm", viewModel);
+            }
+
+            if (evnt.EventId == 0)
+                _cms.Events.Add(evnt);
+            else
+            {
+                var evntInDb = _cms.Events.Single(c => c.EventId == evnt.EventId);
+//                Mapper.Map(evntInDb, evnt);
+                evntInDb.EventId = evnt.EventId;
+                evntInDb.Priority = evnt.Priority;
+                evntInDb.Details = evnt.Details;
+                evntInDb.StartTime = evnt.StartTime;
+                evntInDb.EndTime = evnt.EndTime;
+                evntInDb.LocationId = evnt.LocationId;
+                evntInDb.OrganiserId = evnt.OrganiserId;
+                evntInDb.EventCategoryId = evnt.EventCategoryId;
+            }
+            _cms.SaveChanges();
+            return RedirectToAction("Index", "Events");
         }
 
 

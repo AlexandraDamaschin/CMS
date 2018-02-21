@@ -5,16 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="createOne">
- <h2>New Event</h2>
+    <h2>New Event</h2>
     <div class="formStyle">
         @using (Html.BeginForm("Save", "Events"))
         {
-
-            @Html.ValidationSummary(true, "Please fix the following errors.")
-            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "Please fix the following errors.", new { @class = "text-warning" })
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                 <div class="form-group">
                     @Html.LabelFor(m => m.Event.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -78,6 +77,8 @@
                         @Html.ValidationMessageFor(m => m.Event.EventCategoryId, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.Event.EventId)
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -86,12 +87,10 @@
                     </div>
                 </div>
             </div>
-
         }
     </div>
-
-    </div>
-    @section scripts
+</div>
+@section scripts
 {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+}
