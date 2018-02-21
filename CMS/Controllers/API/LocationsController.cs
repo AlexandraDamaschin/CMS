@@ -71,7 +71,6 @@ namespace CMS.Controllers.API
                 return NotFound();
 
             Mapper.Map(locationDto, locationInDb);
-
             _cms.SaveChanges();
 
             return Ok();

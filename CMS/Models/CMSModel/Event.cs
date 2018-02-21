@@ -17,24 +17,32 @@ namespace CMS.Models.CMSModel
         [Display(Name = "Event Name")]
         public string Name { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Details { get; set; }
 
+        [Required]
+        [Range(1, 10)]
         public int Priority { get; set; }
 
         [Required]
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
+
+        [Required]
         [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
 
         [ForeignKey("AssociatedOrganiser")]
+        [Display(Name = "Organiser")]
         public int OrganiserId { get; set; }
 
         [ForeignKey("AssociatedEventCategory")]
+        [Display(Name = "Event Category")]
         public int EventCategoryId { get; set; }
 
         [ForeignKey("AssociatedLocation")]
+        [Display(Name = "Location")]
         public int LocationId { get; set; }
 
         public virtual Organiser AssociatedOrganiser { get; set; }

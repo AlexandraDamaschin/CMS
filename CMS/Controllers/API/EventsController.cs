@@ -85,7 +85,6 @@ namespace CMS.Controllers.API
                 return NotFound();
 
             Mapper.Map(eventDto, evntInDb);
-
             _cms.SaveChanges();
 
             return Ok();

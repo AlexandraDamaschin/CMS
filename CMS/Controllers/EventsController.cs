@@ -10,7 +10,7 @@ namespace CMS.Controllers
     [Authorize(Roles = "SuperAdmin, Administration")]
     public class EventsController : Controller
     {
-        private CmsContext _cms = new CmsContext();
+        private readonly CmsContext _cms = new CmsContext();
 
         //  Get: /evnts
         public ViewResult Index()
