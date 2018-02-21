@@ -12,8 +12,7 @@
     @Html.ValidationSummary(true, "Please fix the following errors.")
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
-            <h4>Event</h4>
-            <hr />
+               <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.Organiser.DisplayName, htmlAttributes: new { @class = "control-label col-md-2" })
