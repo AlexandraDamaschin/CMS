@@ -325,6 +325,10 @@
     <Compile Include="Migrations\CMSContext\201802191235540_update tags.Designer.cs">
       <DependentUpon>201802191235540_update tags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802212304170_add event validator data annotations.cs" />
+    <Compile Include="Migrations\CMSContext\201802212304170_add event validator data annotations.Designer.cs">
+      <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -698,6 +702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201802191235540_update tags.resx">
       <DependentUpon>201802191235540_update tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802212304170_add event validator data annotations.resx">
+      <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -7,6 +7,7 @@ using CMS.Models.CMSModel;
 
 namespace CMS.Controllers.API
 {
+    [Authorize]
     public class OrganisersController : ApiController
     {
         private CmsContext _cms;
@@ -38,7 +39,7 @@ namespace CMS.Controllers.API
         }
 
         // Post /api/organiser
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public IHttpActionResult CreateOrganiser(OrganiserDto organiserDto)
         {
             if (!ModelState.IsValid)
@@ -54,7 +55,7 @@ namespace CMS.Controllers.API
         }
 
         //  Put /api/organisers/1
-        [System.Web.Mvc.HttpPut]
+        [HttpPut]
         public IHttpActionResult UpdateOrganiser(int id, OrganiserDto organiserDto)
         {
             if (!ModelState.IsValid)
@@ -72,7 +73,7 @@ namespace CMS.Controllers.API
         }
 
         //  Delete /api/organisers/1
-        [System.Web.Mvc.HttpDelete]
+        [HttpDelete]
         public IHttpActionResult DeleteOrganiser(int id)
         {
             var organiserInDb = _cms.Organisers.SingleOrDefault(m => m.OrganiserId == id);

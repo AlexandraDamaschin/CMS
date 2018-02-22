@@ -12,7 +12,7 @@ namespace CMS.Models.CMSModel
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Dispaly Name")]
+        [Display(Name = "Display Name")]
         public string DisplayName { get; set; }
 
         [Required]
