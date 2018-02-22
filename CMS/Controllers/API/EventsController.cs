@@ -18,16 +18,16 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
 
-        //        //  Get /api/myEvents
-        //        //  Endpoint for device to get events for it's location
-        //        [HttpGet]
-        //        [Route("api/myEvents")]
-        //        public IHttpActionResult GetEventsByLocation()
-        //        {
-        //            IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetEventList();
-        //            var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
-        //            return Ok(data);
-        //        }
+        //  Get /api/myEvents
+        //  Endpoint for device to get events for it's location
+        [HttpGet]
+        [Route("api/myEvents/{id}")]
+        public IHttpActionResult GetEventsByLocation(int id)
+        {
+            IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetLocationEventList(id);
+            var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
+            return Ok(data);
+        }
 
 
         // Get /api/evnts
