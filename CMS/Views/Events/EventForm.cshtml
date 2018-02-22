@@ -78,8 +78,8 @@
                     </div>
                 </div>
 
-                @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.Event.EventId)
+                @Html.AntiForgeryToken()
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <button type="submit" class="btn btn-primary">Save</button>

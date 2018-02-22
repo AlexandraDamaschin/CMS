@@ -12,6 +12,19 @@ namespace CMS.Controllers
     {
         private readonly CmsContext _cms = new CmsContext();
 
+
+        //  Get events by location id
+        public IQueryable<Event> GetLocationEventList(int id)
+        {
+            IQueryable<Event> events = _cms.Events
+                .Include(db => db.AssociatedLocation)
+                .Include(db => db.AssociatedEventCategory)
+                .Include(db => db.AssociatedOrganiser)
+                .Where(m => m.LocationId == id);
+            return events;
+        }
+
+
         //  Get: /evnts
         public ViewResult Index()
         {
