@@ -4,9 +4,7 @@ namespace CMS.Migrations.ApplicationUsers
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CMS.Models.ApplicationDbContext>
     {
@@ -18,18 +16,27 @@ namespace CMS.Migrations.ApplicationUsers
 
         protected override void Seed(CMS.Models.ApplicationDbContext context)
         {
-            var manager =
-           new UserManager<ApplicationUser>(
-               new UserStore<ApplicationUser>(context));
 
-            var roleManager =
-                new RoleManager<IdentityRole>(
-                    new RoleStore<IdentityRole>(context));
+//            SeedUsersAndRoles(context);
+
+        }
+
+        private void SeedUsersAndRoles(ApplicationDbContext context)
+        {
+            var manager = new UserManager<ApplicationUser>(
+                            new UserStore<ApplicationUser>(context));
+
+            var roleManager = new RoleManager<IdentityRole>(
+                                new RoleStore<IdentityRole>(context));
 
             roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
             roleManager.Create(new IdentityRole { Name = "Administration" });
             roleManager.Create(new IdentityRole { Name = "User" });
+            roleManager.Create(new IdentityRole { Name = "CanManageEvents" });
+            roleManager.Create(new IdentityRole { Name = "CanManageEventCategories" });
+            roleManager.Create(new IdentityRole { Name = "CanManageLocations" });
             roleManager.Create(new IdentityRole { Name = "CanManageOrganisers" });
+            roleManager.Create(new IdentityRole { Name = "CanManageDevices" });
 
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
@@ -78,7 +85,12 @@ namespace CMS.Migrations.ApplicationUsers
             if (SuperAdmin != null)
             {
                 manager.AddToRoles(SuperAdmin.Id, new string[] { "SuperAdmin" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "Administration" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageEvents" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageEventCategories" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageLocations" });
                 manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageOrganisers" });
+                manager.AddToRoles(SuperAdmin.Id, new string[] { "CanManageDevices" });
             }
             else
             {
@@ -104,8 +116,6 @@ namespace CMS.Migrations.ApplicationUsers
             {
                 manager.AddToRoles(Device01.Id, new string[] { "CanManageOrganisers" });
             }
-
-
         }
     }
 }
