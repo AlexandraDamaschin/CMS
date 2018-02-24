@@ -9,15 +9,15 @@ namespace CMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/Js/bootstrap.min.js",
-                        "~/Scripts/bootbox.js",
-                        "~/Scripts/respond.js",
-                        "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/datatables.bootstrap.js",
-                        "~/Scripts/jquery-ui-{version}.js",
-                        "~/Scripts/jquery-ui-timepicker-addon.js",
-                        "~/Scripts/toastr.js"
+//                        "~/Scripts/jquery-{version}.js",
+//                        "~/Scripts/Js/bootstrap.min.js",
+//                        "~/Scripts/bootbox.js",
+//                        "~/Scripts/respond.js",
+//                        "~/Scripts/DataTables/jquery.dataTables.js",
+//                        "~/Scripts/DataTables/datatables.bootstrap.js",
+//                        "~/Scripts/jquery-ui-{version}.js",
+//                        "~/Scripts/jquery-ui-timepicker-addon.js",
+//                        "~/Scripts/toastr.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,15 +27,15 @@ namespace CMS
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/font-awesome.css",
-                      "~/Content/sb-admin-2.min.css",
-                      "~/Content/dataTables.bootstrap.css",
-                      "~/Content/jquery-ui.min.css",
-                      "~/Content/datepicker.css",
-                      "~/Content/jquery-ui-timepicker-addon.min.css",
-                      "~/Content/toastr.min.css",
+//                      "~/Content/bootstrap.min.css",
+//                      "~/Content/font-awesome.min.css",
+//                      "~/Content/font-awesome.css",
+//                      "~/Content/sb-admin-2.min.css",
+//                      "~/Content/dataTables.bootstrap.css",
+//                      "~/Content/jquery-ui.min.css",
+//                      "~/Content/datepicker.css",
+//                      "~/Content/jquery-ui-timepicker-addon.min.css",
+//                      "~/Content/toastr.min.css",
                       "~/Content/site.css"
                        ));
 
