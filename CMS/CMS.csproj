@@ -329,6 +329,10 @@
     <Compile Include="Migrations\CMSContext\201802212304170_add event validator data annotations.Designer.cs">
       <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802241225064_remove event category icon.cs" />
+    <Compile Include="Migrations\CMSContext\201802241225064_remove event category icon.Designer.cs">
+      <DependentUpon>201802241225064_remove event category icon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -710,6 +714,9 @@
     <EmbeddedResource Include="Migrations\CMSContext\201802212304170_add event validator data annotations.resx">
       <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802241225064_remove event category icon.resx">
+      <DependentUpon>201802241225064_remove event category icon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -953,7 +960,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Organisers\Index.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
-    <Content Include="Views\EventCategories\Index.cshtml" />
+    <Content Include="Views\EventCategories\List.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
     <Content Include="Views\Shared\_TopDashboard.cshtml" />
     <Content Include="Views\Organisers\OrganiserForm.cshtml" />
@@ -966,6 +973,7 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\ReadOnlyList.cshtml" />
     <Content Include="Views\Events\List.cshtml" />
+    <Content Include="Views\EventCategories\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
