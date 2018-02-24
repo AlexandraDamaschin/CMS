@@ -19,7 +19,7 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
 
-        //  Get /api/myEvents
+        //  Get /api/myEvents/1
         //  Endpoint for device to get events for it's location
         [HttpGet]
         [Route("api/myEvents/{id}")]

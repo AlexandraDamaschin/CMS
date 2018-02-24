@@ -10,7 +10,6 @@ using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
-
     public class EventsController : Controller
     {
         private CmsContext _cms;
@@ -42,12 +41,14 @@ namespace CMS.Controllers
                 .Select(Mapper.Map<Event, EventDto>);
         }
 
+        //  Get:  /events
         public ViewResult Index()
         {
             return View(User.IsInRole(RoleName.CanManageEvents) ? "List" : "ReadOnlyList");
         }
 
 
+        //  Get : /events/new
         [Authorize(Roles = RoleName.CanManageEvents)]
         public ViewResult New()
         {
@@ -65,6 +66,7 @@ namespace CMS.Controllers
         }
 
 
+        // Get : /events/edit/1
         [Authorize(Roles = RoleName.CanManageEvents)]
         public ActionResult Edit(int id)
         {
@@ -83,7 +85,7 @@ namespace CMS.Controllers
             return View("EventForm", viewModel);
         }
 
-
+        // Get : /events/details/1
         public ActionResult Details(int id)
         {
             var evnt = _cms.Events
@@ -98,8 +100,7 @@ namespace CMS.Controllers
             return View(evnt);
         }
 
-
-        //  Post : /evènts/save/1
+        //  Post : /events/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = RoleName.CanManageEvents)]
