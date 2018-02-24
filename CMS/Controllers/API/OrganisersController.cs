@@ -41,7 +41,7 @@ namespace CMS.Controllers.API
 
         // Post /api/organiser
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageOrganisers)]
+        [Authorize(Roles = RoleHelper.CanManageOrganisers)]
         public IHttpActionResult CreateOrganiser(OrganiserDto organiserDto)
         {
             if (!ModelState.IsValid)

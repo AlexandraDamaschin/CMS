@@ -28,12 +28,12 @@ namespace CMS.Controllers
         //  Get: /eventCategories
         public ViewResult Index()
         {
-            return View(User.IsInRole(RoleName.CanManageEventCategories) ? "List" : "ReadOnlyList");
+            return View(User.IsInRole(RoleHelper.CanManageEventCategories) ? "List" : "ReadOnlyList");
         }
 
 
         //  Get : /eventCategories/new
-        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        [Authorize(Roles = RoleHelper.CanManageEventCategories)]
         public ViewResult New()
         {
             var viewModel = new EventCategoryFormViewModel
@@ -45,7 +45,7 @@ namespace CMS.Controllers
 
 
         //   Get :  /eventCategories/edit/1
-        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        [Authorize(Roles = RoleHelper.CanManageEventCategories)]
         public ActionResult Edit(int id)
         {
             var eventCategory = _cms.EventCategories.SingleOrDefault(c => c.EventCategoryId == id);
@@ -78,7 +78,7 @@ namespace CMS.Controllers
         //  Post : /eventCategories/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        [Authorize(Roles = RoleHelper.CanManageEventCategories)]
         public ActionResult Save(EventCategory eventCategory)
         {
             if (!ModelState.IsValid)

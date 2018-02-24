@@ -28,13 +28,13 @@ namespace CMS.Controllers
         //  Get: /organisers
         public ViewResult Index()
         {
-            return View(User.IsInRole(RoleName.CanManageOrganisers) ? "List" : "ReadOnlyList");
+            return View(User.IsInRole(RoleHelper.CanManageOrganisers) ? "List" : "ReadOnlyList");
         }
 
 
 
         // Get : /organisers/new
-        [Authorize(Roles = RoleName.CanManageOrganisers)]
+        [Authorize(Roles = RoleHelper.CanManageOrganisers)]
         public ActionResult New()
         {
             var viewModel = new OrganiserFormViewModel
@@ -74,7 +74,7 @@ namespace CMS.Controllers
         //  Post : /organisers/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageOrganisers)]
+        [Authorize(Roles = RoleHelper.CanManageOrganisers)]
         public ActionResult Save(Organiser organiser)
         {
             if (!ModelState.IsValid)

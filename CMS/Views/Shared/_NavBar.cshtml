@@ -1,80 +1,16 @@
-﻿<div id="wrapper">
+﻿@using CMS.Models
+<div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">       
+        <div class="navbar-header">
             <a class="navbar-brand" href="index.html">SALLI Content Mangement System</a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-top-links navbar-right">
 
-         <li>
-             @Html.Partial("_LoginPartial")
-         </li>        
+            <li>
+                @Html.Partial("_LoginPartial")
+            </li>
         </ul>
-        <!-- /.navbar-side-links -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu"> 
-                    
-                    @if (!Request.IsAuthenticated)
-                    {
-                        <li>
-                            <a href='@Url.Action("Index", "Home")'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                    }
-
-                    @if (User.IsInRole("Administration"))
-                    {
-                        <li>
-                            <a href='@Url.Action("Index", "Home")'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("Index", "Events")'><i class="fa fa-th-list"></i> Events</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("Index", "EventCategories")'><i class="fa fa-list-alt"></i> EventCategories</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("About", "Home")'><i class="fa fa-info-circle fa-fw"></i> About</a>
-                        </li>
-                    }
-
-                    @if (User.IsInRole("SuperAdmin"))
-                    {
-                        <li>
-                            <a href='@Url.Action("Index", "Home")'><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-
-                        <li>
-                            <a href='@Url.Action("Index", "Events")'><i class="fa fa-th-list"></i> Events</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("Index", "EventCategories")'><i class="fa fa-list-alt"></i> EventCategories</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("Index", "Locations")'><i class="fa fa-location-arrow"></i> Locations</a>
-                        </li>                                           
-                        <li>
-                            <a href='@Url.Action("Index", "Organisers")'><i class="fa fa-users"></i> Organsiers</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("Index", "Devices")'><i class="fa fa-table fa-fw"></i> Devices</a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("About", "Home")'><i class="fa fa-info-circle fa-fw"></i> About</a>
-                        </li>
-                    }               
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
     </nav>
-
-  
-
-    </div>
-<!-- /#wrapper -->
-<!-- jQuery -->   
-
-  
+</div>

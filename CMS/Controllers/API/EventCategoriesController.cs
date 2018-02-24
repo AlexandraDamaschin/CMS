@@ -44,7 +44,7 @@ namespace CMS.Controllers.API
 
         // Post /api/eventCategory
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        [Authorize(Roles = RoleHelper.CanManageEventCategories)]
         public IHttpActionResult CreateEventCategory(EventCategoryDto eventCategoryDto)
         {
             if (!ModelState.IsValid)
@@ -81,7 +81,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/eventCategories/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        [Authorize(Roles = RoleHelper.CanManageEventCategories)]
         public IHttpActionResult DeleteEventCategory(int id)
         {
             var eventCategoryInDb = _cms.EventCategories.SingleOrDefault(d => d.EventCategoryId == id);

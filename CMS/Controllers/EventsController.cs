@@ -44,12 +44,12 @@ namespace CMS.Controllers
         //  Get:  /events
         public ViewResult Index()
         {
-            return View(User.IsInRole(RoleName.CanManageEvents) ? "List" : "ReadOnlyList");
+            return View(User.IsInRole(RoleHelper.CanManageEvents) ? "List" : "ReadOnlyList");
         }
 
 
         //  Get : /events/new
-        [Authorize(Roles = RoleName.CanManageEvents)]
+        [Authorize(Roles = RoleHelper.CanManageEvents)]
         public ViewResult New()
         {
             var eventCategories = _cms.EventCategories.ToList();
@@ -67,7 +67,7 @@ namespace CMS.Controllers
 
 
         // Get : /events/edit/1
-        [Authorize(Roles = RoleName.CanManageEvents)]
+        [Authorize(Roles = RoleHelper.CanManageEvents)]
         public ActionResult Edit(int id)
         {
             var evnt = _cms.Events
@@ -103,7 +103,7 @@ namespace CMS.Controllers
         //  Post : /events/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageEvents)]
+        [Authorize(Roles = RoleHelper.CanManageEvents)]
         public ActionResult Save(Event evnt)
         {
             if (!ModelState.IsValid)

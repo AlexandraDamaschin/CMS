@@ -29,12 +29,12 @@ namespace CMS.Controllers
         //  Get: /locations
         public ViewResult Index()
         {
-            return View(User.IsInRole(RoleName.CanManageLocations) ? "List" : "ReadOnlyList");
+            return View(User.IsInRole(RoleHelper.CanManageLocations) ? "List" : "ReadOnlyList");
         }
 
 
         //  Get: /locations/new
-        [Authorize(Roles = RoleName.CanManageLocations)]
+        [Authorize(Roles = RoleHelper.CanManageLocations)]
         public ActionResult New()
         {
             var viewModel = new LocationFormViewModel
@@ -47,7 +47,7 @@ namespace CMS.Controllers
 
 
         //   Get :  /locations/edit/1
-        [Authorize(Roles = RoleName.CanManageLocations)]
+        [Authorize(Roles = RoleHelper.CanManageLocations)]
         public ActionResult Edit(int id)
         {
             var location = _cms.Locations.SingleOrDefault(m => m.LocationId == id);
@@ -80,7 +80,7 @@ namespace CMS.Controllers
         //  Post : /locations/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageLocations)]
+        [Authorize(Roles = RoleHelper.CanManageLocations)]
         public ActionResult Save(Location location)
         {
             if (!ModelState.IsValid)

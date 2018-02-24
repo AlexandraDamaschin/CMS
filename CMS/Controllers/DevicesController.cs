@@ -30,11 +30,11 @@ namespace CMS.Controllers
         //  Get: /devices
         public ViewResult Index()
         {
-            return View(User.IsInRole(RoleName.CanManageDevices) ? "List" : "ReadOnlyList");
+            return View(User.IsInRole(RoleHelper.CanManageDevices) ? "List" : "ReadOnlyList");
         }
 
         //  Get : /devices/new
-        [Authorize(Roles = RoleName.CanManageDevices)]
+        [Authorize(Roles = RoleHelper.CanManageDevices)]
         public ViewResult New()
         {
             var viewModel = new DeviceFormViewModel
@@ -48,7 +48,7 @@ namespace CMS.Controllers
 
 
         //   Get :  /devices/edit/1
-        [Authorize(Roles = RoleName.CanManageDevices)]
+        [Authorize(Roles = RoleHelper.CanManageDevices)]
         public ActionResult Edit(int id)
         {
             var device = _cms.Devices.SingleOrDefault(c => c.DeviceId == id);
@@ -83,7 +83,7 @@ namespace CMS.Controllers
         //  Post : /devices/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageDevices)]
+        [Authorize(Roles = RoleHelper.CanManageDevices)]
         public ActionResult Save(Device device)
         {
             if (!ModelState.IsValid)

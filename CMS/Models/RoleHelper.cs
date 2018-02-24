@@ -2,7 +2,7 @@
 
 namespace CMS.Models
 {
-    public static class RoleName
+    public static class RoleHelper
     {
         public const string Admin = "SuperAdmin";
         public const string User = "User";
@@ -12,6 +12,5 @@ namespace CMS.Models
         public const string CanManageLocations = "CanManageLocations";
         public const string CanManageOrganisers = "CanManageOrganisers";
         public const string CanManageDevices = "CanManageDevices";
-
     }
 }

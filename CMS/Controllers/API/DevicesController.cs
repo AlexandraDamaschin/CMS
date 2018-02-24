@@ -50,7 +50,7 @@ namespace CMS.Controllers.API
 
         // Post /api/device
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageDevices)]
+        [Authorize(Roles = RoleHelper.CanManageDevices)]
         public IHttpActionResult CreateDevice(DeviceDto deviceDto)
         {
             if (!ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/devices/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageDevices)]
+        [Authorize(Roles = RoleHelper.CanManageDevices)]
         public IHttpActionResult DeleteDevice(int id)
         {
             var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);

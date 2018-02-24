@@ -42,7 +42,7 @@ namespace CMS.Controllers.API
 
         // Post /api/location
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageLocations)]
+        [Authorize(Roles = RoleHelper.CanManageLocations)]
         public IHttpActionResult CreateLocation(LocationDto locationDto)
         {
             if (!ModelState.IsValid)
@@ -77,7 +77,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/locations/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageLocations)]
+        [Authorize(Roles = RoleHelper.CanManageLocations)]
         public IHttpActionResult DeleteLocation(int id)
         {
             var locationInDb = _cms.Locations.SingleOrDefault(m => m.LocationId == id);

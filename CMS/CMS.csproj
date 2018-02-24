@@ -343,7 +343,7 @@
     <Compile Include="Models\CMSModel\Organiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RoleName.cs" />
+    <Compile Include="Models\RoleHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DeviceFormViewModel.cs" />
@@ -616,6 +616,7 @@
     <Content Include="Views\Devices\ReadOnlyList.cshtml" />
     <Content Include="Views\Organisers\ReadOnlyList.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\_NavSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

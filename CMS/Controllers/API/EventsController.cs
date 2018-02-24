@@ -61,7 +61,7 @@ namespace CMS.Controllers.API
 
         // Post /api/event
         [HttpPost]
-        [Authorize(Roles = RoleName.CanManageEvents)]
+        [Authorize(Roles = RoleHelper.CanManageEvents)]
         public IHttpActionResult CreateEvent(EventDto eventDto)
         {
             if (!ModelState.IsValid)
@@ -96,7 +96,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/events/1
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageEvents)]
+        [Authorize(Roles = RoleHelper.CanManageEvents)]
         public IHttpActionResult DeleteEvent(int id)
         {
             var evntInDb = _cms.Events.SingleOrDefault(d => d.EventId == id);
