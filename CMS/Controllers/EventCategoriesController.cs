@@ -37,7 +37,11 @@ namespace CMS.Controllers
         [Authorize(Roles = RoleName.CanManageEventCategories)]
         public ViewResult New()
         {
-            return View("EventCategoryForm");
+            var viewModel = new EventCategoryFormViewModel
+            {
+                EventCategory = new EventCategory()
+            };
+            return View("EventCategoryForm", viewModel);
         }
 
 
@@ -50,7 +54,10 @@ namespace CMS.Controllers
             if (eventCategory == null)
                 return HttpNotFound();
 
-            var viewModel = new EventCategoryFormViewModel(eventCategory);
+            var viewModel = new EventCategoryFormViewModel
+            {
+                EventCategory = eventCategory
+            };
 
             return View("EventCategoryForm", viewModel);
         }
@@ -77,7 +84,10 @@ namespace CMS.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new EventCategoryFormViewModel(eventCategory);
+                var viewModel = new EventCategoryFormViewModel()
+                {
+                    EventCategory = new EventCategory()
+                };
 
                 return View("EventCategoryForm", viewModel);
             }
@@ -87,8 +97,8 @@ namespace CMS.Controllers
             else
             {
                 var eventCategoryInDb = _cms.EventCategories.Single(c => c.EventCategoryId == eventCategory.EventCategoryId);
-
-                Mapper.Map(eventCategoryInDb, eventCategory);
+                eventCategoryInDb.Name = eventCategory.Name;
+//                Mapper.Map(eventCategoryInDb, eventCategory);
 
             }
 
