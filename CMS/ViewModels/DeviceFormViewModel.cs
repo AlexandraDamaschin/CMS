@@ -12,6 +12,6 @@ namespace CMS.ViewModels
 
         public Device Device { get; set; }
 
-
+        public string Title => Device.DeviceId != 0 ? "Edit Device" : "New Device";
     }
 }

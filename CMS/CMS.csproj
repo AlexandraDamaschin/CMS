@@ -953,12 +953,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Devices\Details.cshtml" />
-    <Content Include="Views\Devices\Index.cshtml" />
+    <Content Include="Views\Devices\List.cshtml" />
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Organisers\Index.cshtml" />
-    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Organisers\List.cshtml" />
+    <Content Include="Views\Locations\List.cshtml" />
     <Content Include="Views\EventCategories\List.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
     <Content Include="Views\Shared\_TopDashboard.cshtml" />
@@ -973,6 +973,9 @@
     <Content Include="Views\Events\ReadOnlyList.cshtml" />
     <Content Include="Views\Events\List.cshtml" />
     <Content Include="Views\EventCategories\ReadOnlyList.cshtml" />
+    <Content Include="Views\Locations\ReadOnlyList.cshtml" />
+    <Content Include="Views\Devices\ReadOnlyList.cshtml" />
+    <Content Include="Views\Organisers\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

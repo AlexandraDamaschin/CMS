@@ -30,7 +30,7 @@ namespace CMS.Controllers.API
             return Ok(data);
         }
 
-
+        // Get /api/eventCategories
         public IEnumerable<EventDto> GetEvents(string query = null)
         {
             var eventsQuery = _cms.Events

@@ -12,7 +12,7 @@ namespace CMS.Controllers
 {
     public class EventsController : Controller
     {
-        private CmsContext _cms;
+        private readonly CmsContext _cms;
 
         public EventsController()
         {

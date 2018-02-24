@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using CMS.Dtos;
+using CMS.Models;
 using CMS.Models.CMSModel;
 
 namespace CMS.Controllers.API
 {
     public class LocationsController : ApiController
     {
-        private CmsContext _cms;
+        private readonly CmsContext _cms;
 
         public LocationsController()
         {
@@ -20,16 +19,15 @@ namespace CMS.Controllers.API
         }
 
         // Get /api/locations
-        public IHttpActionResult GetLocations()
+        public IEnumerable<LocationDto>  GetLocations()
         {
             var locationsQuery = _cms.Locations;
 
-            var locationDtos = locationsQuery
+            return locationsQuery
                 .ToList()
                 .Select(Mapper.Map<Location, LocationDto>);
-
-            return Ok(locationDtos);
         }
+
 
         // Get /api/location/1
         public IHttpActionResult GetLocation(int id)
@@ -44,6 +42,7 @@ namespace CMS.Controllers.API
 
         // Post /api/location
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageLocations)]
         public IHttpActionResult CreateLocation(LocationDto locationDto)
         {
             if (!ModelState.IsValid)
@@ -78,6 +77,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/locations/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageLocations)]
         public IHttpActionResult DeleteLocation(int id)
         {
             var locationInDb = _cms.Locations.SingleOrDefault(m => m.LocationId == id);
