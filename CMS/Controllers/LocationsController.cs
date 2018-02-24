@@ -99,8 +99,11 @@ namespace CMS.Controllers
             {
                 var locationInDb = _cms.Locations.Single(m => m.LocationId == location.LocationId);
 
-                Mapper.Map(locationInDb, location);
-
+                locationInDb.Name = location.Name;
+                locationInDb.Town = location.Town;
+                locationInDb.County = location.County;
+                locationInDb.Lat = location.Lat;
+                locationInDb.Lng = location.Lng;
             }
 
             _cms.SaveChanges();
