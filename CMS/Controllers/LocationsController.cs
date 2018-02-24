@@ -1,128 +1,103 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
 using CMS.Models.CMSModel;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
     [Authorize(Roles = "SuperAdmin")]
     public class LocationsController : Controller
     {
-        private CmsContext db = new CmsContext();
+        private CmsContext _cms = new CmsContext();
 
-        // GET: Locations
-        public ActionResult Index()
+        public ActionResult New()
         {
-            return View(db.Locations.ToList());
+            var viewModel = new LocationFormViewModel
+            {
+                Location = new Location(),
+            };
+
+            return View("LocationForm", viewModel);
         }
 
-        // GET: Locations/Details/5
-        public ActionResult Details(int? id)
+
+        //  Post : /locations/save/1
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Location location)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var viewModel = new LocationFormViewModel()
+                {
+                    Location = location
+                };
+
+                return View("LocationForm", viewModel);
             }
-            Location location = db.Locations.Find(id);
-            if (location == null)
+
+            if (location.LocationId == 0)
+                _cms.Locations.Add(location);
+            else
             {
-                return HttpNotFound();
+                var locationInDb = _cms.Locations.Single(m => m.LocationId == location.LocationId);
+
+                Mapper.Map(locationInDb, location);
+
             }
-            return View(location);
+
+            _cms.SaveChanges();
+
+            return RedirectToAction("Index", "Locations");
         }
 
-        // GET: Locations/Create
-        public ActionResult Create()
+        //  Get: /locations
+        public ViewResult Index()
         {
             return View();
         }
 
-        // POST: Locations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LocationId,Name,Town,County,Lat,Lng")] Location location)
+        //   Get :  /locations/details/1
+        public ActionResult Details(int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Locations.Add(location);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var location = _cms.Locations
+                .SingleOrDefault(m => m.LocationId == id);
 
-            return View(location);
-        }
-
-        // GET: Locations/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Location location = db.Locations.Find(id);
             if (location == null)
-            {
                 return HttpNotFound();
-            }
+
             return View(location);
         }
 
-        // POST: Locations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LocationId,Name,Town,County,Lat,Lng")] Location location)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(location).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(location);
-        }
 
-        // GET: Locations/Delete/5
-        public ActionResult Delete(int? id)
+        //   Get :  /locations/edit/1
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Location location = db.Locations.Find(id);
+            var location = _cms.Locations.SingleOrDefault(m => m.LocationId == id);
+
             if (location == null)
-            {
                 return HttpNotFound();
-            }
-            return View(location);
+
+            var viewModel = new LocationFormViewModel
+            {
+                Location = location
+            };
+
+            return View("LocationForm", viewModel);
         }
 
-        // POST: Locations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Location location = db.Locations.Find(id);
-            db.Locations.Remove(location);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _cms.Dispose();
             }
             base.Dispose(disposing);
         }
     }
 }
+
+
+

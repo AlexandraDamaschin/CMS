@@ -3,55 +3,106 @@
 @{
     ViewBag.Title = "Locations";
 }
+<div class="contDataStyling">
+    <h2>Locations</h2>
 
-<h2>Locations</h2>
+    <p>
+        @Html.ActionLink("Create New", "New", "Locations", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table" id="locations">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Town
+                </th>
+                <th>
+                    County
+                </th>
+                <th>
+                    Latitude
+                </th>
+                <th>
+                    Longituate
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
 
-<p>
-    @Html.ActionLink("New Location", "Create", "Locations", null, new { @class = "btn btn-primary" })
-</p>
-<table class="table table-hover table-responsive">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Town)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.County)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lng)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Town)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.County)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lng)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.LocationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.LocationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.LocationId })
-        </td>
-    </tr>
-}
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                var table = $("#locations").DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    ajax: {
+                        url: "/api/locations",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "locationId"
+                        },
+                        {
+                            data: "name",
+                            render: function (data, type, location) {
+                                return "<a href='/locations/edit/" + location.locationId + "'>" + location.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "town"
+                        },
+                        {
+                            data: "county"
+                        },
+                        {
+                            data: "lat"
+                        },
+                        {
+                            data: "lng"
+                        },
+                        {
+                            "orderable": false,
+                            data: "locationId",
+                            render: function (data) {
+                                return "<button class='btn-link js-delete' data-location-id=" + data + ">Delete</button>";
+                            }
+                        }
+                    ]
+                });
 
-</table>
+
+                $("#locations").on("click", ".js-delete", function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure you want to delete this location?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/locations/" + button.attr("data-location-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.success("Location deleted.");
+                                },
+                                error: function (xmlHttpRequest, textStatus) {
+                                    toastr.error("Error: " + textStatus);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+
+    }

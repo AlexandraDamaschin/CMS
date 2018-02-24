@@ -224,7 +224,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\DevicesController.cs" />
+    <Compile Include="Controllers\API\EventCategoriesController.cs" />
     <Compile Include="Controllers\API\EventsController.cs" />
+    <Compile Include="Controllers\API\LocationsController.cs" />
+    <Compile Include="Controllers\API\OrganisersController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -232,7 +235,6 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisersController.cs" />
-    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Dtos\DeviceDto.cs" />
     <Compile Include="Dtos\EventCategoryDto.cs" />
     <Compile Include="Dtos\EventDto.cs" />
@@ -315,6 +317,22 @@
     <Compile Include="Migrations\CMSContext\201802051436013_update event category model.Designer.cs">
       <DependentUpon>201802051436013_update event category model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CMSContext\201802161355199_update context.cs" />
+    <Compile Include="Migrations\CMSContext\201802161355199_update context.Designer.cs">
+      <DependentUpon>201802161355199_update context.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201802191235540_update tags.cs" />
+    <Compile Include="Migrations\CMSContext\201802191235540_update tags.Designer.cs">
+      <DependentUpon>201802191235540_update tags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201802212304170_add event validator data annotations.cs" />
+    <Compile Include="Migrations\CMSContext\201802212304170_add event validator data annotations.Designer.cs">
+      <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\CMSContext\201802241225064_remove event category icon.cs" />
+    <Compile Include="Migrations\CMSContext\201802241225064_remove event category icon.Designer.cs">
+      <DependentUpon>201802241225064_remove event category icon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CMSContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CMSModel\CMSContext.cs" />
@@ -324,12 +342,16 @@
     <Compile Include="Models\CMSModel\Location.cs" />
     <Compile Include="Models\CMSModel\LocationDataImport.cs" />
     <Compile Include="Models\CMSModel\Organiser.cs" />
-    <Compile Include="Models\CMSModel\Tag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DeviceFormViewModel.cs" />
+    <Compile Include="ViewModels\EventCategoryFormViewModel.cs" />
+    <Compile Include="ViewModels\EventFormViewModel.cs" />
+    <Compile Include="ViewModels\LocationFormViewModel.cs" />
+    <Compile Include="ViewModels\OrganiserFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -493,6 +515,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\Images\logosally.png" />
     <Content Include="Content\Images\logosallyname.png" />
@@ -651,6 +675,7 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -679,6 +704,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\201802051436013_update event category model.resx">
       <DependentUpon>201802051436013_update event category model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802161355199_update context.resx">
+      <DependentUpon>201802161355199_update context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802191235540_update tags.resx">
+      <DependentUpon>201802191235540_update tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802212304170_add event validator data annotations.resx">
+      <DependentUpon>201802212304170_add event validator data annotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\CMSContext\201802241225064_remove event category icon.resx">
+      <DependentUpon>201802241225064_remove event category icon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\CMSContext\TestLocations.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -735,6 +772,11 @@
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -916,34 +958,22 @@
     <Content Include="Views\Devices\DeviceForm.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Organisers\Create.cshtml" />
-    <Content Include="Views\Organisers\Delete.cshtml" />
-    <Content Include="Views\Organisers\Details.cshtml" />
-    <Content Include="Views\Organisers\Edit.cshtml" />
     <Content Include="Views\Organisers\Index.cshtml" />
-    <Content Include="Views\Locations\Create.cshtml" />
-    <Content Include="Views\Locations\Delete.cshtml" />
-    <Content Include="Views\Locations\Details.cshtml" />
-    <Content Include="Views\Locations\Edit.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
-    <Content Include="Views\EventCategories\Create.cshtml" />
-    <Content Include="Views\EventCategories\Delete.cshtml" />
-    <Content Include="Views\EventCategories\Details.cshtml" />
-    <Content Include="Views\EventCategories\Edit.cshtml" />
-    <Content Include="Views\EventCategories\Index.cshtml" />
-    <Content Include="Views\Tags\Create.cshtml" />
-    <Content Include="Views\Tags\Delete.cshtml" />
-    <Content Include="Views\Tags\Details.cshtml" />
-    <Content Include="Views\Tags\Edit.cshtml" />
-    <Content Include="Views\Tags\Index.cshtml" />
-    <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Events\Edit.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\EventCategories\List.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
-    <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_TopDashboard.cshtml" />
+    <Content Include="Views\Organisers\OrganiserForm.cshtml" />
+    <Content Include="Views\Organisers\Details.cshtml" />
+    <Content Include="Views\Locations\LocationForm.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\EventCategories\EventCategoryForm.cshtml" />
+    <Content Include="Views\EventCategories\Details.cshtml" />
+    <Content Include="Views\Events\EventForm.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\ReadOnlyList.cshtml" />
+    <Content Include="Views\Events\List.cshtml" />
+    <Content Include="Views\EventCategories\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

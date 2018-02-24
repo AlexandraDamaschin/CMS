@@ -12,10 +12,12 @@ namespace CMS.Models.CMSModel
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Display Name")]
         public string DisplayName { get; set; }
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Contact Details")]
         public string ContactDetails { get; set; }
 
 

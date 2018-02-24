@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.EventCategory>
+
+@{
+    ViewBag.Title = "EventCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="contDataStyling">
+    <h2>Event Categories</h2>
+
+    <table class="table" id="eventCategories">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                var table = $("#eventCategories").DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    ajax: {
+                        url: "/api/eventCategories",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "name"
+                        }
+                    ]
+                });
+            });
+        </script>
+    }

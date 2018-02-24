@@ -1,127 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using CMS.Models;
 using CMS.Models.CMSModel;
+using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
     public class EventCategoriesController : Controller
     {
-        private CmsContext db = new CmsContext();
+        private CmsContext _cms;
 
-        // GET: EventCategories
-        public ActionResult Index()
+        public EventCategoriesController()
         {
-            return View(db.EventCategories.ToList());
-        }
-
-        // GET: EventCategories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCategory eventCategory = db.EventCategories.Find(id);
-            if (eventCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCategory);
-        }
-
-        // GET: EventCategories/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: EventCategories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventCategoryId,Name,Icon")] EventCategory eventCategory)
-        {
-            if (ModelState.IsValid)
-            {
-                db.EventCategories.Add(eventCategory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(eventCategory);
-        }
-
-        // GET: EventCategories/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCategory eventCategory = db.EventCategories.Find(id);
-            if (eventCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCategory);
-        }
-
-        // POST: EventCategories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventCategoryId,Name,Icon")] EventCategory eventCategory)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(eventCategory).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(eventCategory);
-        }
-
-        // GET: EventCategories/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EventCategory eventCategory = db.EventCategories.Find(id);
-            if (eventCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(eventCategory);
-        }
-
-        // POST: EventCategories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EventCategory eventCategory = db.EventCategories.Find(id);
-            db.EventCategories.Remove(eventCategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            _cms = new CmsContext();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _cms.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        //  Get: /eventCategories
+        public ViewResult Index()
+        {
+            return View(User.IsInRole(RoleName.CanManageEventCategories) ? "List" : "ReadOnlyList");
+        }
+
+
+        //  Get : /eventCategories/new
+        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        public ViewResult New()
+        {
+            return View("EventCategoryForm");
+        }
+
+
+        //   Get :  /eventCategories/edit/1
+        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        public ActionResult Edit(int id)
+        {
+            var eventCategory = _cms.EventCategories.SingleOrDefault(c => c.EventCategoryId == id);
+
+            if (eventCategory == null)
+                return HttpNotFound();
+
+            var viewModel = new EventCategoryFormViewModel(eventCategory);
+
+            return View("EventCategoryForm", viewModel);
+        }
+
+
+        //   Get :  /eventCategories/details/1
+        public ActionResult Details(int id)
+        {
+            var eventCategory = _cms.EventCategories
+                .SingleOrDefault(c => c.EventCategoryId == id);
+
+            if (eventCategory == null)
+                return HttpNotFound();
+
+            return View(eventCategory);
+        }
+
+
+        //  Post : /eventCategories/save/1
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageEventCategories)]
+        public ActionResult Save(EventCategory eventCategory)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new EventCategoryFormViewModel(eventCategory);
+
+                return View("EventCategoryForm", viewModel);
+            }
+
+            if (eventCategory.EventCategoryId == 0)
+                _cms.EventCategories.Add(eventCategory);
+            else
+            {
+                var eventCategoryInDb = _cms.EventCategories.Single(c => c.EventCategoryId == eventCategory.EventCategoryId);
+
+                Mapper.Map(eventCategoryInDb, eventCategory);
+
+            }
+
+            _cms.SaveChanges();
+
+            return RedirectToAction("Index", "EventCategories");
         }
     }
 }

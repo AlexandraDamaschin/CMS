@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+<div class="contDataStyling">
+    <h2>Events</h2>
+
+    <p>
+        @Html.ActionLink("New Event", "New", "Events", null, new { @class = "btn btn-primary" })
+    </p>
+
+
+    <table class="table" id="events">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Details
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Organiser
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                var table = $("#events").DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    ajax: {
+                        url: "/api/events",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "eventId"
+                        },
+                        {
+                            data: "name",
+                            render: function (data, type, event) {
+                                return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "priority"
+                        },
+                        {
+                            data: "details"
+                        },
+                        {
+                            data: "startTime"
+                        },
+                        {
+                            data: "endTime"
+                        },
+                        {
+                            data: "associatedEventCategory.name"
+                        },
+                        {
+                            data: "associatedOrganiser.displayName"
+                        },
+                        {
+                            "orderable": false,
+                            data: "eventId",
+                            render: function (data) {
+                                return "<button class='btn-link js-delete' data-event-id=" + data + ">Delete</button>";
+                            }
+                        }
+                    ]
+                });
+
+                $("#events").on("click", ".js-delete", function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure you want to delete this event?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/events/" + button.attr("data-event-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                    toastr.success("Evnt deleted.");
+                                },
+                                error: function (xmlHttpRequest, textStatus) {
+                                    toastr.error("Error: " + textStatus);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+
+    }

@@ -1,29 +1,77 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CMS.Models.CMSModel;
-using System.Web.Mvc;
 
 namespace CMS.ViewModels
 {
     public class EventFormViewModel
     {
-        public Event Event { get; set; }
+        public int? EventId { get; set; }
 
-        public IEnumerable<SelectListItem> AllEventTags { get; set; }
+        [Required]
+        [StringLength(255)]
+        [Display(Name = "Event Name")]
+        public string Name { get; set; }
 
-        private List<int> _associatedTags;
-        public List<int> AssociatedTags
+        [Required]
+        [StringLength(255)]
+        public string Details { get; set; }
+
+        [Required]
+        [Range(1, 10)]
+        public int Priority { get; set; }
+
+        [Required]
+        [Display(Name = "Start Time")]
+        public DateTime StartTime { get; set; }
+
+        [Required]
+        [Display(Name = "End Time")]
+        public DateTime EndTime { get; set; }
+
+        [ForeignKey("AssociatedOrganiser")]
+        [Display(Name = "Organiser")]
+        public int OrganiserId { get; set; }
+
+        [ForeignKey("AssociatedEventCategory")]
+        [Display(Name = "Event Category")]
+        public int EventCategoryId { get; set; }
+
+        [ForeignKey("AssociatedLocation")]
+        [Display(Name = "Location")]
+        public int LocationId { get; set; }
+
+        public IEnumerable<Organiser> Organisers { get; set; }
+        public IEnumerable<Location> Locations { get; set; }
+        public IEnumerable<EventCategory> EventCategories { get; set; }
+
+
+        public string Title
         {
             get
             {
-                if (_associatedTags == null)
-                {
-                    _associatedTags = Event.AssociatedTags.Select(t => t.TagId).ToList();
-                }
-
-                return _associatedTags;
+                return EventId != 0 ? "Edit Movie" : "New Movie";
             }
-            set { _associatedTags = value; }
+        }
+
+        public EventFormViewModel()
+        {
+            EventId = 0;
+        }
+
+        public EventFormViewModel(Event evnt)
+        {
+            EventId = evnt.EventId;
+            Name = evnt.Name;
+            Details = evnt.Details;
+            Priority = evnt.Priority;
+            StartTime = evnt.StartTime;
+            EndTime = evnt.EndTime;
+            OrganiserId = evnt.OrganiserId;
+            LocationId = evnt.LocationId;
+            EventCategoryId = evnt.EventCategoryId;
         }
     }
 }
