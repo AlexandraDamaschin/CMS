@@ -6,23 +6,7 @@
             <div class="col-12" style="margin: 0 0 0 280px">
                 @if (!Request.IsAuthenticated)
                 {
-                    <div class="col-md-4">
-                        <div class="text-center">
-                            <img src="@Url.Content("~/Content/Images/logosally.png")" alt="Sallinet" class="img-responsive" />
-                        </div>
-                    </div>
-                        <br /> <br /> <br /> <br />
-                        <hr />  
-                    <a href="@Url.Action("Login", "Account")" class="btn btn-default btn-lg">
-                        Login
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    </a>
-                    <a href="@Url.Action("Register", "Account")" class="btn btn-default btn-lg">
-                        Register
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    </a>
-                        
-                    <hr />
+                    @Html.Partial("_Login")
                 }
                 else
                 {

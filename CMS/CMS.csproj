@@ -353,19 +353,20 @@
     <Compile Include="ViewModels\OrganiserFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Css\bootstrap.min.css" />
-    <Content Include="Content\Css\dataTables.bootstrap.min.css" />
-    <Content Include="Content\Css\datepicker.css" />
-    <Content Include="Content\Css\jquery-ui-timepicker-addon.min.css" />
-    <Content Include="Content\Css\sb-admin-2.min.css" />
-    <Content Include="Content\Css\Site.css" />
-    <Content Include="Content\Css\toastr.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Content\sb-admin-2.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\bg_login.png" />
     <Content Include="Content\Images\logosally.png" />
     <Content Include="Content\Images\logosallyname.png" />
     <Content Include="Scripts\Js\bootstrap.min.js" />
-    <Content Include="Content\Css\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -614,6 +615,7 @@
     <Content Include="Views\Locations\ReadOnlyList.cshtml" />
     <Content Include="Views\Devices\ReadOnlyList.cshtml" />
     <Content Include="Views\Organisers\ReadOnlyList.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

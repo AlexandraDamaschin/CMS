@@ -10,7 +10,7 @@ namespace CMS
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Content/Js/bootstrap.min.js",
+                        "~/Scripts/Js/bootstrap.min.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
@@ -27,16 +27,16 @@ namespace CMS
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/Css/bootstrap.min.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/Css/sb-admin-2.min.css",
-                      "~/Content/Css/dataTables.bootstrap.css",
-                      "~/Content/Css/jquery-ui.min.css",
-                      "~/Content/Css/datepicker.css",
-                      "~/Content/Css/jquery-ui-timepicker-addon.min.css",
-                      "~/Content/Css/toastr.min.css",
-                      "~/Content/Css/site.css"
+                      "~/Content/sb-admin-2.min.css",
+                      "~/Content/dataTables.bootstrap.css",
+                      "~/Content/jquery-ui.min.css",
+                      "~/Content/datepicker.css",
+                      "~/Content/jquery-ui-timepicker-addon.min.css",
+                      "~/Content/toastr.min.css",
+                      "~/Content/site.css"
                        ));
 
         }
