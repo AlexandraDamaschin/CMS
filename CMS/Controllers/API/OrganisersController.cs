@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using CMS.Dtos;
+using CMS.Models;
 using CMS.Models.CMSModel;
 
 namespace CMS.Controllers.API
@@ -16,16 +18,16 @@ namespace CMS.Controllers.API
             _cms = new CmsContext();
         }
 
+
         // Get /api/organisers
-        public IHttpActionResult GetOrganisers()
+        public IEnumerable<OrganiserDto> GetOrganisers()
         {
             var organisersQuery = _cms.Organisers;
-            var organiserDtos = organisersQuery
+            return organisersQuery
                 .ToList()
                 .Select(Mapper.Map<Organiser, OrganiserDto>);
-
-            return Ok(organiserDtos);
         }
+
 
         // Get /api/organiser/1
         public IHttpActionResult GetOrganiser(int id)
@@ -39,6 +41,7 @@ namespace CMS.Controllers.API
 
         // Post /api/organiser
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageOrganisers)]
         public IHttpActionResult CreateOrganiser(OrganiserDto organiserDto)
         {
             if (!ModelState.IsValid)

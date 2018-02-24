@@ -97,12 +97,9 @@ namespace CMS.Controllers
             {
                 var eventCategoryInDb = _cms.EventCategories.Single(c => c.EventCategoryId == eventCategory.EventCategoryId);
                 eventCategoryInDb.Name = eventCategory.Name;
-//                Mapper.Map(eventCategoryInDb, eventCategory);
-
             }
 
             _cms.SaveChanges();
-
             return RedirectToAction("Index", "EventCategories");
         }
     }

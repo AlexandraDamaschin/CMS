@@ -2,9 +2,11 @@
 using CMS.Dtos;
 using CMS.Models.CMSModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
+using CMS.Models;
 
 
 namespace CMS.Controllers.API
@@ -12,7 +14,7 @@ namespace CMS.Controllers.API
 
     public class DevicesController : ApiController
     {
-        private CmsContext _cms;
+        private readonly CmsContext _cms;
 
         public DevicesController()
         {
@@ -20,21 +22,20 @@ namespace CMS.Controllers.API
         }
 
         // Get /api/devices
-        public IHttpActionResult GetDevices()
+        public IEnumerable<DeviceDto> GetDevices(string query = null)
         {
             var devicesQuery = _cms.Devices
                 .Include(d => d.AssociatedLocation);
 
-            var deviceDtos = devicesQuery
+            if (!string.IsNullOrWhiteSpace(query))
+                devicesQuery = devicesQuery.Where(m => m.Name.Contains(query));
+
+
+            return devicesQuery
                 .ToList()
                 .Select(Mapper.Map<Device, DeviceDto>);
-
-            return Ok(deviceDtos);
-
-
-
-            //return Ok(_cms.Devices.ToList().Select(Mapper.Map<Device, DeviceDto>));
         }
+
 
         // Get /api/device/1
         public IHttpActionResult GetDevice(int id)
@@ -49,6 +50,7 @@ namespace CMS.Controllers.API
 
         // Post /api/device
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageDevices)]
         public IHttpActionResult CreateDevice(DeviceDto deviceDto)
         {
             if (!ModelState.IsValid)
@@ -84,6 +86,7 @@ namespace CMS.Controllers.API
 
         //  Delete /api/devices/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageDevices)]
         public IHttpActionResult DeleteDevice(int id)
         {
             var deviceInDb = _cms.Devices.SingleOrDefault(d => d.DeviceId == id);

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.Device>
+
+@{
+    ViewBag.Title = "Devices";
+}
+<div class="contDataStyling">
+    <h2>Devices</h2>
+
+    <table class="table" id="devices">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#devices").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/devices",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, device) {
+                            return "<a href='/devices/edit/" + device.deviceId + "'>" + device.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "associatedLocation.name"
+                    },
+                    {
+                        data: "hasError",
+                        render: function (data) {
+                            return (data === false)
+                                ? '<span class="text-success glyphicon glyphicon-ok"></span>'
+                                : '<span class="text-danger glyphicon glyphicon-remove"></span>';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+}

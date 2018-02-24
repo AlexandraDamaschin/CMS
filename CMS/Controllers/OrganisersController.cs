@@ -1,30 +1,49 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using CMS.Models;
 using CMS.Models.CMSModel;
 using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
     public class OrganisersController : Controller
     {
-        private CmsContext _cms = new CmsContext();
+        private CmsContext _cms;
+
+        public OrganisersController()
+        {
+            _cms = new CmsContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _cms.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
 
         //  Get: /organisers
         public ViewResult Index()
         {
-            return View();
+            return View(User.IsInRole(RoleName.CanManageOrganisers) ? "List" : "ReadOnlyList");
         }
 
-        //   Get :  /organisers/details/1
-        public ActionResult Details(int id)
+
+
+        // Get : /organisers/new
+        [Authorize(Roles = RoleName.CanManageOrganisers)]
+        public ActionResult New()
         {
-            var organiser = _cms.Organisers.SingleOrDefault(m => m.OrganiserId == id);
-            if (organiser == null)
-                return HttpNotFound();
-
-            return View(organiser);
+            var viewModel = new OrganiserFormViewModel
+            {
+                Organiser = new Organiser(),
+            };
+            return View("OrganiserForm", viewModel);
         }
+
 
         //   Get :  /organisers/edit/1
         public ActionResult Edit(int id)
@@ -40,19 +59,22 @@ namespace CMS.Controllers
             return View("OrganiserForm", viewModel);
         }
 
-        // Get : /organisers/new
-        public ActionResult New()
+
+        //   Get :  /organisers/details/1
+        public ActionResult Details(int id)
         {
-            var viewModel = new OrganiserFormViewModel
-            {
-                Organiser = new Organiser(),
-            };
-            return View("OrganiserForm", viewModel);
+            var organiser = _cms.Organisers.SingleOrDefault(m => m.OrganiserId == id);
+            if (organiser == null)
+                return HttpNotFound();
+
+            return View(organiser);
         }
 
+ 
         //  Post : /organisers/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageOrganisers)]
         public ActionResult Save(Organiser organiser)
         {
             if (!ModelState.IsValid)
@@ -68,22 +90,13 @@ namespace CMS.Controllers
             else
             {
                 var organiserInDb = _cms.Organisers.Single(m => m.OrganiserId == organiser.OrganiserId);
-//                Mapper.Map(organiserInDb, organiser);
+
                 organiserInDb.DisplayName = organiser.DisplayName;
                 organiserInDb.ContactDetails = organiser.ContactDetails;
                 organiserInDb.OrganiserId = organiser.OrganiserId;
             }
             _cms.SaveChanges();
             return RedirectToAction("Index", "Organisers");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _cms.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
