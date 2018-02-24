@@ -340,6 +340,7 @@
     <Compile Include="Models\CMSModel\Organiser.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DeviceFormViewModel.cs" />
@@ -510,6 +511,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\Images\logosally.png" />
     <Content Include="Content\Images\logosallyname.png" />
@@ -668,6 +671,7 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -761,6 +765,11 @@
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\sbTheme\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -945,7 +954,6 @@
     <Content Include="Views\Organisers\Index.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\EventCategories\Index.cshtml" />
-    <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
     <Content Include="Views\Shared\_TopDashboard.cshtml" />
     <Content Include="Views\Organisers\OrganiserForm.cshtml" />
@@ -956,6 +964,8 @@
     <Content Include="Views\EventCategories\Details.cshtml" />
     <Content Include="Views\Events\EventForm.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\ReadOnlyList.cshtml" />
+    <Content Include="Views\Events\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,9 +39,10 @@ namespace CMS
                       "~/Content/sbTheme/vendor/metisMenu/metisMenu.min.css",
                       "~/Content/sbTheme/dist/css/sb-admin-2.css",
                       "~/Content/sbTheme/vendor/morrisjs/morris.css",
-                      "~/Content/sbTheme/vendor/font-awesome/css/font-awesome.min.css",
-
-                  //  "~/Content/bootstrap.css",
+                    //  "~/Content/sbTheme/vendor/font-awesome/css/font-awesome.min.css",
+                         "~/Content/font-awesome.min.css",
+                         "~/Content/font-awesome.css",
+                      //  "~/Content/bootstrap.css",
                       "~/Content/datatables/css/dataTables.bootstrap.css",
                       "~/Content/themes/base/jquery-ui.css",
                       "~/Content/themes/base/datepicker.css",

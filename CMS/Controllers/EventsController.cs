@@ -1,37 +1,89 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 using AutoMapper;
+using CMS.Dtos;
+using CMS.Models;
 using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
-    [Authorize(Roles = "SuperAdmin, Administration")]
+
     public class EventsController : Controller
     {
-        private readonly CmsContext _cms = new CmsContext();
+        private CmsContext _cms;
 
+        public EventsController()
+        {
+            _cms = new CmsContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _cms.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         //  Get events by location id
-        public IQueryable<Event> GetLocationEventList(int id)
+        public IEnumerable<EventDto> GetLocationEventList(int id)
         {
-            IQueryable<Event> events = _cms.Events
+            var  eventsQuery = _cms.Events
+                .Where(m => m.LocationId == id)
                 .Include(db => db.AssociatedLocation)
                 .Include(db => db.AssociatedEventCategory)
-                .Include(db => db.AssociatedOrganiser)
-                .Where(m => m.LocationId == id);
-            return events;
+                .Include(db => db.AssociatedOrganiser);
+            return eventsQuery
+                .ToList()
+                .Select(Mapper.Map<Event, EventDto>);
         }
 
-
-        //  Get: /evnts
         public ViewResult Index()
         {
-            return View();
+            return View(User.IsInRole(RoleName.CanManageEvents) ? "List" : "ReadOnlyList");
         }
 
-        //   Get :  /evnts/details/1
+
+        [Authorize(Roles = RoleName.CanManageEvents)]
+        public ViewResult New()
+        {
+            var eventCategories = _cms.EventCategories.ToList();
+            var locations = _cms.Locations.ToList();
+            var organisers = _cms.Organisers.ToList();
+
+            var viewModel = new EventFormViewModel
+            {
+                EventCategories = eventCategories,
+                Locations = locations,
+                Organisers = organisers
+            };
+            return View("EventForm", viewModel);
+        }
+
+
+        [Authorize(Roles = RoleName.CanManageEvents)]
+        public ActionResult Edit(int id)
+        {
+            var evnt = _cms.Events
+                .SingleOrDefault(c => c.EventId == id);
+
+            if (evnt == null)
+                return HttpNotFound();
+
+            var viewModel = new EventFormViewModel(evnt)
+            {
+                EventCategories = _cms.EventCategories.ToList(),
+                Locations = _cms.Locations.ToList(),
+                Organisers = _cms.Organisers.ToList(),
+            };
+            return View("EventForm", viewModel);
+        }
+
+
         public ActionResult Details(int id)
         {
             var evnt = _cms.Events
@@ -46,46 +98,17 @@ namespace CMS.Controllers
             return View(evnt);
         }
 
-        //   Get :  /evnts/edit/1
-        public ActionResult Edit(int id)
-        {
-            var evnt = _cms.Events.SingleOrDefault(c => c.EventId == id);
 
-            if (evnt == null)
-                return HttpNotFound();
-
-            var viewModel = new EventFormViewModel
-            {
-                Event = evnt,
-                EventCategories = _cms.EventCategories.ToList(),
-                Locations = _cms.Locations.ToList(),
-                Organisers = _cms.Organisers.ToList(),
-            };
-            return View("EventForm", viewModel);
-        }
-
-        public ActionResult New()
-        {
-            var viewModel = new EventFormViewModel
-            {
-                Event = new Event(),
-                EventCategories = _cms.EventCategories.ToList(),
-                Locations = _cms.Locations.ToList(),
-                Organisers = _cms.Organisers.ToList(),
-            };
-            return View("EventForm", viewModel);
-        }
-
-        //  Post : /evnts/save/1
+        //  Post : /evènts/save/1
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageEvents)]
         public ActionResult Save(Event evnt)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new EventFormViewModel
-                {
-                    Event = evnt,
+                var viewModel = new EventFormViewModel(evnt)
+                {   
                     EventCategories = _cms.EventCategories.ToList(),
                     Locations = _cms.Locations.ToList(),
                     Organisers = _cms.Organisers.ToList()
@@ -98,8 +121,6 @@ namespace CMS.Controllers
             else
             {
                 var evntInDb = _cms.Events.Single(c => c.EventId == evnt.EventId);
-//                Mapper.Map(evntInDb, evnt);
-                evntInDb.EventId = evnt.EventId;
                 evntInDb.Priority = evnt.Priority;
                 evntInDb.Details = evnt.Details;
                 evntInDb.StartTime = evnt.StartTime;
@@ -110,16 +131,6 @@ namespace CMS.Controllers
             }
             _cms.SaveChanges();
             return RedirectToAction("Index", "Events");
-        }
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _cms.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

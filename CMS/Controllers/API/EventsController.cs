@@ -6,6 +6,7 @@ using CMS.Models.CMSModel;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
+using CMS.Models;
 
 namespace CMS.Controllers.API
 {
@@ -24,28 +25,30 @@ namespace CMS.Controllers.API
         [Route("api/myEvents/{id}")]
         public IHttpActionResult GetEventsByLocation(int id)
         {
-            IEnumerable<Event> eventsQuery = new CMS.Controllers.EventsController().GetLocationEventList(id);
-            var data = AutoMapper.Mapper.Map<List<EventDto>>(eventsQuery);
+            var eventsQuery = new Controllers.EventsController().GetLocationEventList(id);
+            var data = Mapper.Map<List<EventDto>>(eventsQuery);
             return Ok(data);
         }
 
 
-        // Get /api/evnts
-        public IHttpActionResult GetEvents()
+        public IEnumerable<EventDto> GetEvents(string query = null)
         {
             var eventsQuery = _cms.Events
-                .Include(d => d.AssociatedEventCategory)
-                .Include(d => d.AssociatedLocation)
-                .Include(d => d.AssociatedOrganiser);
+                .Include(m => m.AssociatedEventCategory)
+                .Include(m => m.AssociatedLocation)
+                .Include(m => m.AssociatedOrganiser)
+                .Where(m => m.Priority > 0);
 
-            var evntDtos = eventsQuery
+            if (!string.IsNullOrWhiteSpace(query))
+                eventsQuery = eventsQuery.Where(m => m.Name.Contains(query));
+
+            return eventsQuery
                 .ToList()
                 .Select(Mapper.Map<Event, EventDto>);
-
-            return Ok(evntDtos);
         }
 
-        // Get /api/evnt/1
+
+        // Get /api/event/1
         public IHttpActionResult GetEvent(int id)
         {
             var evnt = _cms.Events.SingleOrDefault(d => d.EventId == id);
@@ -56,8 +59,9 @@ namespace CMS.Controllers.API
             return Ok(Mapper.Map<Event, EventDto>(evnt));
         }
 
-        // Post /api/evnt
+        // Post /api/event
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageEvents)]
         public IHttpActionResult CreateEvent(EventDto eventDto)
         {
             if (!ModelState.IsValid)
@@ -72,7 +76,7 @@ namespace CMS.Controllers.API
             return Created(new Uri(Request.RequestUri + "/" + evnt.EventId), eventDto);
         }
 
-        //  Put /api/evnts/1
+        //  Put /api/events/1
         [HttpPut]
         public IHttpActionResult UpdateEvent(int id, EventDto eventDto)
         {
@@ -90,8 +94,9 @@ namespace CMS.Controllers.API
             return Ok();
         }
 
-        //  Delete /api/evnts/1
+        //  Delete /api/events/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageEvents)]
         public IHttpActionResult DeleteEvent(int id)
         {
             var evntInDb = _cms.Events.SingleOrDefault(d => d.EventId == id);

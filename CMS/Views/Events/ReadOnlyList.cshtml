@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+<div class="contDataStyling">
+    <h2>Events</h2>
+
+    <p>
+        @Html.ActionLink("New Event", "New", "Events", null, new { @class = "btn btn-primary" })
+    </p>
+
+
+    <table class="table" id="events">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Details
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Organiser
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section scripts
+{
+    <script>
+            $(document).ready(function () {
+                var table = $("#events").DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    ajax: {
+                        url: "/api/events",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "eventId"
+                        },
+                        {
+                            data: "name",
+                            render: function (data, type, event) {
+                                return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "priority"
+                        },
+                        {
+                            data: "details"
+                        },
+                        {
+                            data: "startTime"
+                        },
+                        {
+                            data: "endTime"
+                        },
+                        {
+                            data: "associatedEventCategory.name"
+                        },
+                        {
+                            data: "associatedOrganiser.displayName"
+                        }
+                    ]
+                });
+            });
+    </script>
+
+}
