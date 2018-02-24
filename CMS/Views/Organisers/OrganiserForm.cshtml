@@ -1,11 +1,12 @@
 ﻿@model CMS.ViewModels.OrganiserFormViewModel
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="createOne">
-    <h2>New Oragniser</h2>
+    <h2>@Model.Title</h2>
     <div class="formStyle">
         @using (Html.BeginForm("Save", "Organisers"))
         {

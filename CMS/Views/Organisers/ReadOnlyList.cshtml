@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.Organiser>
+
+@{
+    ViewBag.Title = "Organisers";
+}
+<div class="contDataStyling">
+    <h2>Organisers</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "New", "Organisers", null, new { @class = "btn btn-primary" })
+    </p>
+    <table class="table" id="organisers">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Contact
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#organisers").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/organisers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "displayName",
+                        render: function (data, type, organiser) {
+                            return "<a href='/organisers/edit/" + organiser.organiserId + "'>" + organiser.displayName + "</a>";
+                        }
+                    },
+                    {
+                        data: "contactDetails"
+                    }
+                ]
+            });
+        });
+    </script>
+}

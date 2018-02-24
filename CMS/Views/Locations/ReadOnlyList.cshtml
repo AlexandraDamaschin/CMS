@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CMS.Models.CMSModel.Location>
+
+@{
+    ViewBag.Title = "Locations";
+}
+<div class="contDataStyling">
+    <h2>Locations</h2>
+
+    <table class="table" id="locations">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Town
+                </th>
+                <th>
+                    County
+                </th>
+                <th>
+                    Latitude
+                </th>
+                <th>
+                    Longituate
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
+
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                var table = $("#locations").DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "info": false,
+                    ajax: {
+                        url: "/api/locations",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "locationId"
+                        },
+                        {
+                            data: "name",
+                            render: function (data, type, location) {
+                                return "<a href='/locations/edit/" + location.locationId + "'>" + location.name + "</a>";
+                            }
+                        },
+                        {
+                            data: "town"
+                        },
+                        {
+                            data: "county"
+                        },
+                        {
+                            data: "lat"
+                        },
+                        {
+                            data: "lng"
+                        }
+                    ]
+                });
+            });
+        </script>
+
+    }

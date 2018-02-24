@@ -9,5 +9,7 @@ namespace CMS.ViewModels
     public class OrganiserFormViewModel
     {
         public Organiser Organiser { get; set; }
+
+        public string Title => Organiser.OrganiserId != 0 ? "Edit Organiser" : "New Organiser";
     }
 }
