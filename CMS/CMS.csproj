@@ -228,6 +228,7 @@
     <Compile Include="Controllers\API\EventsController.cs" />
     <Compile Include="Controllers\API\LocationsController.cs" />
     <Compile Include="Controllers\API\OrganisersController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventCategoriesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -346,6 +347,7 @@
     <Compile Include="Models\RoleHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DashboardPanelsViewModel.cs" />
     <Compile Include="ViewModels\DeviceFormViewModel.cs" />
     <Compile Include="ViewModels\EventCategoryFormViewModel.cs" />
     <Compile Include="ViewModels\EventFormViewModel.cs" />
@@ -618,6 +620,8 @@
     <Content Include="Views\Organisers\ReadOnlyList.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\_NavSideBar.cshtml" />
+    <Content Include="Views\Dashboard\_DashboardPanels.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using CMS.Models;
 using CMS.Models.CMSModel;
 using CMS.ViewModels;
