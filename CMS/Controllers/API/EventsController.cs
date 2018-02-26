@@ -11,7 +11,7 @@ using CMS.Models;
 
 namespace CMS.Controllers.API
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+//    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventsController : ApiController
     {
         private readonly CmsContext _cms;

@@ -11,7 +11,7 @@ using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+//    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventsController : Controller
     {
         private readonly CmsContext _cms;
