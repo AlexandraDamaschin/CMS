@@ -11,7 +11,7 @@ namespace CMS
     {
         public static void Register(HttpConfiguration config)
         {
-//            config.EnableCors();
+            config.EnableCors();
 
 
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
