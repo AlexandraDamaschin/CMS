@@ -75,8 +75,17 @@ border:	2px	solid	red;
     margin: 0 0 0 105px;
 }
 
-/*overRiding bootStrap */
+.loginRegisterPages{
+    margin-top:80px;
+}
 
+.mainPage{
+    margin-top:30px;
+}
+/*overRiding bootStrap */
+.checkbox input[type=checkbox]{
+       margin-left: -1px
+}
 
 .btn {
     border-radius: 10px;
