@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using CMS.Models.CMSModel;
 using AutoMapper;
@@ -10,6 +11,7 @@ using CMS.ViewModels;
 
 namespace CMS.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventsController : Controller
     {
         private readonly CmsContext _cms;
