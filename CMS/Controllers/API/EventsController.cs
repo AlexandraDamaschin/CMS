@@ -5,11 +5,13 @@ using CMS.Dtos;
 using CMS.Models.CMSModel;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using AutoMapper;
 using CMS.Models;
 
 namespace CMS.Controllers.API
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventsController : ApiController
     {
         private readonly CmsContext _cms;
