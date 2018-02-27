@@ -42,7 +42,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(m => m.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(m => m.StartTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
                         @Html.ValidationMessageFor(m => m.StartTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(m => m.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(m => m.EndTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })
                         @Html.ValidationMessageFor(m => m.EndTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -93,5 +93,19 @@
 </div>
 @section scripts
 {
+<script type="text/javascript">
+          jQuery('.datetimepicker').datetimepicker({
+            format:'DD.MM.YYYY h:mm',
+            formatTime:'h:mm a',
+            formatDate: 'DD.MM.YYYY',
+            minDate: '-1970/01/2',
+            maxDate: '+1970/01/2',
+            inline: true
+        });
+</script>
+
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+   
