@@ -48,7 +48,7 @@ namespace CMS.ViewModels
         public IEnumerable<EventCategory> EventCategories { get; set; }
 
 
-        public string Title => EventId != 0 ? "Edit Movie" : "New Movie";
+        public string Title => EventId != 0 ? "Edit Event" : "New Event";
 
         public EventFormViewModel()
         {

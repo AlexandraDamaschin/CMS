@@ -10,18 +10,11 @@
         @Html.ActionLink("New Event", "New", "Events", null, new { @class = "btn btn-primary" })
     </p>
 
-
     <table class="table" id="events">
         <thead>
             <tr>
                 <th>
-                    Id
-                </th>
-                <th>
                     Name
-                </th>
-                <th>
-                    Priority
                 </th>
                 <th>
                     Details
@@ -60,16 +53,10 @@
                     },
                     columns: [
                         {
-                            data: "eventId"
-                        },
-                        {
                             data: "name",
                             render: function (data, type, event) {
                                 return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
                             }
-                        },
-                        {
-                            data: "priority"
                         },
                         {
                             data: "details"
@@ -90,7 +77,7 @@
                             "orderable": false,
                             data: "eventId",
                             render: function (data) {
-                                return "<button class='btn-link js-delete' data-event-id=" + data + ">Delete</button>";
+                                return "<button class='btn btn-warning js-delete' data-event-id=" + data + ">Delete</button>";
                             }
                         }
                     ]

@@ -15,13 +15,7 @@
         <thead>
             <tr>
                 <th>
-                    Id
-                </th>
-                <th>
                     Name
-                </th>
-                <th>
-                    Priority
                 </th>
                 <th>
                     Details
@@ -58,16 +52,10 @@
                     },
                     columns: [
                         {
-                            data: "eventId"
-                        },
-                        {
                             data: "name",
                             render: function (data, type, event) {
                                 return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
                             }
-                        },
-                        {
-                            data: "priority"
                         },
                         {
                             data: "details"
