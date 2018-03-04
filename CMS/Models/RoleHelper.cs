@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CMS.Models
+﻿namespace CMS.Models
 {
     public static class RoleHelper
     {
