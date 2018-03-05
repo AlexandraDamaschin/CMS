@@ -611,8 +611,6 @@
     <Content Include="Views\Organisers\List.cshtml" />
     <Content Include="Views\Locations\List.cshtml" />
     <Content Include="Views\EventCategories\List.cshtml" />
-    <Content Include="Views\Shared\_Dashboard.cshtml" />
-    <Content Include="Views\Shared\_TopDashboard.cshtml" />
     <Content Include="Views\Organisers\OrganiserForm.cshtml" />
     <Content Include="Views\Organisers\Details.cshtml" />
     <Content Include="Views\Locations\LocationForm.cshtml" />
@@ -630,6 +628,7 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\_NavSideBar.cshtml" />
     <Content Include="Views\Dashboard\_DashboardPanels.cshtml" />
+    <Content Include="Views\Shared\_EventTimeLine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
