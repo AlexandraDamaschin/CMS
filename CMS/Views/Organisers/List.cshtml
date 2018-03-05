@@ -65,7 +65,6 @@
                     if (result) {
                         $.ajax({
                             url: "/api/organisers/" + button.attr("data-organiser-id"),
-                            data: loginData,
                             method: "DELETE",
                             success: function () {
                                 table.row(button.parents("tr")).remove().draw();
