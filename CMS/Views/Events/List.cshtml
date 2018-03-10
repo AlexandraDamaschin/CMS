@@ -39,70 +39,97 @@
     </table>
 </div>
 
-    @section scripts
-{
-        <script>
-            $(document).ready(function () {
-                var table = $("#events").DataTable({
-                    "paging": false,
-                    "searching": false,
-                    "info": false,
-                    ajax: {
-                        url: "/api/events",
-                        dataSrc: ""
-                    },
-                    columns: [
-                        {
-                            data: "name",
-                            render: function (data, type, event) {
-                                return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
-                            }
-                        },
-                        {
-                            data: "details"
-                        },
-                        {
-                            data: "startTime"
-                        },
-                        {
-                            data: "endTime"
-                        },
-                        {
-                            data: "associatedEventCategory.name"
-                        },
-                        {
-                            data: "associatedOrganiser.displayName"
-                        },
-                        {
-                            "orderable": false,
-                            data: "eventId",
-                            render: function (data) {
-                                return "<button class='btn btn-warning js-delete' data-event-id=" + data + ">Delete</button>";
-                            }
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            var table = $("#events").DataTable({
+                "paging": false,
+                "searching": false,
+                "info": false,
+                ajax: {
+                    url: "/api/events",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, event) {
+                            return "<a href='/events/edit/" + event.eventId + "'>" + event.name + "</a>";
                         }
-                    ]
-                });
+                    },
+                    {
+                        data: "details"
+                    },
+                    {
+                        data: "startTime",
+                        render: function (data) {
+                            var datetime = new Date(data);
+                            var date = datetime.toLocaleDateString();
+                            var time = datetime.toLocaleTimeString();
+                            return "<span class='startTime'>" +
+                                time +
+                                " -</span>" +
+                                "<span class='startDate'>" +
+                                date +
+                                "</span>";
+                        }
+                    },
+                    {
+                        data: "endTime",
+                        render: function (data) {
+                            var datetime = new Date(data);
+                            var date = datetime.toLocaleDateString();
+                            var time = datetime.toLocaleTimeString();
+                            return "<span class='startTime'>" +
+                                time +
+                                " -</span>" +
+                                "<span class='startDate'>" +
+                                date +
+                                "</span>";
+                        }
+                    },
+                    {
+                        data: "associatedEventCategory.name"
+                    },
+                    {
+                        data: "associatedOrganiser.displayName"
+                    },
+                    {
+                        "orderable": false,
+                        data: "eventId",
+                        render: function (data) {
+                            return "<button class='btn btn-warning js-delete' data-event-id=" +
+                                data +
+                                ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
-                $("#events").on("click", ".js-delete", function () {
+            $("#events").on("click",
+                ".js-delete",
+                function () {
                     var button = $(this);
 
-                    bootbox.confirm("Are you sure you want to delete this event?", function (result) {
-                        if (result) {
-                            $.ajax({
-                                url: "/api/events/" + button.attr("data-event-id"),
-                                method: "DELETE",
-                                success: function () {
-                                    table.row(button.parents("tr")).remove().draw();
-                                    toastr.success("Evnt deleted.");
-                                },
-                                error: function (xmlHttpRequest, textStatus) {
-                                    toastr.error("Error: " + textStatus);
-                                }
-                            });
-                        }
-                    });
+                    bootbox.confirm("Are you sure you want to delete this event?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/events/" + button.attr("data-event-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        table.row(button.parents("tr")).remove().draw();
+                                        toastr.success("Evnt deleted.");
+                                    },
+                                    error: function (xmlHttpRequest, textStatus) {
+                                        toastr.error("Error: " + textStatus);
+                                    }
+                                });
+                            }
+                        });
                 });
-            });
-        </script>
+        });
+    </script>
 
-    }
+}

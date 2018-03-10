@@ -10,7 +10,6 @@
         @Html.ActionLink("New Event", "New", "Events", null, new { @class = "btn btn-primary" })
     </p>
 
-
     <table class="table" id="events">
         <thead>
             <tr>
@@ -61,10 +60,32 @@
                             data: "details"
                         },
                         {
-                            data: "startTime"
+                            data: "startTime",
+                            render: function (data) {
+                                var datetime = new Date(data);
+                                var date = datetime.toLocaleDateString();
+                                var time = datetime.toLocaleTimeString();
+                                return "<span class='startTime'>" +
+                                    time +
+                                    " -</span>" +
+                                    "<span class='startDate'>" +
+                                    date +
+                                    "</span>";
+                            }
                         },
                         {
-                            data: "endTime"
+                            data: "endTime",
+                            render: function (data) {
+                                var datetime = new Date(data);
+                                var date = datetime.toLocaleDateString();
+                                var time = datetime.toLocaleTimeString();
+                                return "<span class='startTime'>" +
+                                    time +
+                                    " -</span>" +
+                                    "<span class='startDate'>" +
+                                    date +
+                                    "</span>";
+                            }
                         },
                         {
                             data: "associatedEventCategory.name"

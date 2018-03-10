@@ -24,13 +24,11 @@ textarea {
 }
 
 
-
 /* DataTable - Column Name / Icon Whitespace Workaround */
-
 table.dataTable thead th {
     background: transparent !important;
     white-space: nowrap;
-    background-image:none !important;
+    background-image: none !important;
 }
 
 table.dataTable thead span.sort-icon {
@@ -40,54 +38,67 @@ table.dataTable thead span.sort-icon {
     height: 16px;
 }
 
-table.dataTable thead .sorting span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_both.png') no-repeat center right; }
-table.dataTable thead .sorting_asc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc.png') no-repeat center right; }
-table.dataTable thead .sorting_desc span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc.png') no-repeat center right; }
+table.dataTable thead .sorting span {
+    background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_both.png') no-repeat center right;
+}
 
-table.dataTable thead .sorting_asc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc_disabled.png') no-repeat center right; }
-table.dataTable thead .sorting_desc_disabled span { background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc_disabled.png') no-repeat center right; }
+table.dataTable thead .sorting_asc span {
+    background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc.png') no-repeat center right;
+}
 
+table.dataTable thead .sorting_desc span {
+    background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc.png') no-repeat center right;
+}
 
-#Footer
-{
+table.dataTable thead .sorting_asc_disabled span {
+    background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_asc_disabled.png') no-repeat center right;
+}
+
+table.dataTable thead .sorting_desc_disabled span {
+    background: url('http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/images/sort_desc_disabled.png') no-repeat center right;
+}
+
+#Footer {
     position: absolute;
     bottom: 0;
 }
 
 /* for validation error msg */
-.field-validation-error	{
-color:	red;
+.field-validation-error {
+    color: red;
 }
-.input-validation-error	{
-border:	2px	solid	red;
+
+.input-validation-error {
+    border: 2px solid red;
 }
 
 /* controllers styling*/
-.contDataStyling{
+.contDataStyling {
     margin: 0 0 0 255px;
 }
 /*Create view*/
-.createOne{
+.createOne {
     margin: 0 0 0 260px;
 }
 /*Forms*/
-.formStyle{
+.formStyle {
     margin: 0 0 0 105px;
 }
 
-.loginRegisterPages{
-    margin-top:80px;
+.loginRegisterPages {
+    margin-top: 80px;
 }
 
-.mainPage{
-    margin-top:30px;
+.mainPage {
+    margin-top: 30px;
 }
 /*overRiding bootStrap */
-.checkbox input[type=checkbox]{
-       margin-left: -1px
+.checkbox input[type=checkbox] {
+    margin-left: -1px;
 }
 
 .btn {
+    -ms-border-radius: 10px;
     border-radius: 10px;
     text-transform: none;
     font-weight: bold;
@@ -105,7 +116,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #3B4B50;
 }
 
-
 .form-control {
     height: 41px;
     -webkit-box-shadow: none;
@@ -113,14 +123,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     -webkit-transition: border-color ease-in-out .10s, box-shadow ease-in-out .15s;
     -moz-transition: border-color ease-in-out .10s, box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .10s, box-shadow ease-in-out .15s;
+    -ms-transition: border-color ease-in-out .10s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .10s, box-shadow ease-in-out .15s;
+    -ms-border-radius: 10px;
     border-radius: 10px;
 }
 
-.form-control:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border: 2px solid #BB8342;
+    .form-control:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: 2px solid #BB8342;
+    }
+
+
+
+/*Events Form*/
+.startTime {
+    padding: 2px 2px;
+
 }
 
-
+.startDate {
+    padding: 2px 2px;
+    margin: 0 4px;
+}
