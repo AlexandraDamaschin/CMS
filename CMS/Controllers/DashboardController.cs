@@ -46,7 +46,7 @@ namespace CMS.Controllers
                     .Include(m => m.AssociatedLocation)
                     .Include(m => m.AssociatedEventCategory)
                     .Include(m => m.AssociatedOrganiser)
-                    .Take(5)
+                    .Take(4)
             };
             return PartialView("_EventsTimeline", viewModel);
         }
