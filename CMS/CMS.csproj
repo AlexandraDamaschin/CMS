@@ -360,6 +360,7 @@
     <Compile Include="ViewModels\DeviceFormViewModel.cs" />
     <Compile Include="ViewModels\EventCategoryFormViewModel.cs" />
     <Compile Include="ViewModels\EventFormViewModel.cs" />
+    <Compile Include="ViewModels\EventsTimelineViewModel.cs" />
     <Compile Include="ViewModels\LocationFormViewModel.cs" />
     <Compile Include="ViewModels\OrganiserFormViewModel.cs" />
   </ItemGroup>
@@ -628,7 +629,7 @@
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\_NavSideBar.cshtml" />
     <Content Include="Views\Dashboard\_DashboardPanels.cshtml" />
-    <Content Include="Views\Shared\_EventTimeLine.cshtml" />
+    <Content Include="Views\Dashboard\_EventsTimeline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

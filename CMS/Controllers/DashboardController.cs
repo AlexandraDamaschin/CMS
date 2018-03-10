@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using CMS.Models.CMSModel;
+﻿using CMS.Models.CMSModel;
 using CMS.ViewModels;
+using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 namespace CMS.Controllers
 {
     public class DashboardController : Controller
@@ -24,21 +25,6 @@ namespace CMS.Controllers
 
         public PartialViewResult DashboardPanels()
         {
-            //            var devicesCount = _cms.Devices.Count();
-            //            var eventsCount = _cms.Events.Count();
-            //            var eventCategoriesCount = _cms.EventCategories.Count();
-            //            var locationsCount = _cms.Locations.Count();
-            //            var organisersCount = _cms.Organisers.Count();
-            //
-            //            var viewModel = new DashboardPanelsViewModel()
-            //            {
-            //                EventsCount = eventsCount,
-            //                EventCategoriesCount = eventCategoriesCount,
-            //                LocationsCount = locationsCount,
-            //                OrganisersCount = organisersCount,
-            //                DevicesCount = devicesCount
-            //            };
-
             var viewModel = new DashboardPanelsViewModel()
             {
                 EventsCount = _cms.Events.Count(),
@@ -48,6 +34,21 @@ namespace CMS.Controllers
                 DevicesCount = _cms.Devices.Count()
             };
             return PartialView("_DashboardPanels", viewModel);
+        }
+
+        public PartialViewResult EventsTimeline()
+        {
+            var viewModel = new EventsTimelineViewModel()
+            {
+                EventsCount = _cms.Events.Count(),
+                TopEvents = _cms.Events
+                    .OrderByDescending(m => m.StartTime)
+                    .Include(m => m.AssociatedLocation)
+                    .Include(m => m.AssociatedEventCategory)
+                    .Include(m => m.AssociatedOrganiser)
+                    .Take(5)
+            };
+            return PartialView("_EventsTimeline", viewModel);
         }
     }
 }

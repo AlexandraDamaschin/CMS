@@ -1,0 +1,121 @@
+﻿@using System.Activities.Statements
+@model CMS.ViewModels.EventsTimelineViewModel
+
+@{
+    ViewBag.Title = "Event Timeline";
+}
+
+
+<div class="row" style="margin-top:-30px">
+    <div class="col-lg-12" style="width: 98%">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-clock-o fa-fw"></i> Timeline
+            </div>
+            <div class="panel-body">
+
+
+                <ul class="timeline">
+
+                    @{
+                        int counter = 0;
+                    }
+                    @foreach (var g in Model.TopEvents)
+                    {
+                        counter++;
+                        <li class="@(counter%2==0 ? "timeline-inverted":"")">
+                            @if(counter == 1){ 
+                            <div class="timeline-badge info">
+                                <i class="fa fa-arrow-left"></i>
+                            </div>
+                            }
+                            @if(counter == 2){ 
+                                <div class="timeline-badge warning">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>  
+                            }
+                            @if(counter == 3){ 
+                                <div class="timeline-badge danger">
+                                    <i class="fa fa-arrow-left"></i>
+                                </div>
+                            }
+                            @if(counter == 4){ 
+                                <div class="timeline-badge success">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                            }
+
+                            <div class="timeline-panel">
+                                <div class="row etName">
+                                    <h4 class="timeline-title">@g.Name</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-7">
+                                        <div class="row timeline-body">
+                                            <p>
+                                                @g.Details
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-user"></i> @g.AssociatedOrganiser.DisplayName
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-location-arrow"></i> @g.AssociatedLocation.Name
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 etDateTime">
+                                        <div class="row etTime">
+                                            @g.StartTime.ToString("hh:mm")
+                                        </div>
+                                        <div class="row etDay">
+                                            @g.StartTime.ToString("dddd")
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+
+
+                            </div>
+                        </li>
+                        @*                    <li class="timeline-inverted">*@
+                        @*                        <div class="timeline-badge success">*@
+                        @*                            <i class="fa fa-save"></i>*@
+                        @*                        </div>*@
+                        @*                        <div class="timeline-panel">*@
+                        @*                            <div class="timeline-heading">*@
+                        @*                                <h4 class="timeline-title">Dive Ireland International Expo</h4>*@
+                        @*                            </div>*@
+                        @*                            <div class="timeline-body">*@
+                        @*                                <p>Dive Ireland International Expo is a 2 day event being held from 13th March to 14th March 2018 at the Radisson Blu Hotel, Limerick in Limerick, Ireland. This event gathers a large array of exhibitors who tries to tempt the attendees. Timings 9am - 6pm (Expected)</p>*@
+                        @*                            </div>*@
+                        @*                        </div>*@
+                        @*                    </li>*@
+                        @*                    <li>*@
+                        @*                        <div class="timeline-badge danger">*@
+                        @*                            <i class="fa fa-bomb"></i>*@
+                        @*                        </div>*@
+                        @*                        <div class="timeline-panel">*@
+                        @*                            <div class="timeline-heading">*@
+                        @*                                <h4 class="timeline-title">Exciting One</h4>*@
+                        @*                            </div>*@
+                        @*                            <div class="timeline-body">*@
+                        @*                                <p>*@
+                        @*                                    Sea Sessions- Surf Music Festival, Bundoran Donegal Ireland*@
+                        @*                                    Starting from JUNE 22-JUNE 24, 2018 For more information visit their website*@
+                        @*                                </p>*@
+                        @*                                <p> <a href="http://seasessions.com/ "> Sea Sessions</a> </p>*@
+                        @*                            </div>*@
+                        @*                        </div>*@
+                        @*                    </li>*@
+                    }
+                </ul>
+                <div class="col-md-4" style="margin: 0 0 0 345px">
+                    <div class="text-center">
+                        <img src="@Url.Content("~/Content/Images/logosally.png")" alt="Sallinet" class="img-responsive"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

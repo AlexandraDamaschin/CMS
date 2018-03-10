@@ -147,3 +147,36 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding: 2px 2px;
     margin: 0 4px;
 }
+
+
+.etDateTime {
+/*    border: 2px dashed darkgrey;*/
+}
+.etTime {
+    background-color: #3f903f;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px 6px;
+    margin: 2px 2px;
+    color: white;
+}
+
+.etDay {
+    background-color: #d9534f;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px 16px;
+    margin: 2px 2px;
+    color: white;
+
+}
+
+
+.timeline-title {
+    font-weight: bolder;
+    text-align: center;
+}
