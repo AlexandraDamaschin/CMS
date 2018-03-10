@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS", "CMS\CMS.csproj", "{F82BE2E2-5039-4C52-B451-A43CE88F9A29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingEndToEnd", "TestingEndToEnd\TestingEndToEnd.csproj", "{2EB93A02-A696-4598-B845-F48D2BD7245E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F82BE2E2-5039-4C52-B451-A43CE88F9A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F82BE2E2-5039-4C52-B451-A43CE88F9A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F82BE2E2-5039-4C52-B451-A43CE88F9A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB93A02-A696-4598-B845-F48D2BD7245E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB93A02-A696-4598-B845-F48D2BD7245E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB93A02-A696-4598-B845-F48D2BD7245E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB93A02-A696-4598-B845-F48D2BD7245E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

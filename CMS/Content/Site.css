@@ -148,13 +148,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 0 4px;
 }
 
-
-.etDateTime {
-/*    border: 2px dashed darkgrey;*/
-}
 .etTime {
     background-color: #3f903f;
+    -ms-border-top-left-radius: 6px;
     border-top-left-radius: 6px;
+    -ms-border-top-right-radius: 6px;
     border-top-right-radius: 6px;
     text-align: center;
     font-weight: bold;
@@ -165,18 +163,35 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .etDay {
     background-color: #d9534f;
+    -ms-border-bottom-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    -ms-border-bottom-right-radius: 6px;
     border-bottom-right-radius: 6px;
     text-align: center;
     font-weight: bold;
     padding: 2px 16px;
     margin: 2px 2px;
     color: white;
-
 }
 
 
 .timeline-title {
     font-weight: bolder;
     text-align: center;
+}
+
+
+
+.list-button-info {
+    font-weight: bold;
+    font-size: larger;
+    padding: 6px 16px;
+    margin: 0;
+}
+
+.list-button-delete {
+    font-weight: bold;
+    font-size: larger;
+    padding: 6px 16px;
+    margin: 0;
 }

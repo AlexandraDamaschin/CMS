@@ -31,8 +31,8 @@
                 <th>
                     Organiser
                 </th>
-                <th>
-                </th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -99,9 +99,14 @@
                         "orderable": false,
                         data: "eventId",
                         render: function (data) {
-                            return "<button class='btn btn-warning js-delete' data-event-id=" +
-                                data +
-                                ">Delete</button>";
+                            return "<a href='/events/edit/" + data + "' class='btn btn-info list-button-info' role='button'><i class='fa fa-info'></i></a>";
+                        }
+                    },
+                    {
+                        "orderable": false,
+                        data: "eventId",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete list-button-delete' data-event-id=" + data + "><i class='fa fa-trash'></i></button>";
                         }
                     }
                 ]

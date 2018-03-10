@@ -31,6 +31,7 @@
                     Longituate
                 </th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -76,7 +77,14 @@
                             "orderable": false,
                             data: "locationId",
                             render: function (data) {
-                                return "<button class='btn btn-warning js-delete' data-location-id=" + data + ">Delete</button>";
+                                return "<a href='/locations/edit/" + data + "' class='btn btn-info list-button-info' role='button'><i class='fa fa-info'></i></a>";
+                            }
+                        },
+                        {
+                            "orderable": false,
+                            data: "locationId",
+                            render: function (data) {
+                                return "<button class='btn btn-danger js-delete list-button-delete' data-location-id=" + data + "><i class='fa fa-trash'></i></button>";
                             }
                         }
                     ]
