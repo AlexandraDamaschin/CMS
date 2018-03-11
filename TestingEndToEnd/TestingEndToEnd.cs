@@ -152,10 +152,10 @@ namespace TestingEndToEnd
             driver.FindElement(By.LinkText("New Event")).Click();
             driver.FindElement(By.Id("Name")).Click();
             driver.FindElement(By.Id("Name")).Clear();
-            driver.FindElement(By.Id("Name")).SendKeys("EST EVENT NAME 2");
+            driver.FindElement(By.Id("Name")).SendKeys("TEST EVENT NAME 2");
             driver.FindElement(By.Id("Details")).Click();
             driver.FindElement(By.Id("Details")).Clear();
-            driver.FindElement(By.Id("Details")).SendKeys("EST EVENT DETAILS 2");
+            driver.FindElement(By.Id("Details")).SendKeys("TEST EVENT DETAILS 2");
             driver.FindElement(By.Id("Priority")).Click();
             driver.FindElement(By.Id("Priority")).Clear();
             driver.FindElement(By.Id("Priority")).SendKeys("1");
@@ -189,10 +189,10 @@ namespace TestingEndToEnd
             driver.FindElement(By.LinkText("New Event")).Click();
             driver.FindElement(By.Id("Name")).Click();
             driver.FindElement(By.Id("Name")).Clear();
-            driver.FindElement(By.Id("Name")).SendKeys("EST EVENT NAME 3");
+            driver.FindElement(By.Id("Name")).SendKeys("TEST EVENT NAME 3");
             driver.FindElement(By.Id("Details")).Click();
             driver.FindElement(By.Id("Details")).Clear();
-            driver.FindElement(By.Id("Details")).SendKeys("EST EVENT DETAILS 3");
+            driver.FindElement(By.Id("Details")).SendKeys("TEST EVENT DETAILS 3");
             driver.FindElement(By.Id("Priority")).Click();
             driver.FindElement(By.Id("Priority")).Clear();
             driver.FindElement(By.Id("Priority")).SendKeys("1");
