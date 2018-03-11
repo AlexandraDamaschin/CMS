@@ -38,7 +38,7 @@ namespace TestingEndToEnd
         }
 
 
-        [Test]
+        [Test, Order(1)]
         public void CreateTestSuite()
         {
             //  LOGIN
@@ -100,7 +100,7 @@ namespace TestingEndToEnd
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
         }
 
-        [Test]
+        [Test, Order(2)]
         public void CreateTestEvent1()
         {
             driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
@@ -138,7 +138,7 @@ namespace TestingEndToEnd
         }
 
 
-        [Test]
+        [Test, Order(3)]
         public void CreateTestEvent2()
         {
             driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
@@ -175,7 +175,7 @@ namespace TestingEndToEnd
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
         }
 
-        [Test]
+        [Test, Order(4)]
         public void CreateTestEvent3()
         {
             driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
