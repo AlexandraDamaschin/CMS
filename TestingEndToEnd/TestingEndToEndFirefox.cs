@@ -5,10 +5,10 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Text;
 
-namespace TestingEndToEnd
+namespace TestingEndToEndFirefox
 {
     [TestFixture]
-    public class CMS
+    public class TestingEndToEndFirefox
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
