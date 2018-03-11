@@ -8,7 +8,7 @@ namespace CMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        //                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-{version}.js",
                         //                        "~/Scripts/Js/bootstrap.min.js",
                         //                        "~/Scripts/bootbox.js",
                         //                        "~/Scripts/respond.js",
