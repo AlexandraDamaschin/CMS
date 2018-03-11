@@ -37,8 +37,10 @@ namespace TestingEndToEnd
             Assert.AreEqual("", verificationErrors.ToString());
         }
 
+
+        //        Create Test Event
         [Test]
-        public void TheCMSTest()
+        public void CreateTestEvent1()
         {
             driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
             driver.FindElement(By.LinkText("Login")).Click();
@@ -51,10 +53,10 @@ namespace TestingEndToEnd
             driver.FindElement(By.LinkText("New Event")).Click();
             driver.FindElement(By.Id("Name")).Click();
             driver.FindElement(By.Id("Name")).Clear();
-            driver.FindElement(By.Id("Name")).SendKeys("TEST");
+            driver.FindElement(By.Id("Name")).SendKeys("TEST1");
             driver.FindElement(By.Id("Details")).Click();
             driver.FindElement(By.Id("Details")).Clear();
-            driver.FindElement(By.Id("Details")).SendKeys("TEST");
+            driver.FindElement(By.Id("Details")).SendKeys("TEST1");
             driver.FindElement(By.Id("Priority")).Click();
             driver.FindElement(By.Id("Priority")).Clear();
             driver.FindElement(By.Id("Priority")).SendKeys("1");
@@ -69,15 +71,92 @@ namespace TestingEndToEnd
             new SelectElement(driver.FindElement(By.Id("OrganiserId"))).SelectByText("Mr Organiser");
             driver.FindElement(By.Id("OrganiserId")).Click();
             driver.FindElement(By.Id("EventCategoryId")).Click();
-            new SelectElement(driver.FindElement(By.Id("EventCategoryId"))).SelectByText("Drama");
+            new SelectElement(driver.FindElement(By.Id("EventCategoryId"))).SelectByText("TEST");
             driver.FindElement(By.Id("EventCategoryId")).Click();
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-
-
-            driver.FindElement(By.XPath("//table[@id='events']/tbody/tr[5]/td[7]/button")).Click();
-            driver.FindElement(By.XPath("(//button[@type='button'])[3]")).Click();
-            driver.FindElement(By.LinkText("Log off")).Click();
+            //
+            //
+            //            driver.FindElement(By.XPath("//table[@id='events']/tbody/tr[5]/td[7]/button")).Click();
+            //            driver.FindElement(By.XPath("(//button[@type='button'])[3]")).Click();
+            //            driver.FindElement(By.LinkText("Log off")).Click();
         }
+
+
+
+        [Test]
+        public void CreateTestEvent2()
+        {
+            driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
+            driver.FindElement(By.LinkText("Login")).Click();
+            driver.FindElement(By.Id("Password")).Clear();
+            driver.FindElement(By.Id("Password")).SendKeys("LetMeIn");
+            driver.FindElement(By.Id("Email")).Clear();
+            driver.FindElement(By.Id("Email")).SendKeys("super-admin@sallinet.ie");
+            driver.FindElement(By.XPath("//input[@value='Log in']")).Click();
+            driver.FindElement(By.LinkText("Events")).Click();
+            driver.FindElement(By.LinkText("New Event")).Click();
+            driver.FindElement(By.Id("Name")).Click();
+            driver.FindElement(By.Id("Name")).Clear();
+            driver.FindElement(By.Id("Name")).SendKeys("TEST2");
+            driver.FindElement(By.Id("Details")).Click();
+            driver.FindElement(By.Id("Details")).Clear();
+            driver.FindElement(By.Id("Details")).SendKeys("TEST2");
+            driver.FindElement(By.Id("Priority")).Click();
+            driver.FindElement(By.Id("Priority")).Clear();
+            driver.FindElement(By.Id("Priority")).SendKeys("1");
+            driver.FindElement(By.Id("StartTime")).Clear();
+            driver.FindElement(By.Id("StartTime")).SendKeys("01/04/2018 13:00");
+            driver.FindElement(By.Id("EndTime")).Clear();
+            driver.FindElement(By.Id("EndTime")).SendKeys("01/04/2018 15:00");
+            driver.FindElement(By.Id("LocationId")).Click();
+            new SelectElement(driver.FindElement(By.Id("LocationId"))).SelectByText("IT Sligo");
+            driver.FindElement(By.Id("LocationId")).Click();
+            driver.FindElement(By.Id("OrganiserId")).Click();
+            new SelectElement(driver.FindElement(By.Id("OrganiserId"))).SelectByText("Mr Organiser");
+            driver.FindElement(By.Id("OrganiserId")).Click();
+            driver.FindElement(By.Id("EventCategoryId")).Click();
+            new SelectElement(driver.FindElement(By.Id("EventCategoryId"))).SelectByText("TEST");
+            driver.FindElement(By.Id("EventCategoryId")).Click();
+            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+        }
+
+        [Test]
+        public void CreateTestEvent3()
+        {
+            driver.Navigate().GoToUrl("https://sallinet.azurewebsites.net/");
+            driver.FindElement(By.LinkText("Login")).Click();
+            driver.FindElement(By.Id("Password")).Clear();
+            driver.FindElement(By.Id("Password")).SendKeys("LetMeIn");
+            driver.FindElement(By.Id("Email")).Clear();
+            driver.FindElement(By.Id("Email")).SendKeys("super-admin@sallinet.ie");
+            driver.FindElement(By.XPath("//input[@value='Log in']")).Click();
+            driver.FindElement(By.LinkText("Events")).Click();
+            driver.FindElement(By.LinkText("New Event")).Click();
+            driver.FindElement(By.Id("Name")).Click();
+            driver.FindElement(By.Id("Name")).Clear();
+            driver.FindElement(By.Id("Name")).SendKeys("TEST3");
+            driver.FindElement(By.Id("Details")).Click();
+            driver.FindElement(By.Id("Details")).Clear();
+            driver.FindElement(By.Id("Details")).SendKeys("TEST3");
+            driver.FindElement(By.Id("Priority")).Click();
+            driver.FindElement(By.Id("Priority")).Clear();
+            driver.FindElement(By.Id("Priority")).SendKeys("1");
+            driver.FindElement(By.Id("StartTime")).Clear();
+            driver.FindElement(By.Id("StartTime")).SendKeys("01/04/2018 13:00");
+            driver.FindElement(By.Id("EndTime")).Clear();
+            driver.FindElement(By.Id("EndTime")).SendKeys("01/04/2018 15:00");
+            driver.FindElement(By.Id("LocationId")).Click();
+            new SelectElement(driver.FindElement(By.Id("LocationId"))).SelectByText("IT Sligo");
+            driver.FindElement(By.Id("LocationId")).Click();
+            driver.FindElement(By.Id("OrganiserId")).Click();
+            new SelectElement(driver.FindElement(By.Id("OrganiserId"))).SelectByText("Mr Organiser");
+            driver.FindElement(By.Id("OrganiserId")).Click();
+            driver.FindElement(By.Id("EventCategoryId")).Click();
+            new SelectElement(driver.FindElement(By.Id("EventCategoryId"))).SelectByText("TEST");
+            driver.FindElement(By.Id("EventCategoryId")).Click();
+            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+        }
+
         private bool IsElementPresent(By by)
         {
             try
