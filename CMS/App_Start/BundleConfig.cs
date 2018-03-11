@@ -15,9 +15,9 @@ namespace CMS
                         "~/Scripts/Js/bootstrap.min.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/toastr.js",
                         "~/Scripts/jquery-ui-timepicker-addon.js",
-                        "~/Scripts/jquery-ui-timepicker-addon.min.js"
+                        "~/Scripts/jquery-ui-timepicker-addon.min.js",
+                        "~/Scripts/toastr.js"
 
                 ));
 
@@ -30,7 +30,6 @@ namespace CMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/jquery-ui.min.css",
                         "~/Content/bootstrap.min.css",
-                        //                       "~/Content/font-awesome.min.css",
                         "~/Content/font-awesome.css",
                         "~/Content/sb-admin-2.min.css",
                         "~/Content/dataTables.bootstrap.min.css",
