@@ -369,6 +369,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Content\Images\icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
     <Content Include="Content\sb-admin-2.min.css" />
     <Content Include="Content\Site.css" />
