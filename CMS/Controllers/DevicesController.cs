@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using CMS.Models.CMSModel;
 using CMS.ViewModels;
 using System.Linq;
-using AutoMapper;
 using CMS.Models;
 
 namespace CMS.Controllers

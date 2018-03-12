@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using CMS.Dtos;
+using CMS.Models;
 using CMS.Models.CMSModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
-using CMS.Models;
-
 
 namespace CMS.Controllers.API
 {
-
     public class DevicesController : ApiController
     {
         private readonly CmsContext _cms;
@@ -35,7 +33,6 @@ namespace CMS.Controllers.API
                 .ToList()
                 .Select(Mapper.Map<Device, DeviceDto>);
         }
-
 
         // Get /api/device/1
         public IHttpActionResult GetDevice(int id)
@@ -80,7 +77,6 @@ namespace CMS.Controllers.API
             Mapper.Map(deviceDto, deviceInDb);
 
             _cms.SaveChanges();
-
             return Ok();
         }
 
